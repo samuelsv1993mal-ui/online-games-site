@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "15.0.0",
-  "description": "SMQ Games PWA with validated chess rules, stable boards and rule-guard polish.",
+  "version": "19.0.0",
+  "description": "SMQ Games PWA with full-screen boards, random bot difficulty levels and desktop arena polish.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

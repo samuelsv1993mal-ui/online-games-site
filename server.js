@@ -31,6 +31,21 @@ app.use(express.static(PUBLIC_DIR));
 io.engine.use(sessionMiddleware);
 
 const COLORS = ['#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#e11d48', '#facc15', '#a855f7', '#14b8a6', '#fb7185', '#60a5fa'];
+const BOT_DIFFICULTIES = ['beginner', 'normal', 'expert', 'champion'];
+const BOT_NAMES = {
+  beginner: 'SMQ Bot · Beginner',
+  normal: 'SMQ Bot · Normal',
+  expert: 'SMQ Bot · Expert',
+  champion: 'SMQ Bot · World Champion'
+};
+function normalizeDifficulty(value) {
+  return ['random', ...BOT_DIFFICULTIES].includes(value) ? value : 'random';
+}
+function resolveDifficulty(value) {
+  const normalized = normalizeDifficulty(value);
+  if (normalized === 'random') return BOT_DIFFICULTIES[Math.floor(Math.random() * BOT_DIFFICULTIES.length)];
+  return normalized;
+}
 
 const GENERAL_QUESTIONS = require('./data/general-questions.json');
 const BIBLE_QUESTIONS = require('./data/bible-questions.json');
@@ -114,7 +129,8 @@ function makeRoom({ game, mode, teamCount, difficulty }) {
     scores: initScores(meta.maxPlayers),
     ties: 0,
     teamCount: count,
-    difficulty: ['beginner','normal','expert'].includes(difficulty) ? difficulty : 'normal',
+    difficulty: resolveDifficulty(difficulty),
+    requestedDifficulty: normalizeDifficulty(difficulty),
     teamScores: initScores(count),
     status: 'waiting',
     winnerMessage: null,
@@ -322,7 +338,7 @@ function addBot(room) {
   room.players[1] = {
     socketId: `bot:${room.id}`,
     userId: `bot:${room.id}`,
-    name: 'SMQ Bot',
+    name: BOT_NAMES[room.difficulty] || 'SMQ Bot',
     avatarUrl: null,
     color: '#ffce4a',
     team: 1,
@@ -351,7 +367,7 @@ function joinRoom(socket, payload = {}) {
   const game = payload.game || 'rps';
   const mode = payload.mode || 'online';
   const teamCount = payload.teamCount || 2;
-  const difficulty = ['beginner','normal','expert'].includes(payload.difficulty) ? payload.difficulty : 'normal';
+  const difficulty = normalizeDifficulty(payload.difficulty);
   let room = payload.roomId ? rooms.get(String(payload.roomId).toUpperCase()) : null;
   if (!room) room = makeRoom({ game, mode, teamCount, difficulty });
   const wantsSpectator = !!payload.spectate;
@@ -413,6 +429,7 @@ function serializeRoom(room) {
     ties: room.ties,
     teamCount: room.teamCount,
     difficulty: room.difficulty || 'normal',
+    requestedDifficulty: room.requestedDifficulty || room.difficulty || 'normal',
     teamScores: room.teamScores,
     hostIndex: room.game === 'whoami' ? room.state.hostIndex : room.hostIndex,
     state: safeState(room),
@@ -1365,15 +1382,11 @@ function chooseBotAction(room) {
   }
   if (room.game === 'checkers') {
     const moves = legalCheckersMoves(s.board, 1);
-    const captures = moves.filter(m => m.capture);
-    const pool = diff === 'beginner' ? moves : (captures.length ? captures : moves);
-    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
+    return chooseCheckersBotMove(s.board, moves, diff);
   }
   if (room.game === 'chess') {
     const moves = legalChessMoves(s.board, 1, s);
-    const captures = moves.filter(m => m.capture);
-    const pool = diff === 'beginner' ? moves : (captures.length ? captures : moves);
-    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
+    return chooseChessBotMove(s.board, moves, diff);
   }
   if (room.game === 'nim') {
     const take = s.sticks <= 3 ? s.sticks : ((s.sticks - 1) % 4) || (1 + Math.floor(Math.random() * 3));
@@ -1382,6 +1395,53 @@ function chooseBotAction(room) {
   return null;
 }
 
+
+function chooseBestByScore(moves, scoreFn) {
+  if (!moves.length) return null;
+  const scored = moves.map(m => ({ move: m, score: scoreFn(m) }));
+  const max = Math.max(...scored.map(x => x.score));
+  const best = scored.filter(x => x.score === max).map(x => x.move);
+  return best[Math.floor(Math.random() * best.length)] || null;
+}
+function chooseCheckersBotMove(board, moves, diff) {
+  if (!moves.length) return null;
+  if (diff === 'beginner') return moves[Math.floor(Math.random() * moves.length)] || null;
+  const captures = moves.filter(m => m.capture);
+  if (diff === 'normal') {
+    const pool = captures.length && Math.random() < 0.7 ? captures : moves;
+    return pool[Math.floor(Math.random() * pool.length)] || null;
+  }
+  return chooseBestByScore(moves, m => {
+    const piece = board[m.from[0]][m.from[1]];
+    let score = 0;
+    if (m.capture) score += 50;
+    if (piece?.k) score += 7;
+    if (piece && !piece.k && m.to[0] === 7) score += 18;
+    score += m.to[0];
+    return diff === 'champion' ? score + Math.floor(Math.random() * 3) : score;
+  });
+}
+const CHESS_VALUE = { p: 10, n: 30, b: 32, r: 50, q: 90, k: 1000 };
+function chooseChessBotMove(board, moves, diff) {
+  if (!moves.length) return null;
+  if (diff === 'beginner') return moves[Math.floor(Math.random() * moves.length)] || null;
+  const captures = moves.filter(m => m.capture);
+  if (diff === 'normal') {
+    const pool = captures.length && Math.random() < 0.65 ? captures : moves;
+    return pool[Math.floor(Math.random() * pool.length)] || null;
+  }
+  return chooseBestByScore(moves, m => {
+    const target = board[m.to[0]]?.[m.to[1]];
+    const piece = board[m.from[0]]?.[m.from[1]];
+    let score = 0;
+    if (target) score += CHESS_VALUE[target.t] || 0;
+    if (piece?.t === 'p' && (m.to[0] === 0 || m.to[0] === 7)) score += 75;
+    if (m.castle) score += 18;
+    const centerBonus = 8 - (Math.abs(3.5 - m.to[0]) + Math.abs(3.5 - m.to[1]));
+    score += Math.round(centerBonus);
+    return diff === 'champion' ? score + Math.floor(Math.random() * 4) : score;
+  });
+}
 function chooseRandomEmptyCell(board) {
   const empty = board.map((v, i) => v === null ? i : null).filter(v => v !== null);
   return empty[Math.floor(Math.random() * empty.length)] ?? 0;

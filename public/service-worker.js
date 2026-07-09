@@ -1,4 +1,4 @@
-const CACHE_NAME = 'smq-games-v18';
+const CACHE_NAME = 'smq-games-v19';
 const CORE_ASSETS = [
   '/',
   '/index.html',

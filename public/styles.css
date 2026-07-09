@@ -1649,3 +1649,98 @@ body.light .playlist-native {
 .checkers-cell.legal-target { outline: 4px solid rgba(34,197,94,.95) !important; outline-offset: -4px; }
 .checkers-cell.illegal-target { outline: 2px solid rgba(239,68,68,.38) !important; outline-offset: -2px; }
 .move-choice { min-height: 42px; }
+
+
+/* v19: full-screen boards, random bot levels, desktop arena polish */
+.board-toolbar {
+  width: min(96vw, 900px);
+  display:flex;
+  justify-content:center;
+  margin: 0 auto 10px;
+  gap: 8px;
+}
+.board-full-btn {
+  min-height: 40px;
+  padding-inline: 16px;
+  background: linear-gradient(135deg, rgba(0,232,255,.18), rgba(139,92,255,.18));
+  border-color: rgba(0,232,255,.42) !important;
+}
+.checkers-wrap:fullscreen,
+.chess-wrap:fullscreen,
+.checkers-wrap.board-expanded,
+.chess-wrap.board-expanded {
+  width: 100vw !important;
+  height: 100dvh !important;
+  background: radial-gradient(circle at 18% 10%, rgba(139,92,255,.32), transparent 32%), radial-gradient(circle at 80% 20%, rgba(0,232,255,.22), transparent 34%), linear-gradient(145deg, #060816, #101428) !important;
+  padding: max(10px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)) !important;
+  display:grid !important;
+  place-items:center !important;
+  align-content:center !important;
+  overflow:auto !important;
+}
+.checkers-wrap:fullscreen .rules-tip,
+.chess-wrap:fullscreen .rules-tip,
+.checkers-wrap:fullscreen .board-toolbar,
+.chess-wrap:fullscreen .board-toolbar,
+.checkers-wrap:fullscreen .move-tray,
+.chess-wrap:fullscreen .move-tray,
+.checkers-wrap:fullscreen .checkers-status,
+.chess-wrap:fullscreen .checkers-status,
+.checkers-wrap.board-expanded .rules-tip,
+.chess-wrap.board-expanded .rules-tip,
+.checkers-wrap.board-expanded .board-toolbar,
+.chess-wrap.board-expanded .board-toolbar,
+.checkers-wrap.board-expanded .move-tray,
+.chess-wrap.board-expanded .move-tray,
+.checkers-wrap.board-expanded .checkers-status,
+.chess-wrap.board-expanded .checkers-status {
+  width: min(96vw, 980px) !important;
+}
+.checkers-wrap:fullscreen .checkers-board,
+.chess-wrap:fullscreen .chess-stage,
+.chess-wrap:fullscreen .chess-board,
+.checkers-wrap.board-expanded .checkers-board,
+.chess-wrap.board-expanded .chess-stage,
+.chess-wrap.board-expanded .chess-board {
+  inline-size: min(86dvh, 96vw, 980px) !important;
+  max-inline-size: min(96vw, 980px) !important;
+}
+.checkers-wrap:fullscreen .checkers-cell.piece span,
+.checkers-wrap.board-expanded .checkers-cell.piece span {
+  width: 74% !important;
+}
+.chess-wrap:fullscreen .chess-cell span,
+.chess-wrap.board-expanded .chess-cell span {
+  font-size: clamp(1.6rem, calc(min(86dvh, 96vw) / 9.8), 4.8rem) !important;
+}
+@media (min-width: 1024px) {
+  .screen { width: min(100%, 1720px); padding-left: clamp(18px, 3vw, 42px); padding-right: clamp(18px, 3vw, 42px); }
+  .home-grid { grid-template-columns: minmax(420px, 1.25fr) minmax(360px, .85fr) minmax(300px, .7fr); align-items:start; }
+  .hero { grid-column: 1 / 3; min-height: 250px; }
+  .create-panel { grid-column: 1 / 2; }
+  .join-panel { grid-column: 2 / 3; }
+  .history-panel { grid-column: 3 / 4; grid-row: 1 / span 2; }
+  .game-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .game-card { min-height: 128px; padding: 16px; border-radius: 24px; }
+  .app-header { margin-top: 8px; }
+  .room-screen { width: 100vw; max-width: none; padding: clamp(10px, 1.2vw, 18px); }
+  .arena { width: min(100%, 1680px) !important; display:grid; grid-template-columns: 300px minmax(0, 1fr) 300px; grid-template-rows: auto minmax(0, 1fr); align-items:stretch; gap:14px; }
+  .room-tools { grid-column: 1 / 2; grid-row: 1 / 3; align-content:start; align-items:flex-start; flex-direction:column; justify-content:flex-start; }
+  .room-tools .tool-buttons { flex-direction:column; align-items:stretch; width:100%; }
+  .room-tools .chip-btn { width:100%; }
+  .turn-banner { grid-column: 2 / 4; grid-row: 1 / 2; display:grid; place-items:center; min-height:52px; border-radius:20px; background:rgba(255,255,255,.08); border:1px solid var(--line); }
+  .review-panel { grid-column: 3 / 4; grid-row: 2 / 3; align-self:start; }
+  .game-board { grid-column: 2 / 3; grid-row: 2 / 3; min-height: calc(100dvh - 210px); padding: clamp(12px, 2vw, 24px); border-radius: 32px; background: radial-gradient(circle at 50% 0%, rgba(0,232,255,.10), transparent 45%), rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.10); box-shadow: inset 0 0 70px rgba(0,0,0,.18); }
+  .checkers-board,
+  .chess-stage,
+  .chess-board { inline-size: min(76dvh, 760px) !important; max-inline-size: 100% !important; }
+  .rules-tip, .move-tray, .checkers-status, .board-toolbar { width: min(76dvh, 760px) !important; max-width: 100%; }
+  .player-strip { width: min(100%, 1680px); margin-left:auto; margin-right:auto; }
+}
+@media (min-width: 1500px) {
+  .game-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .checkers-board,
+  .chess-stage,
+  .chess-board { inline-size: min(80dvh, 880px) !important; }
+  .rules-tip, .move-tray, .checkers-status, .board-toolbar { width: min(80dvh, 880px) !important; }
+}
