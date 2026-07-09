@@ -1805,3 +1805,41 @@ body.light .playlist-native {
 .rebuilt-checkers-v21 .move-choice { min-height:42px; padding:0 14px; }
 .rebuilt-checkers-v21 .primary-move { border-color:rgba(34,197,94,.7); box-shadow:0 0 0 3px rgba(34,197,94,.12); }
 body.light .rebuilt-checkers-v21 .move-tray b { color:#fff; }
+
+
+/* v22: local Wi-Fi server mode */
+.local-panel { position: relative; overflow: hidden; }
+.local-panel::after {
+  content: "📡";
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  font-size: 2.2rem;
+  opacity: .18;
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.28));
+}
+.local-wifi-box { margin-top: 12px; display: grid; gap: 10px; }
+.local-address-list { display: grid; gap: 10px; }
+.local-address-card {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.local-address-card small { color: var(--muted); font-weight: 800; }
+.local-address-card strong {
+  color: #fff;
+  font-size: .95rem;
+  overflow-wrap: anywhere;
+}
+.local-loading { color: rgba(255,255,255,.8); font-weight: 800; }
+@media (min-width: 1100px) {
+  .home-grid { grid-template-columns: minmax(320px, .85fr) minmax(420px, 1.2fr) minmax(320px, .85fr); align-items: start; }
+  .hero { grid-column: 1 / -1; }
+  .create-panel { grid-column: span 2; }
+  .join-panel, .local-panel, .history-panel { min-height: 100%; }
+}
+body.light .local-address-card { background: rgba(15,23,42,.78); color: #fff; }
+body.light .local-address-card strong { color:#fff; }

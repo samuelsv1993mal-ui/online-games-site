@@ -1,12 +1,14 @@
 const path = require('path');
 const http = require('http');
+const os = require('os');
 const express = require('express');
 const session = require('express-session');
 const { Server } = require('socket.io');
 const { v4: uuid } = require('uuid');
 const WHOAMI_QUESTIONS = require('./data/whoami-questions.json');
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT || 3000);
+const HOST = process.env.HOST || '0.0.0.0';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const app = express();
@@ -29,6 +31,34 @@ app.use(express.json({ limit: '1mb' }));
 app.use(sessionMiddleware);
 app.use(express.static(PUBLIC_DIR));
 io.engine.use(sessionMiddleware);
+
+function getLocalNetworkUrls() {
+  const nets = os.networkInterfaces();
+  const urls = [];
+  for (const [name, list] of Object.entries(nets)) {
+    for (const net of list || []) {
+      if (net.family !== 'IPv4' || net.internal) continue;
+      urls.push({ interface: name, address: net.address, url: `http://${net.address}:${PORT}` });
+    }
+  }
+  return urls;
+}
+
+app.get('/api/local-info', (req, res) => {
+  const urls = getLocalNetworkUrls();
+  res.json({
+    app: 'SMQ Games',
+    port: PORT,
+    host: HOST,
+    onlineUrl: req.protocol + '://' + req.get('host'),
+    localUrls: urls,
+    lanReady: urls.length > 0,
+    note: 'Open one of localUrls on devices connected to the same Wi-Fi hotspot.'
+  });
+});
+
+app.get('/health', (req, res) => res.json({ ok: true, app: 'SMQ Games', port: PORT }));
+
 
 const COLORS = ['#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#e11d48', '#facc15', '#a855f7', '#14b8a6', '#fb7185', '#60a5fa'];
 const BOT_DIFFICULTIES = ['beginner', 'normal', 'expert', 'champion'];
@@ -1525,6 +1555,13 @@ function cleanupRoom(roomId) {
 
 app.get('/room/:roomId', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'index.html')));
 
-server.listen(PORT, () => {
-  console.log(`SMQ Games server running on port ${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`SMQ Games server running on http://${HOST}:${PORT}`);
+  const urls = getLocalNetworkUrls();
+  if (urls.length) {
+    console.log('Local Wi-Fi addresses:');
+    urls.forEach(item => console.log(`- ${item.interface}: ${item.url}`));
+  } else {
+    console.log('No LAN IPv4 address detected yet. Turn on Wi-Fi/hotspot and refresh /api/local-info.');
+  }
 });

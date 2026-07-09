@@ -1,4 +1,4 @@
-const CACHE_NAME = 'smq-games-v21';
+const CACHE_NAME = 'smq-games-v23';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -30,6 +30,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (request.method !== 'GET') return;
   if (url.pathname.startsWith('/socket.io/')) return;
+  if (url.pathname.startsWith('/api/')) return;
   event.respondWith(
     fetch(request)
       .then(response => {

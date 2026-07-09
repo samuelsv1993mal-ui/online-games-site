@@ -1,11 +1,15 @@
 {
   "name": "online-games-site",
-  "version": "19.0.0",
-  "description": "SMQ Games PWA with full-screen boards, random bot difficulty levels and desktop arena polish.",
+  "version": "23.0.0",
+  "description": "SMQ Games PWA with online Render mode and Android phone Wi-Fi server client mode.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "local": "HOST=0.0.0.0 PORT=3000 node server.js",
+    "wifi": "HOST=0.0.0.0 PORT=3000 node server.js",
+    "phone": "bash scripts/start-phone-client.sh",
+    "phone-install": "bash scripts/install-phone-client.sh"
   },
   "dependencies": {
     "express": "^4.18.3",
