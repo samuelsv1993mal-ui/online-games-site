@@ -1,0 +1,10 @@
+{
+  "name": "SMQ Games",
+  "short_name": "SMQ Games",
+  "description": "Онлайн-игры для двух игроков по коду комнаты.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09001f",
+  "theme_color": "#25105f",
+  "icons": []
+}

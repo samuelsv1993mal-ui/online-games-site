@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "1.0.0",
-  "description": "Мини-сайт с онлайн-играми для двух игроков: камень-ножницы-бумага и крестики-нолики.",
+  "version": "1.1.0",
+  "description": "Красочный сайт с онлайн-играми: комнаты, наблюдатели, игра с компьютером, профиль, языки RU/ES/EN и мобильный UI.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,8 +11,13 @@
     "games",
     "socket.io",
     "online",
+    "mobile",
     "tic-tac-toe",
-    "rock-paper-scissors"
+    "connect-four",
+    "dice",
+    "rock-paper-scissors",
+    "spectator",
+    "bot"
   ],
   "author": "",
   "license": "MIT",
