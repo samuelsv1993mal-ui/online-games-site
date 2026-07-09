@@ -2,21 +2,21 @@ const $ = (id) => document.getElementById(id);
 
 const I18N = {
   ru: {
-    appTitle:'SMQ Games', appSubtitle:'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle:'Войти через Google', continueGuest:'Продолжить как гость', googleHint:'Google сохраняет фото, цвет профиля, настройки и историю игр.',
+    appTitle:'SMQ Games', appSubtitle:'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle:'Войти через Google', continueGuest:'Продолжить как гость', googleHint:'Google сохраняет фото, цвет профиля, настройки и историю игр.', installApp:'Скачать как приложение', installUnavailable:'Установка появится после открытия сайта в Chrome/браузере и обновления страницы.', installReady:'Можно установить SMQ Games как приложение.', appInstalled:'SMQ Games установлено.',
     hello:'Привет', mobileGame:'Игровая арена', chooseGame:'Выбери игру', chooseMode:'Играй один, с компьютером, с друзьями или командами.', newGame:'Новая игра', game:'Игра', mode:'Режим', onlineRoom:'Онлайн-комната', playComputer:'С компьютером', createRoom:'Создать комнату', joinRoom:'Войти в комнату', joinAsPlayer:'Играть', watch:'Наблюдать', history:'История игр', refresh:'Обновить', spectators:'Наблюдатели', copyPlayerLink:'Ссылка игроку', copySpectatorLink:'Ссылка зрителю', newRound:'Новая партия', profile:'Профиль', changePhoto:'Изменить фото', resetPhoto:'Сбросить', name:'Имя', profileColor:'Цвет игрока', language:'Язык', fontSize:'Размер шрифта', small:'Маленький', medium:'Средний', large:'Большой', xlarge:'Очень большой', theme:'Тема', darkTheme:'Тёмная', lightTheme:'Светлая', music:'Музыка', musicOn:'Включить музыку', musicOff:'Выключить музыку', volume:'Громкость', uploadMusic:'Добавить свою музыку', saveProfile:'Сохранить профиль', logout:'Выйти', continue:'Продолжить',
     copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', source:'Источник', easy:'Лёгкий', hard:'Сложный', 
     games:{ rps:['Камень · Ножницы · Бумага','Быстрая дуэль'], ttt:['Крестики-нолики','Цветные X и O'], dice:['Кубики','У кого выпадет больше'], connect4:['Четыре в ряд','Собери линию'], memory:['Мемори','Найди пары'], twentyone:['21','Дойди ровно до 21'], reaction:['Реакция','Кто быстрее'], checkers:['Шашки','Стратегия 8×8'], nim:['Ним','Логика с палочками'], code:['Взлом кода','Логика и дедукция'], millionaire:['Кто хочет стать миллионером','Викторина до 10 игроков'], teamquiz:['Командная викторина','2, 3 или 4 команды'], mathrace:['Математическая гонка','Быстрый счёт до 10 игроков'], biblequiz:['Что? Где? Когда? — Библия','Библейские вопросы разной сложности'] },
     moves:{ rock:'Камень', paper:'Бумага', scissors:'Ножницы' }
   },
   es: {
-    appTitle:'SMQ Games', appSubtitle:'Juega online con amigos, contra la computadora o mira una sala.', loginGoogle:'Entrar con Google', continueGuest:'Continuar como invitado', googleHint:'Google guarda tu foto, color, ajustes e historial.',
+    appTitle:'SMQ Games', appSubtitle:'Juega online con amigos, contra la computadora o mira una sala.', loginGoogle:'Entrar con Google', continueGuest:'Continuar como invitado', googleHint:'Google guarda tu foto, color, ajustes e historial.', installApp:'Descargar como app', installUnavailable:'La instalación aparecerá después de abrir el sitio en Chrome/navegador y actualizar.', installReady:'Puedes instalar SMQ Games como app.', appInstalled:'SMQ Games instalado.',
     hello:'Hola', mobileGame:'Arena de juegos', chooseGame:'Elige un juego', chooseMode:'Juega solo, contra computadora, con amigos o en equipos.', newGame:'Nuevo juego', game:'Juego', mode:'Modo', onlineRoom:'Sala online', playComputer:'Computadora', createRoom:'Crear sala', joinRoom:'Entrar a sala', joinAsPlayer:'Jugar', watch:'Observar', history:'Historial', refresh:'Actualizar', spectators:'Observadores', copyPlayerLink:'Link jugador', copySpectatorLink:'Link observador', newRound:'Nueva partida', profile:'Perfil', changePhoto:'Cambiar foto', resetPhoto:'Restablecer', name:'Nombre', profileColor:'Color del jugador', language:'Idioma', fontSize:'Tamaño de letra', small:'Pequeño', medium:'Mediano', large:'Grande', xlarge:'Muy grande', theme:'Tema', darkTheme:'Oscuro', lightTheme:'Claro', music:'Música', musicOn:'Activar música', musicOff:'Apagar música', volume:'Volumen', uploadMusic:'Agregar tu música', saveProfile:'Guardar perfil', logout:'Salir', continue:'Continuar',
     copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', source:'Fuente', easy:'Fácil', hard:'Difícil', 
     games:{ rps:['Piedra · Papel · Tijeras','Duelo rápido'], ttt:['Tres en raya','X y O de color'], dice:['Dados','Gana el número mayor'], connect4:['Cuatro en línea','Conecta una línea'], memory:['Memoria','Encuentra pares'], twentyone:['21','Llega a 21'], reaction:['Reacción','El más rápido'], checkers:['Damas','Estrategia 8×8'], nim:['Nim','Lógica con palitos'], code:['Romper el código','Deducción lógica'], millionaire:['¿Quién quiere ser millonario?','Trivia hasta 10 jugadores'], teamquiz:['Trivia por equipos','2, 3 o 4 equipos'], mathrace:['Carrera matemática','Cálculo rápido'], biblequiz:['¿Qué? ¿Dónde? ¿Cuándo? — Biblia','Preguntas bíblicas por dificultad'] },
     moves:{ rock:'Piedra', paper:'Papel', scissors:'Tijeras' }
   },
   en: {
-    appTitle:'SMQ Games', appSubtitle:'Play online with friends, against the computer, or watch a room.', loginGoogle:'Sign in with Google', continueGuest:'Continue as guest', googleHint:'Google saves your photo, color, settings, and history.',
+    appTitle:'SMQ Games', appSubtitle:'Play online with friends, against the computer, or watch a room.', loginGoogle:'Sign in with Google', continueGuest:'Continue as guest', googleHint:'Google saves your photo, color, settings, and history.', installApp:'Download as app', installUnavailable:'Install will appear after opening the site in Chrome/browser and refreshing.', installReady:'You can install SMQ Games as an app.', appInstalled:'SMQ Games installed.',
     hello:'Hello', mobileGame:'Game arena', chooseGame:'Choose a game', chooseMode:'Play solo, vs computer, with friends, or in teams.', newGame:'New game', game:'Game', mode:'Mode', onlineRoom:'Online room', playComputer:'Computer', createRoom:'Create room', joinRoom:'Join room', joinAsPlayer:'Play', watch:'Watch', history:'Game history', refresh:'Refresh', spectators:'Spectators', copyPlayerLink:'Player link', copySpectatorLink:'Spectator link', newRound:'New round', profile:'Profile', changePhoto:'Change photo', resetPhoto:'Reset', name:'Name', profileColor:'Player color', language:'Language', fontSize:'Font size', small:'Small', medium:'Medium', large:'Large', xlarge:'Extra large', theme:'Theme', darkTheme:'Dark', lightTheme:'Light', music:'Music', musicOn:'Turn music on', musicOff:'Turn music off', volume:'Volume', uploadMusic:'Add your music', saveProfile:'Save profile', logout:'Log out', continue:'Continue',
     copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', source:'Source', easy:'Easy', hard:'Hard', 
     games:{ rps:['Rock · Paper · Scissors','Fast duel'], ttt:['Tic Tac Toe','Colored X and O'], dice:['Dice Duel','Highest roll wins'], connect4:['Four in a Row','Connect a line'], memory:['Memory Match','Find pairs'], twentyone:['Twenty One','Reach 21 exactly'], reaction:['Reaction Tap','Fastest wins'], checkers:['Checkers','8×8 strategy'], nim:['Nim','Logic with sticks'], code:['Code Breaker','Logic deduction'], millionaire:['Who Wants to Be a Millionaire','Quiz for up to 10 players'], teamquiz:['Team Quiz','2, 3 or 4 teams'], mathrace:['Math Race','Fast arithmetic'], biblequiz:['What? Where? When? — Bible','Bible questions by difficulty'] },
@@ -47,7 +47,9 @@ const state = {
   lastHistoryKey:null,
   selectedChecker:null,
   musicOn: localStorage.getItem('smq_music_on') === '1',
-  history: []
+  history: [],
+  deferredInstallPrompt:null,
+  isStandalone: window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true
 };
 
 let fbApp = null, fbAuth = null, fbDb = null;
@@ -434,6 +436,47 @@ async function maybeSaveRoundHistory(room) {
   } catch(e) { console.error(e); }
 }
 
+
+function setInstallButtonsVisible(visible) {
+  ['installAppBtn', 'installHeaderBtn'].forEach(id => {
+    const el = $(id);
+    if (el) el.classList.toggle('hidden', !visible || state.isStandalone);
+  });
+}
+
+function setupPWA() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').catch(err => console.warn('SW registration failed', err));
+    });
+  }
+  setInstallButtonsVisible(false);
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    state.deferredInstallPrompt = event;
+    setInstallButtonsVisible(true);
+    toast(t('installReady'));
+  });
+  window.addEventListener('appinstalled', () => {
+    state.deferredInstallPrompt = null;
+    state.isStandalone = true;
+    setInstallButtonsVisible(false);
+    toast(t('appInstalled'));
+  });
+}
+
+async function installApp() {
+  if (!state.deferredInstallPrompt) {
+    toast(t('installUnavailable'));
+    return;
+  }
+  const promptEvent = state.deferredInstallPrompt;
+  state.deferredInstallPrompt = null;
+  promptEvent.prompt();
+  try { await promptEvent.userChoice; } catch (_) {}
+  setInstallButtonsVisible(false);
+}
+
 function setupMusic() {
   const audio = $('bgMusic'); const custom = localStorage.getItem('smq_custom_music'); if (custom) audio.src = custom;
   const volume = Number(localStorage.getItem('smq_volume') || '0.35'); audio.volume = volume; $('volumeSlider').value = volume; if (state.musicOn) audio.play().catch(()=>{});
@@ -457,6 +500,8 @@ async function saveProfile() {
 
 function bindEvents() {
   $('googleLoginBtn').onclick = signInWithGoogleFirebase;
+  $('installAppBtn') && ($('installAppBtn').onclick = installApp);
+  $('installHeaderBtn') && ($('installHeaderBtn').onclick = installApp);
   $('guestLoginBtn').onclick = async () => { localStorage.setItem('smq_entered','1'); state.entered = true; state.user = localGuestUser(); updateProfileUI(); showScreen('homeScreen'); await loadHistory(); const roomId = getRoomFromPath(); if (roomId) joinRoom(roomId, new URLSearchParams(location.search).get('spectate') === '1'); };
   $('openProfileBtn').onclick = () => $('profileDrawer').classList.remove('hidden'); $('closeProfileBtn').onclick = () => $('profileDrawer').classList.add('hidden'); $('closeProfileBackdrop').onclick = () => $('profileDrawer').classList.add('hidden');
   $('quickLang').onchange = () => { state.lang = $('quickLang').value; localStorage.setItem('smq_lang', state.lang); $('profileLang').value = state.lang; applyI18n(); };
@@ -482,7 +527,7 @@ function bindEvents() {
 }
 
 async function init() {
-  applyThemeAndFont(); bindEvents(); renderGameCards(); setupMusic(); $('teamCountSelect').value = String(state.selectedTeams); await loadUser();
+  applyThemeAndFont(); setupPWA(); bindEvents(); renderGameCards(); setupMusic(); $('teamCountSelect').value = String(state.selectedTeams); await loadUser();
 }
 
 init();

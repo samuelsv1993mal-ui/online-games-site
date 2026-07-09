@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "4.0.0",
-  "description": "Mobile-first online games site with Google login, profiles, history, bots, spectators, animations and music.",
+  "version": "5.0.0",
+  "description": "SMQ Games PWA with stable responsive game boards, install button, Firebase auth, profiles, history, animations and music.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
