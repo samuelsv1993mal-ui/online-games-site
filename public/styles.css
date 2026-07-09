@@ -1295,3 +1295,45 @@ body.light .player-avatar[data-player-name]:active::after { background: rgba(15,
   .guess-result-card { grid-template-columns:1fr; }
   .guess-results { padding: 10px; }
 }
+
+
+/* v13: chess, word guess, richer 3d visuals, playlist file input */
+.game-card .emoji {
+  width: 56px; height: 56px; border-radius: 18px; display:grid; place-items:center;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.94), rgba(255,255,255,.25) 35%, rgba(34,211,238,.18) 60%, rgba(15,23,42,.55));
+  box-shadow: inset 0 5px 14px rgba(255,255,255,.5), 0 18px 30px rgba(0,0,0,.25);
+}
+.game-card em { position: relative; z-index: 1; color: rgba(255,255,255,.72); font-style: normal; display:block; margin-top:8px; }
+.playlist-helper { color: rgba(255,255,255,.74); margin-top: -4px; margin-bottom: 4px; }
+.chess-board {
+  width:min(94vw, 650px); aspect-ratio:1; display:grid; grid-template-columns:repeat(8, 1fr); border-radius:24px; overflow:hidden;
+  box-shadow:0 26px 60px rgba(0,0,0,.3); border:1px solid rgba(255,255,255,.12);
+}
+.chess-cell { position:relative; display:grid; place-items:center; border:0; }
+.chess-cell.light { background: linear-gradient(145deg, rgba(247,244,237,.98), rgba(222,228,241,.98)); }
+.chess-cell.dark { background: linear-gradient(145deg, #6174a5, #293a5d); }
+.chess-cell span { font-size: clamp(1.2rem, 5vw, 2.7rem); filter: drop-shadow(0 8px 14px rgba(0,0,0,.25)); }
+.chess-cell.piece.p0 span { color: #ffffff; text-shadow: 0 1px 0 rgba(0,0,0,.2), 0 6px 18px rgba(139,92,246,.45); }
+.chess-cell.piece.p1 span { color: #ffe08a; text-shadow: 0 1px 0 rgba(0,0,0,.24), 0 6px 18px rgba(250,204,21,.36); }
+.chess-cell.selected { outline: 4px solid #facc15; outline-offset: -4px; }
+.chess-cell.legal-target::before, .chess-cell.capture-target::before { content:''; position:absolute; width:28%; aspect-ratio:1; border-radius:50%; background:rgba(16,185,129,.55); box-shadow:0 0 0 8px rgba(16,185,129,.18); }
+.chess-cell.capture-target::before { width:72%; border:4px solid rgba(250,204,21,.92); background:transparent; box-shadow:none; }
+.wordguess-wrap { display:grid; place-items:center; }
+.wordguess-panel { width:min(92vw, 560px); padding:18px; border-radius:24px; background:rgba(15,23,42,.75); border:1px solid rgba(255,255,255,.12); box-shadow:0 24px 60px rgba(0,0,0,.28); }
+.wordguess-panel h2 { font-size:2rem; margin-bottom:8px; }
+.word-meta { display:flex; gap:14px; flex-wrap:wrap; color:rgba(255,255,255,.82); margin: 10px 0 12px; }
+.word-grid { display:grid; gap:10px; margin: 12px 0 14px; }
+.word-row { display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; }
+.word-cell { min-height:56px; border-radius:18px; display:grid; place-items:center; font-weight:900; font-size:1.25rem; border:1px solid rgba(255,255,255,.14); background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); color:#fff; text-transform:uppercase; }
+.word-cell.empty { color: rgba(255,255,255,.35); }
+.word-cell.correct { background: linear-gradient(145deg, #22c55e, #15803d); }
+.word-cell.present { background: linear-gradient(145deg, #facc15, #ca8a04); }
+.word-cell.absent { background: linear-gradient(145deg, #475569, #334155); }
+.word-input-row { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top: 8px; }
+.word-input { text-transform: uppercase; letter-spacing: .22em; font-weight: 900; text-align: center; }
+body.light .wordguess-panel, body.light .playlist-helper, body.light .chess-cell span { color:#fff; }
+@media (max-width: 720px) {
+  .game-card .emoji { width: 48px; height: 48px; border-radius: 16px; }
+  .word-cell { min-height: 48px; border-radius: 14px; }
+  .word-input-row { grid-template-columns:1fr; }
+}

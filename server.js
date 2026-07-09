@@ -35,6 +35,12 @@ const COLORS = ['#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#e11d48', '#facc15'
 const GENERAL_QUESTIONS = require('./data/general-questions.json');
 const BIBLE_QUESTIONS = require('./data/bible-questions.json');
 
+const WORD_BANKS = {
+  ru:['ЛЮБОВ','ДОБРО','МИРНО','СВЕТА','ПСАЛМ','КНИГА','ЗАВЕТ','МОЛИТ','РАДОС','БЛАГО'],
+  es:['GRANO','SALMO','REINO','AMIGO','ORARA','JUSTO','VERBO','ANGEL','CIELO','SANTO'],
+  en:['GRACE','TRUTH','PEACE','LIGHT','PSALM','FAITH','GLORY','MERCY','CROWN','ANGEL']
+};
+
 const gameMeta = {
   rps: { emoji: '✊', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
   ttt: { emoji: '⭕', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
@@ -44,8 +50,10 @@ const gameMeta = {
   twentyone: { emoji: '21', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'logic' },
   reaction: { emoji: '⚡', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
   checkers: { emoji: '⚫', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'strategy' },
+  chess: { emoji: '♞', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'strategy' },
   nim: { emoji: '🪵', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'logic' },
   code: { emoji: '🔐', maxPlayers: 1, minPlayers: 1, supportsBot: false, category: 'solo' },
+  wordguess: { emoji: '🔤', maxPlayers: 1, minPlayers: 1, supportsBot: false, category: 'solo' },
   millionaire: { emoji: '💰', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
   teamquiz: { emoji: '🏁', maxPlayers: 10, minPlayers: 2, supportsBot: false, category: 'team' },
   mathrace: { emoji: '🧮', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
@@ -193,6 +201,22 @@ function formatMs(ms) {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milli).padStart(3, '0')}`;
 }
 
+function chooseWord(lang = 'ru') {
+  const list = WORD_BANKS[lang] || WORD_BANKS.ru;
+  return String(list[Math.floor(Math.random() * list.length)] || 'ДОБРО').toUpperCase().slice(0, 5);
+}
+function initChessBoard() {
+  const back = ['r','n','b','q','k','b','n','r'];
+  const board = Array.from({ length: 8 }, () => Array(8).fill(null));
+  for (let c = 0; c < 8; c++) {
+    board[0][c] = { p:1, t:back[c] };
+    board[1][c] = { p:1, t:'p' };
+    board[6][c] = { p:0, t:'p' };
+    board[7][c] = { p:0, t:back[c] };
+  }
+  return board;
+}
+
 function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'ttt') return { board: Array(9).fill(null), turn: 0, winner: null, winLine: null, lastMove: null };
   if (game === 'connect4') return { board: Array.from({ length: 6 }, () => Array(7).fill(null)), turn: 0, winner: null, winLine: null, lastMove: null };
@@ -205,8 +229,10 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'twentyone') return { total: 0, turn: 0, winner: null, lastAdd: null };
   if (game === 'reaction') return { readyAt: Date.now() + 1800 + Math.floor(Math.random() * 3200), taps: initScores(maxPlayers).map(() => null), winner: null, falseStart: null };
   if (game === 'checkers') return { board: initCheckersBoard(), turn: 0, winner: null, lastMove: null, captured: 0 };
+  if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null };
   if (game === 'nim') return { sticks: 21, turn: 0, lastTake: null, winner: null };
   if (game === 'code') return { secret: makeSecret(), guesses: [], maxGuesses: 10, winner: null };
+  if (game === 'wordguess') return { secret: chooseWord('ru'), lang:'ru', wordLength:5, guesses:[], maxGuesses:6, winner:null, finished:false, reveal:null };
   if (game === 'millionaire') return { questions: makeQuestionList('millionaire'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
   if (game === 'biblequiz') return { questions: makeQuestionList('bible'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
   if (game === 'teamquiz') return { questions: makeQuestionList('general'), qIndex: 0, answers: {}, teamPoints: initScores(teamCount), showAnswer: null, finished: false };
@@ -343,6 +369,11 @@ function joinRoom(socket, payload = {}) {
         room.hostIndex = index;
       }
       role = `player${index + 1}`;
+      if (room.game === 'wordguess' && !room.state.guesses?.length) {
+        const lang = ['ru','es','en'].includes(payload?.lang) ? payload.lang : 'ru';
+        room.state.lang = lang;
+        room.state.secret = chooseWord(lang);
+      }
     } else {
       room.spectators.add(socket.id);
     }
@@ -393,6 +424,7 @@ function serializeRoom(room) {
 function safeState(room) {
   if (room.game === 'memory') return { ...room.state, cards: room.state.cards.map(c => ({ id: c.id, value: c.revealed || c.matched ? c.value : null, revealed: c.revealed, matched: c.matched })) };
   if (room.game === 'code') return { ...room.state, secret: undefined };
+  if (room.game === 'wordguess') return { ...room.state, secret: undefined };
   if (room.game === 'whoami') {
     const state = { ...room.state };
     if (state.phase === 'spinning' && state.question) state.question = { id: state.question.id };
@@ -412,9 +444,9 @@ function currentPlayerIndex(socket, room) {
 function isPlayersTurn(room, index) {
   if (!room.players[index] || room.status !== 'playing') return false;
   if (room.players[index].isBot) return true;
-  if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'nim'].includes(room.game)) return room.state.turn === index;
+  if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'chess', 'nim'].includes(room.game)) return room.state.turn === index;
   if (['millionaire', 'teamquiz', 'mathrace', 'biblequiz'].includes(room.game)) return !room.state.answers[String(index)] && !room.state.showAnswer;
-  if (room.game === 'code') return index === 0;
+  if (['code','wordguess'].includes(room.game)) return index === 0;
   if (room.game === 'guesstime') return room.state.activeIndex === index && ['setup','ready','running','stopped'].includes(room.state.phase);
   return true;
 }
@@ -446,8 +478,10 @@ function applyAction(room, index, action) {
     case 'twentyone': return twentyoneAction(room, index, action);
     case 'reaction': return reactionAction(room, index, action);
     case 'checkers': return checkersAction(room, index, action);
+    case 'chess': return chessAction(room, index, action);
     case 'nim': return nimAction(room, index, action);
     case 'code': return codeAction(room, index, action);
+    case 'wordguess': return wordGuessAction(room, index, action);
     case 'millionaire': return quizAction(room, index, action, false);
     case 'teamquiz': return quizAction(room, index, action, true);
     case 'biblequiz': return quizAction(room, index, action, false);
@@ -673,6 +707,95 @@ function legalCheckersMoves(board, player) {
   return moves;
 }
 
+
+function validateChessMove(board, player, fr, fc, tr, tc) {
+  if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
+  if (fr === tr && fc === tc) return null;
+  const piece = board?.[fr]?.[fc];
+  const target = board?.[tr]?.[tc];
+  if (!piece || piece.p !== player || (target && target.p === player)) return null;
+  const dr = tr - fr, dc = tc - fc, adr = Math.abs(dr), adc = Math.abs(dc);
+  const dir = player === 0 ? -1 : 1;
+  const clearLine = () => {
+    const sr = Math.sign(dr), sc = Math.sign(dc);
+    let r = fr + sr, c = fc + sc;
+    while (r !== tr || c !== tc) { if (board[r][c]) return false; r += sr; c += sc; }
+    return true;
+  };
+  switch (piece.t) {
+    case 'p':
+      if (dc === 0 && !target) {
+        if (dr === dir) return { capture:false };
+        const start = player === 0 ? 6 : 1;
+        if (fr === start && dr === dir * 2 && !board[fr + dir][fc]) return { capture:false };
+      }
+      if (adc === 1 && dr === dir && target && target.p !== player) return { capture:true };
+      return null;
+    case 'r': if ((dr === 0 || dc === 0) && clearLine()) return { capture:!!target }; return null;
+    case 'b': if (adr === adc && clearLine()) return { capture:!!target }; return null;
+    case 'q': if ((dr === 0 || dc === 0 || adr === adc) && clearLine()) return { capture:!!target }; return null;
+    case 'n': if ((adr === 2 && adc === 1) || (adr === 1 && adc === 2)) return { capture:!!target }; return null;
+    case 'k': if (Math.max(adr, adc) === 1) return { capture:!!target }; return null;
+  }
+  return null;
+}
+function legalChessMoves(board, player) {
+  const moves = [];
+  for (let r=0;r<8;r++) for (let c=0;c<8;c++) {
+    const piece = board[r][c];
+    if (!piece || piece.p !== player) continue;
+    for (let tr=0;tr<8;tr++) for (let tc=0;tc<8;tc++) {
+      const mv = validateChessMove(board, player, r,c,tr,tc);
+      if (mv) moves.push({ from:[r,c], to:[tr,tc], capture:mv.capture });
+    }
+  }
+  return moves;
+}
+function hasKing(board, player) {
+  return board.some(row => row.some(cell => cell && cell.p === player && cell.t === 'k'));
+}
+function chessAction(room, index, action) {
+  const from = action.from || [];
+  const to = action.to || [];
+  const move = validateChessMove(room.state.board, index, from[0], from[1], to[0], to[1]);
+  if (!move || room.state.turn !== index) return;
+  const piece = room.state.board[from[0]][from[1]];
+  const captured = room.state.board[to[0]][to[1]];
+  room.state.board[to[0]][to[1]] = piece;
+  room.state.board[from[0]][from[1]] = null;
+  if (piece.t === 'p' && ((piece.p === 0 && to[0] === 0) || (piece.p === 1 && to[0] === 7))) piece.t = 'q';
+  room.state.lastMove = { player:index, from, to, captured: captured ? captured.t : null };
+  const other = index === 0 ? 1 : 0;
+  if (!hasKing(room.state.board, other) || legalChessMoves(room.state.board, other).length === 0) {
+    finishRound(room, index, { type:'chess', lastMove:`${room.players[index]?.name}: ${from.join(',')} → ${to.join(',')}` });
+  } else room.state.turn = other;
+}
+function wordHint(secret, guess) {
+  const hints = Array(secret.length).fill('absent');
+  const rest = {};
+  for (let i = 0; i < secret.length; i++) {
+    if (guess[i] === secret[i]) hints[i] = 'correct';
+    else rest[secret[i]] = (rest[secret[i]] || 0) + 1;
+  }
+  for (let i = 0; i < secret.length; i++) {
+    if (hints[i] === 'correct') continue;
+    const ch = guess[i];
+    if (rest[ch]) { hints[i] = 'present'; rest[ch] -= 1; }
+  }
+  return hints;
+}
+function wordGuessAction(room, index, action) {
+  const guess = String(action.guess || '').trim().toUpperCase().replace(/[^A-ZА-ЯЁ]/gi, '').slice(0, 5);
+  if (index !== 0 || room.state.finished || guess.length !== room.state.wordLength) return;
+  const hints = wordHint(room.state.secret, guess);
+  room.state.guesses.push({ guess, letters: guess.split(''), hints });
+  if (guess === room.state.secret) {
+    room.state.winner = true; room.state.finished = true; finishRound(room, 0, { type:'wordguess', lastMove:`${guess}` }); return;
+  }
+  if (room.state.guesses.length >= room.state.maxGuesses) {
+    room.state.winner = false; room.state.finished = true; room.state.reveal = room.state.secret; finishRound(room, null, { type:'wordguess', lastMove:`${room.state.secret}`, secret:room.state.secret });
+  }
+}
 function nimAction(room, index, action) {
   const take = Number(action.take);
   if (![1,2,3].includes(take) || room.state.turn !== index || take > room.state.sticks) return;
@@ -1136,6 +1259,10 @@ function chooseBotAction(room) {
   }
   if (room.game === 'checkers') {
     const moves = legalCheckersMoves(s.board, 1);
+    return moves.length ? moves[Math.floor(Math.random() * moves.length)] : null;
+  }
+  if (room.game === 'chess') {
+    const moves = legalChessMoves(s.board, 1);
     return moves.length ? moves[Math.floor(Math.random() * moves.length)] : null;
   }
   if (room.game === 'nim') {

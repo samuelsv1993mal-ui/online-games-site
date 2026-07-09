@@ -181,8 +181,6 @@
         <button class="btn primary full" id="toggleMusicBtn" data-i18n="musicOn">Включить музыку</button>
         <label data-i18n="volume">Громкость</label>
         <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.35" />
-        <label data-i18n="uploadMusic">Добавить свою музыку</label>
-        <input type="file" id="musicInput" accept="audio/*" class="input file-input" />
       </div>
 
 
@@ -205,6 +203,9 @@
           <input id="songTitleInput" class="input" maxlength="80" />
           <label data-i18n="audioLink">Ссылка на аудио</label>
           <input id="songUrlInput" class="input" inputmode="url" />
+          <label data-i18n="playlistFromDevice">Файл с устройства</label>
+          <input id="songFileInput" type="file" accept="audio/*" class="input file-input" />
+          <small class="playlist-helper" data-i18n="playlistOrLink">Или ссылка из интернета</small>
           <button class="btn secondary full" id="addSongBtn" type="button" data-i18n="addSong">Добавить песню</button>
         </div>
       </div>
