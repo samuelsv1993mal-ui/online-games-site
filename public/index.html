@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Игры Онлайн</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card" id="welcomeView">
+      <div class="hero-content">
+        <div class="badge">🎮 Игры для двоих онлайн</div>
+        <h1>Играй с другом по коду комнаты</h1>
+        <p class="hero-text">
+          Камень, ножницы, бумага и крестики-нолики в одном простом сайте.
+          Создай комнату, отправь код другу и играйте вместе в реальном времени.
+        </p>
+
+        <div class="form-grid">
+          <label>
+            Твоё имя
+            <input id="nameInput" type="text" maxlength="18" placeholder="Например: Слава" autocomplete="off" />
+          </label>
+
+          <label>
+            Игра при создании комнаты
+            <select id="gameInput">
+              <option value="rps">Камень · Ножницы · Бумага</option>
+              <option value="ttt">Крестики-нолики</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions-row">
+          <button class="primary-btn" id="createRoomBtn">Создать комнату</button>
+          <span class="or-text">или</span>
+        </div>
+
+        <div class="join-box">
+          <input id="roomInput" type="text" maxlength="5" placeholder="Код комнаты" autocomplete="off" />
+          <button class="secondary-btn" id="joinRoomBtn">Войти</button>
+        </div>
+
+        <p class="error-text" id="errorText"></p>
+      </div>
+
+      <div class="preview-card">
+        <div class="floating-card top-card">
+          <span>КНБ</span>
+          <strong>✊ ✌️ ✋</strong>
+        </div>
+        <div class="phone-preview">
+          <div class="preview-header"></div>
+          <div class="preview-board">
+            <div>X</div><div>O</div><div>X</div>
+            <div>O</div><div>X</div><div></div>
+            <div></div><div>O</div><div>X</div>
+          </div>
+        </div>
+        <div class="floating-card bottom-card">
+          <span>Комната</span>
+          <strong>8K2PQ</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-view hidden" id="gameView">
+      <header class="game-header">
+        <div>
+          <p class="eyebrow">Комната</p>
+          <div class="room-code-wrap">
+            <h2 id="roomCode">-----</h2>
+            <button class="tiny-btn" id="copyRoomBtn">Копировать</button>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <select id="gameSelect" class="game-select">
+            <option value="rps">КНБ</option>
+            <option value="ttt">Крестики-нолики</option>
+          </select>
+          <button class="ghost-btn" id="resetGameBtn">Новая партия</button>
+          <button class="ghost-btn danger" id="resetScoresBtn">Сброс счёта</button>
+        </div>
+      </header>
+
+      <div class="status-grid">
+        <article class="player-card" id="playerXCard">
+          <span class="symbol">X</span>
+          <div>
+            <p>Игрок X</p>
+            <strong id="playerXName">Ожидаем...</strong>
+          </div>
+        </article>
+        <article class="score-card">
+          <p>Счёт</p>
+          <strong id="scoreText">0 : 0</strong>
+          <span id="drawText">Ничьи: 0</span>
+        </article>
+        <article class="player-card" id="playerOCard">
+          <span class="symbol">O</span>
+          <div>
+            <p>Игрок O</p>
+            <strong id="playerOName">Ожидаем...</strong>
+          </div>
+        </article>
+      </div>
+
+      <div class="notice" id="noticeText">Отправь код комнаты другу, чтобы начать.</div>
+
+      <section class="game-panel" id="rpsPanel">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">Игра 1</p>
+            <h3>Камень · Ножницы · Бумага</h3>
+          </div>
+          <span class="game-pill">Быстрая дуэль</span>
+        </div>
+
+        <div class="rps-grid">
+          <button class="move-btn" data-move="rock">
+            <span>✊</span>
+            Камень
+          </button>
+          <button class="move-btn" data-move="scissors">
+            <span>✌️</span>
+            Ножницы
+          </button>
+          <button class="move-btn" data-move="paper">
+            <span>✋</span>
+            Бумага
+          </button>
+        </div>
+
+        <div class="result-box" id="rpsResult">Сделай ход. Результат откроется, когда оба игрока выберут вариант.</div>
+      </section>
+
+      <section class="game-panel hidden" id="tttPanel">
+        <div class="panel-title">
+          <div>
+            <p class="eyebrow">Игра 2</p>
+            <h3>Крестики-нолики</h3>
+          </div>
+          <span class="game-pill">Стратегия 3×3</span>
+        </div>
+
+        <div class="ttt-board" id="tttBoard" aria-label="Поле крестики-нолики"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
