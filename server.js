@@ -230,7 +230,7 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'twentyone') return { total: 0, turn: 0, winner: null, lastAdd: null };
   if (game === 'reaction') return { readyAt: Date.now() + 1800 + Math.floor(Math.random() * 3200), taps: initScores(maxPlayers).map(() => null), winner: null, falseStart: null };
   if (game === 'checkers') return { board: initCheckersBoard(), turn: 0, winner: null, lastMove: null, captured: 0 };
-  if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null };
+  if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null, check: null, castlingRights: { 0:{ king:true, queen:true }, 1:{ king:true, queen:true } } };
   if (game === 'nim') return { sticks: 21, turn: 0, lastTake: null, winner: null };
   if (game === 'code') return { secret: makeSecret(), guesses: [], maxGuesses: 10, winner: null };
   if (game === 'wordguess') return { secret: chooseWord('ru'), lang:'ru', wordLength:5, guesses:[], maxGuesses:6, winner:null, finished:false, reveal:null };
@@ -711,7 +711,53 @@ function legalCheckersMoves(board, player) {
 }
 
 
-function validateChessMove(board, player, fr, fc, tr, tc) {
+
+function cloneChessBoard(board) {
+  return board.map(row => row.map(cell => cell ? { ...cell } : null));
+}
+
+function findKing(board, player) {
+  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+    const piece = board[r][c];
+    if (piece && piece.p === player && piece.t === 'k') return [r, c];
+  }
+  return null;
+}
+
+function isChessPathClear(board, fr, fc, tr, tc) {
+  const dr = tr - fr, dc = tc - fc;
+  const sr = Math.sign(dr), sc = Math.sign(dc);
+  let r = fr + sr, c = fc + sc;
+  while (r !== tr || c !== tc) {
+    if (board[r][c]) return false;
+    r += sr; c += sc;
+  }
+  return true;
+}
+
+function isSquareAttacked(board, r, c, byPlayer) {
+  for (let fr = 0; fr < 8; fr++) for (let fc = 0; fc < 8; fc++) {
+    const piece = board[fr][fc];
+    if (!piece || piece.p !== byPlayer) continue;
+    const dr = r - fr, dc = c - fc, adr = Math.abs(dr), adc = Math.abs(dc);
+    const dir = byPlayer === 0 ? -1 : 1;
+    if (piece.t === 'p' && dr === dir && adc === 1) return true;
+    if (piece.t === 'n' && ((adr === 2 && adc === 1) || (adr === 1 && adc === 2))) return true;
+    if (piece.t === 'k' && Math.max(adr, adc) === 1) return true;
+    if (piece.t === 'b' && adr === adc && isChessPathClear(board, fr, fc, r, c)) return true;
+    if (piece.t === 'r' && (dr === 0 || dc === 0) && isChessPathClear(board, fr, fc, r, c)) return true;
+    if (piece.t === 'q' && (dr === 0 || dc === 0 || adr === adc) && isChessPathClear(board, fr, fc, r, c)) return true;
+  }
+  return false;
+}
+
+function isKingInCheck(board, player) {
+  const king = findKing(board, player);
+  if (!king) return true;
+  return isSquareAttacked(board, king[0], king[1], player === 0 ? 1 : 0);
+}
+
+function pseudoChessMove(board, player, fr, fc, tr, tc, state = {}) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
   if (fr === tr && fc === tc) return null;
   const piece = board?.[fr]?.[fc];
@@ -719,12 +765,22 @@ function validateChessMove(board, player, fr, fc, tr, tc) {
   if (!piece || piece.p !== player || (target && target.p === player)) return null;
   const dr = tr - fr, dc = tc - fc, adr = Math.abs(dr), adc = Math.abs(dc);
   const dir = player === 0 ? -1 : 1;
-  const clearLine = () => {
-    const sr = Math.sign(dr), sc = Math.sign(dc);
-    let r = fr + sr, c = fc + sc;
-    while (r !== tr || c !== tc) { if (board[r][c]) return false; r += sr; c += sc; }
-    return true;
-  };
+
+  if (piece.t === 'k' && dr === 0 && adc === 2 && !target) {
+    const homeRow = player === 0 ? 7 : 0;
+    if (fr !== homeRow || fc !== 4 || isKingInCheck(board, player)) return null;
+    const side = dc > 0 ? 'king' : 'queen';
+    const rights = state.castlingRights?.[player]?.[side] !== false;
+    const rookCol = dc > 0 ? 7 : 0;
+    const rook = board[homeRow][rookCol];
+    if (!rights || !rook || rook.p !== player || rook.t !== 'r') return null;
+    const between = dc > 0 ? [5, 6] : [1, 2, 3];
+    if (between.some(col => board[homeRow][col])) return null;
+    const through = dc > 0 ? [5, 6] : [3, 2];
+    if (through.some(col => isSquareAttacked(board, homeRow, col, player === 0 ? 1 : 0))) return null;
+    return { capture:false, castle:{ rookFrom:[homeRow, rookCol], rookTo:[homeRow, dc > 0 ? 5 : 3] } };
+  }
+
   switch (piece.t) {
     case 'p':
       if (dc === 0 && !target) {
@@ -734,22 +790,46 @@ function validateChessMove(board, player, fr, fc, tr, tc) {
       }
       if (adc === 1 && dr === dir && target && target.p !== player) return { capture:true };
       return null;
-    case 'r': if ((dr === 0 || dc === 0) && clearLine()) return { capture:!!target }; return null;
-    case 'b': if (adr === adc && clearLine()) return { capture:!!target }; return null;
-    case 'q': if ((dr === 0 || dc === 0 || adr === adc) && clearLine()) return { capture:!!target }; return null;
+    case 'r': if ((dr === 0 || dc === 0) && isChessPathClear(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
+    case 'b': if (adr === adc && isChessPathClear(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
+    case 'q': if ((dr === 0 || dc === 0 || adr === adc) && isChessPathClear(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
     case 'n': if ((adr === 2 && adc === 1) || (adr === 1 && adc === 2)) return { capture:!!target }; return null;
     case 'k': if (Math.max(adr, adc) === 1) return { capture:!!target }; return null;
   }
   return null;
 }
-function legalChessMoves(board, player) {
+
+function applyChessMoveToBoard(board, fr, fc, tr, tc, move) {
+  const copy = cloneChessBoard(board);
+  const piece = copy[fr][fc];
+  copy[tr][tc] = piece;
+  copy[fr][fc] = null;
+  if (move?.castle) {
+    const [rr, rc] = move.castle.rookFrom;
+    const [trr, trc] = move.castle.rookTo;
+    copy[trr][trc] = copy[rr][rc];
+    copy[rr][rc] = null;
+  }
+  if (piece?.t === 'p' && ((piece.p === 0 && tr === 0) || (piece.p === 1 && tr === 7))) piece.t = 'q';
+  return copy;
+}
+
+function validateChessMove(board, player, fr, fc, tr, tc, state = {}) {
+  const move = pseudoChessMove(board, player, fr, fc, tr, tc, state);
+  if (!move) return null;
+  const after = applyChessMoveToBoard(board, fr, fc, tr, tc, move);
+  if (isKingInCheck(after, player)) return null;
+  return move;
+}
+
+function legalChessMoves(board, player, state = {}) {
   const moves = [];
   for (let r=0;r<8;r++) for (let c=0;c<8;c++) {
     const piece = board[r][c];
     if (!piece || piece.p !== player) continue;
     for (let tr=0;tr<8;tr++) for (let tc=0;tc<8;tc++) {
-      const mv = validateChessMove(board, player, r,c,tr,tc);
-      if (mv) moves.push({ from:[r,c], to:[tr,tc], capture:mv.capture });
+      const mv = validateChessMove(board, player, r,c,tr,tc,state);
+      if (mv) moves.push({ from:[r,c], to:[tr,tc], capture:mv.capture, castle:mv.castle });
     }
   }
   return moves;
@@ -757,20 +837,46 @@ function legalChessMoves(board, player) {
 function hasKing(board, player) {
   return board.some(row => row.some(cell => cell && cell.p === player && cell.t === 'k'));
 }
+function updateCastlingRights(state, player, piece, from, to, captured) {
+  if (!state.castlingRights) state.castlingRights = { 0:{ king:true, queen:true }, 1:{ king:true, queen:true } };
+  if (!state.castlingRights[player]) state.castlingRights[player] = { king:true, queen:true };
+  const other = player === 0 ? 1 : 0;
+  if (!state.castlingRights[other]) state.castlingRights[other] = { king:true, queen:true };
+  if (piece.t === 'k') { state.castlingRights[player].king = false; state.castlingRights[player].queen = false; }
+  if (piece.t === 'r') {
+    if (from[0] === (player === 0 ? 7 : 0) && from[1] === 0) state.castlingRights[player].queen = false;
+    if (from[0] === (player === 0 ? 7 : 0) && from[1] === 7) state.castlingRights[player].king = false;
+  }
+  if (captured && captured.t === 'r') {
+    if (to[0] === (other === 0 ? 7 : 0) && to[1] === 0) state.castlingRights[other].queen = false;
+    if (to[0] === (other === 0 ? 7 : 0) && to[1] === 7) state.castlingRights[other].king = false;
+  }
+}
 function chessAction(room, index, action) {
   const from = action.from || [];
   const to = action.to || [];
-  const move = validateChessMove(room.state.board, index, from[0], from[1], to[0], to[1]);
+  const move = validateChessMove(room.state.board, index, from[0], from[1], to[0], to[1], room.state);
   if (!move || room.state.turn !== index) return;
   const piece = room.state.board[from[0]][from[1]];
   const captured = room.state.board[to[0]][to[1]];
   room.state.board[to[0]][to[1]] = piece;
   room.state.board[from[0]][from[1]] = null;
+  if (move.castle) {
+    const [rr, rc] = move.castle.rookFrom;
+    const [trr, trc] = move.castle.rookTo;
+    room.state.board[trr][trc] = room.state.board[rr][rc];
+    room.state.board[rr][rc] = null;
+  }
   if (piece.t === 'p' && ((piece.p === 0 && to[0] === 0) || (piece.p === 1 && to[0] === 7))) piece.t = 'q';
-  room.state.lastMove = { player:index, from, to, captured: captured ? captured.t : null };
+  updateCastlingRights(room.state, index, piece, from, to, captured);
+  room.state.lastMove = { player:index, from, to, captured: captured ? captured.t : null, castle: !!move.castle };
   const other = index === 0 ? 1 : 0;
-  if (!hasKing(room.state.board, other) || legalChessMoves(room.state.board, other).length === 0) {
-    finishRound(room, index, { type:'chess', lastMove:`${room.players[index]?.name}: ${from.join(',')} → ${to.join(',')}` });
+  room.state.check = isKingInCheck(room.state.board, other) ? other : null;
+  const nextMoves = legalChessMoves(room.state.board, other, room.state);
+  if (!hasKing(room.state.board, other) || (!nextMoves.length && room.state.check === other)) {
+    finishRound(room, index, { type:'chess', lastMove:`${room.players[index]?.name}: ${from.join(',')} → ${to.join(',')}${move.castle ? ' 0-0' : captured ? ' ×' : ''}` });
+  } else if (!nextMoves.length) {
+    finishRound(room, null, { type:'chess', lastMove:'Stalemate' });
   } else room.state.turn = other;
 }
 function wordHint(secret, guess) {
@@ -1268,7 +1374,7 @@ function chooseBotAction(room) {
     return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
   }
   if (room.game === 'chess') {
-    const moves = legalChessMoves(s.board, 1);
+    const moves = legalChessMoves(s.board, 1, s);
     const captures = moves.filter(m => m.capture);
     const pool = diff === 'beginner' ? moves : (captures.length ? captures : moves);
     return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;

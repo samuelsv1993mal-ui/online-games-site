@@ -640,7 +640,42 @@ const CHESS_ICONS = {
   0:{ k:'♔', q:'♕', r:'♖', b:'♗', n:'♘', p:'♙' },
   1:{ k:'♚', q:'♛', r:'♜', b:'♝', n:'♞', p:'♟' }
 };
-function clientValidateChessMove(board, player, fr, fc, tr, tc) {
+
+function cloneChessBoardClient(board) {
+  return board.map(row => row.map(cell => cell ? { ...cell } : null));
+}
+function findKingClient(board, player) {
+  for (let r=0;r<8;r++) for (let c=0;c<8;c++) if (board[r][c]?.p === player && board[r][c]?.t === 'k') return [r,c];
+  return null;
+}
+function isChessPathClearClient(board, fr, fc, tr, tc) {
+  const dr = tr - fr, dc = tc - fc;
+  const sr = Math.sign(dr), sc = Math.sign(dc);
+  let r = fr + sr, c = fc + sc;
+  while (r !== tr || c !== tc) { if (board[r][c]) return false; r += sr; c += sc; }
+  return true;
+}
+function isSquareAttackedClient(board, r, c, byPlayer) {
+  for (let fr=0; fr<8; fr++) for (let fc=0; fc<8; fc++) {
+    const piece = board[fr][fc];
+    if (!piece || piece.p !== byPlayer) continue;
+    const dr = r - fr, dc = c - fc, adr = Math.abs(dr), adc = Math.abs(dc);
+    const dir = byPlayer === 0 ? -1 : 1;
+    if (piece.t === 'p' && dr === dir && adc === 1) return true;
+    if (piece.t === 'n' && ((adr === 2 && adc === 1) || (adr === 1 && adc === 2))) return true;
+    if (piece.t === 'k' && Math.max(adr, adc) === 1) return true;
+    if (piece.t === 'b' && adr === adc && isChessPathClearClient(board, fr, fc, r, c)) return true;
+    if (piece.t === 'r' && (dr === 0 || dc === 0) && isChessPathClearClient(board, fr, fc, r, c)) return true;
+    if (piece.t === 'q' && (dr === 0 || dc === 0 || adr === adc) && isChessPathClearClient(board, fr, fc, r, c)) return true;
+  }
+  return false;
+}
+function isKingInCheckClient(board, player) {
+  const king = findKingClient(board, player);
+  if (!king) return true;
+  return isSquareAttackedClient(board, king[0], king[1], player === 0 ? 1 : 0);
+}
+function pseudoChessMoveClient(board, player, fr, fc, tr, tc, state = {}) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
   if (fr === tr && fc === tc) return null;
   const piece = board?.[fr]?.[fc];
@@ -648,12 +683,20 @@ function clientValidateChessMove(board, player, fr, fc, tr, tc) {
   if (!piece || piece.p !== player || (target && target.p === player)) return null;
   const dr = tr - fr, dc = tc - fc, adr = Math.abs(dr), adc = Math.abs(dc);
   const dir = player === 0 ? -1 : 1;
-  const clearLine = () => {
-    const sr = Math.sign(dr), sc = Math.sign(dc);
-    let r = fr + sr, c = fc + sc;
-    while (r !== tr || c !== tc) { if (board[r][c]) return false; r += sr; c += sc; }
-    return true;
-  };
+  if (piece.t === 'k' && dr === 0 && adc === 2 && !target) {
+    const homeRow = player === 0 ? 7 : 0;
+    if (fr !== homeRow || fc !== 4 || isKingInCheckClient(board, player)) return null;
+    const side = dc > 0 ? 'king' : 'queen';
+    const rights = state.castlingRights?.[player]?.[side] !== false;
+    const rookCol = dc > 0 ? 7 : 0;
+    const rook = board[homeRow][rookCol];
+    if (!rights || !rook || rook.p !== player || rook.t !== 'r') return null;
+    const between = dc > 0 ? [5,6] : [1,2,3];
+    if (between.some(col => board[homeRow][col])) return null;
+    const through = dc > 0 ? [5,6] : [3,2];
+    if (through.some(col => isSquareAttackedClient(board, homeRow, col, player === 0 ? 1 : 0))) return null;
+    return { capture:false, castle:{ rookFrom:[homeRow, rookCol], rookTo:[homeRow, dc > 0 ? 5 : 3] } };
+  }
   switch (piece.t) {
     case 'p':
       if (dc === 0 && !target) {
@@ -661,25 +704,46 @@ function clientValidateChessMove(board, player, fr, fc, tr, tc) {
         const start = player === 0 ? 6 : 1;
         if (fr === start && dr === dir * 2 && !board[fr + dir][fc]) return { capture:false };
       }
-      if (adr === 1 && dr === dir && target && target.p !== player) return { capture:true };
+      if (adc === 1 && dr === dir && target && target.p !== player) return { capture:true };
       return null;
-    case 'r': if ((dr === 0 || dc === 0) && clearLine()) return { capture:!!target }; return null;
-    case 'b': if (adr === adc && clearLine()) return { capture:!!target }; return null;
-    case 'q': if ((dr === 0 || dc === 0 || adr === adc) && clearLine()) return { capture:!!target }; return null;
+    case 'r': if ((dr === 0 || dc === 0) && isChessPathClearClient(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
+    case 'b': if (adr === adc && isChessPathClearClient(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
+    case 'q': if ((dr === 0 || dc === 0 || adr === adc) && isChessPathClearClient(board, fr, fc, tr, tc)) return { capture:!!target }; return null;
     case 'n': if ((adr === 2 && adc === 1) || (adr === 1 && adc === 2)) return { capture:!!target }; return null;
     case 'k': if (Math.max(adr, adc) === 1) return { capture:!!target }; return null;
   }
   return null;
 }
-function clientLegalChessMoves(board, player, fromOnly = null) {
+function applyChessMoveClient(board, fr, fc, tr, tc, move) {
+  const copy = cloneChessBoardClient(board);
+  const piece = copy[fr][fc];
+  copy[tr][tc] = piece;
+  copy[fr][fc] = null;
+  if (move?.castle) {
+    const [rr, rc] = move.castle.rookFrom;
+    const [trr, trc] = move.castle.rookTo;
+    copy[trr][trc] = copy[rr][rc];
+    copy[rr][rc] = null;
+  }
+  if (piece?.t === 'p' && ((piece.p === 0 && tr === 0) || (piece.p === 1 && tr === 7))) piece.t = 'q';
+  return copy;
+}
+function clientValidateChessMove(board, player, fr, fc, tr, tc, state = {}) {
+  const move = pseudoChessMoveClient(board, player, fr, fc, tr, tc, state);
+  if (!move) return null;
+  const after = applyChessMoveClient(board, fr, fc, tr, tc, move);
+  if (isKingInCheckClient(after, player)) return null;
+  return move;
+}
+function clientLegalChessMoves(board, player, fromOnly = null, state = {}) {
   const out = [];
   for (let r=0;r<8;r++) for (let c=0;c<8;c++) {
     if (fromOnly && (fromOnly[0] !== r || fromOnly[1] !== c)) continue;
     const piece = board?.[r]?.[c];
     if (!piece || piece.p !== player) continue;
     for (let tr=0;tr<8;tr++) for (let tc=0;tc<8;tc++) {
-      const mv = clientValidateChessMove(board, player, r,c,tr,tc);
-      if (mv) out.push({ from:[r,c], to:[tr,tc], capture:mv.capture });
+      const mv = clientValidateChessMove(board, player, r,c,tr,tc,state);
+      if (mv) out.push({ from:[r,c], to:[tr,tc], capture:mv.capture, castle:mv.castle });
     }
   }
   return out;
@@ -688,8 +752,8 @@ function renderChess(board, room) {
   const idx = myIndex();
   const canMove = canAct(true) && idx >= 0;
   const selected = state.selectedChess;
-  const allMyMoves = canMove ? clientLegalChessMoves(room.state.board, idx) : [];
-  const legalMoves = selected && canMove ? clientLegalChessMoves(room.state.board, idx, selected) : [];
+  const allMyMoves = canMove ? clientLegalChessMoves(room.state.board, idx, null, room.state) : [];
+  const legalMoves = selected && canMove ? clientLegalChessMoves(room.state.board, idx, selected, room.state) : [];
   const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
   let html = '<div class="checkers-wrap chess-wrap"><div class="rules-tip">💡 ' + t('chessHint') + '</div><div class="chess-stage"><div class="chess-board">';
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
@@ -704,7 +768,8 @@ function renderChess(board, room) {
     const icon = piece ? CHESS_ICONS[piece.p]?.[piece.t] || '♟' : '';
     html += `<button class="chess-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${captureClass} ${movable}" data-r="${r}" data-c="${c}">${piece ? `<span aria-hidden="true">${icon}</span>` : ''}</button>`;
   }));
-  const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}` : t('selectMove');
+  const checkText = room.state.check === idx ? ' · CHECK!' : room.state.check !== null && room.state.check !== undefined ? ' · CHECK' : '';
+  const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.castle ? ' 0-0' : room.state.lastMove.captured ? ' ×' : ''}${checkText}` : `${t('selectMove')}${checkText}`;
   const moveTray = selected && legalMoves.length
     ? `<div class="move-tray">${legalMoves.slice(0, 14).map((m, i) => `<button class="chip-btn move-choice" data-chess-index="${i}">${moveButtonLabel(m)}</button>`).join('')}</div>`
     : `<div class="move-tray muted">${canMove ? t('selectMove') : t('opponentTurn')}</div>`;
@@ -715,14 +780,14 @@ function renderChess(board, room) {
       const piece = room.state.board[r][c];
       if (!canMove) return;
       if (piece && piece.p === idx) {
-        const moves = clientLegalChessMoves(room.state.board, idx, [r,c]);
+        const moves = clientLegalChessMoves(room.state.board, idx, [r,c], room.state);
         if (!moves.length) return toast(t('selectMove'));
         state.selectedChess = [r,c];
         renderChess(board, room);
         return;
       }
       if (state.selectedChess) {
-        if (clientValidateChessMove(room.state.board, idx, state.selectedChess[0], state.selectedChess[1], r, c)) {
+        if (clientValidateChessMove(room.state.board, idx, state.selectedChess[0], state.selectedChess[1], r, c, room.state)) {
           sendAction({ from: state.selectedChess, to:[r,c] }); state.selectedChess = null;
         } else toast(t('selectMove'));
       }

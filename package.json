@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "14.0.0",
-  "description": "SMQ Games PWA with improved checkers/chess controls, 3D chess board, selected-game frame and difficulty settings.",
+  "version": "15.0.0",
+  "description": "SMQ Games PWA with validated chess rules, stable boards and rule-guard polish.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -1452,3 +1452,69 @@ body.light .rules-tip, body.light .move-tray.muted { background: rgba(15,23,42,.
   @keyframes chessSoftRotate { 0%,100% { transform: rotateX(5deg) rotateZ(-.5deg); } 50% { transform: rotateX(8deg) rotateZ(.5deg); } }
   .chess-cell span { font-size: clamp(1.35rem, 8.6vw, 2.8rem); }
 }
+
+
+/* v15: chess rule polish and stable non-squeezing boards */
+.game-arena, .board-area, #gameBoard { min-width: 0; overflow-x: hidden; }
+.checkers-wrap, .chess-wrap { width: 100%; display: grid; justify-items: center; align-content: start; }
+.checkers-board,
+.chess-stage,
+.chess-board {
+  inline-size: min(92vmin, 640px) !important;
+  max-inline-size: calc(100vw - 24px) !important;
+  flex: 0 0 auto !important;
+}
+.checkers-board,
+.chess-board {
+  block-size: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(8, minmax(0, 1fr)) !important;
+  contain: layout paint;
+}
+.checkers-cell,
+.chess-cell {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+.chess-stage { perspective: 850px; padding: 10px 0 14px; overflow: visible; }
+.chess-board {
+  transform: rotateX(5.5deg) rotateZ(-.35deg) !important;
+  animation: chessSoftRotateV15 10s ease-in-out infinite !important;
+  transform-origin: center center;
+}
+@keyframes chessSoftRotateV15 {
+  0%,100% { transform: rotateX(5deg) rotateZ(-.35deg); }
+  50% { transform: rotateX(6.8deg) rotateZ(.35deg); }
+}
+.chess-cell span {
+  font-size: clamp(1.25rem, calc(92vmin / 10.5), 3.2rem) !important;
+  max-width: 86%; max-height: 86%;
+  display: grid !important; place-items: center;
+  transform: translateZ(10px) !important;
+}
+.chess-cell.piece.p0 span,
+.chess-cell.piece.p1 span {
+  -webkit-text-stroke-width: 1px;
+  text-rendering: optimizeLegibility;
+}
+.chess-cell.selected,
+.checkers-cell.selected { z-index: 3; }
+.chess-cell.legal-target::before,
+.checkers-cell.legal-target::before { z-index: 2; }
+@media (max-width:720px) {
+  .checkers-board,
+  .chess-stage,
+  .chess-board { inline-size: min(96vw, 560px) !important; max-inline-size: calc(100vw - 18px) !important; }
+  .chess-stage { padding: 4px 0 12px; }
+  .chess-board { border-width: 4px !important; }
+  .chess-cell span { font-size: clamp(1.1rem, calc(96vw / 9.8), 2.65rem) !important; }
+  .move-tray { width: min(96vw, 560px); max-height: 120px; overflow:auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chess-board { animation: none !important; }
+}
