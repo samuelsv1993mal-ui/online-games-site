@@ -1,44 +1,48 @@
-# SMQ Games v11
+# SMQ Games v12
 
-Версия с мультиязычными играми и расширенной библейской базой вопросов.
+Точечное обновление проекта без изменения существующих маршрутов, авторизации, API и структуры приложения.
 
-## Что добавлено в v10
+## Что добавлено
 
-- Все основные игровые вопросы поддерживают 3 языка: русский, испанский и английский.
-- В игру «Кто я?» добавлены английские варианты всех 158 вопросов.
-- Для «Что? Где? Когда? — Библия» и «Кто хочет стать миллионером» добавлена большая библейская база из 114 вопросов разной сложности.
-- Вопросы и ответы отображаются на языке профиля пользователя.
-- Ответы в викторинах перемешиваются автоматически, поэтому правильный ответ не всегда находится под одной буквой.
-- Логотип стал проще и чище.
-- Добавлена кнопка «Обновить приложение» внутри профиля и кнопка обновления в верхней панели.
-- Обновлён PWA cache до `smq-games-v10`.
+1. Иконка приложения при установке на телефон
+   - `favicon-16.png`
+   - `favicon-32.png`
+   - `favicon.ico`
+   - `apple-touch-icon.png`
+   - `icon-192.png`
+   - `icon-512.png`
+   - `manifest.webmanifest` обновлён и использует тот же логотип, что экран входа.
 
-## Запуск
+2. Фото профиля рядом с именем игрока
+   - В верхнем счёте игры.
+   - В списке игроков.
+   - В карточках/таблицах игр.
+   - Если фото нет, показываются инициалы игрока.
+   - Активный игрок получает акцентную обводку.
+   - Победитель получает золотую обводку.
+
+3. Новая игра “Угадай время”
+   - Режим “1 минута”.
+   - Режим “Случайное время” от 1 секунды до 5 минут.
+   - Активный игрок не видит бегущий таймер.
+   - Другие игроки и наблюдатели видят таймер.
+   - Время считается через timestamp до миллисекунд.
+   - В мультиплеере игроки проходят попытку по очереди.
+   - После раунда результаты сортируются по точности.
+   - Добавлены переводы RU / ES / EN.
+
+## Обновление на Render через Termux
 
 ```bash
-npm install
-npm start
+cd ~
+cp /storage/emulated/0/Download/online-games-site-v12.zip ~/
+rm -rf ~/online-games-site-v12
+unzip -o online-games-site-v12.zip
+cp -r ~/online-games-site-v12/* ~/online-games-site/
+cd ~/online-games-site
+git add .
+git commit -m "Add app icons avatars and guess time game"
+git push
 ```
 
-## Деплой на Render
-
-Build Command:
-
-```bash
-npm install
-```
-
-Start Command:
-
-```bash
-node server.js
-```
-
-После `git push` Render должен сам начать новый деплой.
-
-
-## v11 changes
-- Added user playlist in Profile with up to 10 songs, local per-user persistence, delete/select/play-pause/next/previous controls.
-- Fixed quiz answer text to remain white/readable in all answer states.
-- Improved checkers board: last move/status below board, green legal targets, red unavailable targets, drag/drop + tap movement, flying kings, backward captures.
-- Service worker cache updated to v11.
+После деплоя в приложении нажмите кнопку обновления `↻` или `Профиль → Обновить приложение`, чтобы подтянуть новый PWA-кеш.

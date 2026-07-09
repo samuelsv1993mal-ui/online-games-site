@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "11.0.0",
-  "description": "SMQ Games PWA with profile playlist, readable quizzes, and improved checkers movement.",
+  "version": "12.0.0",
+  "description": "SMQ Games PWA with updated app icons, player avatars, and Guess the Time game.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

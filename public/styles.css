@@ -1046,3 +1046,252 @@ body.light .playlist-box label { color: rgba(255,255,255,.82); }
   .playlist-delete { width: 100%; }
   .checkers-status { font-size: .82rem; }
 }
+
+/* v12: install icons, player avatars, Guess the Time */
+.player-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.player-label-name {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.player-avatar {
+  --size: 32px;
+  width: var(--size);
+  height: var(--size);
+  min-width: var(--size);
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--pc) 78%, #ffffff), color-mix(in srgb, var(--pc) 52%, #111827));
+  color: #fff;
+  font-weight: 950;
+  font-size: calc(var(--size) * .36);
+  border: 2px solid color-mix(in srgb, var(--pc) 58%, rgba(255,255,255,.40));
+  box-shadow: 0 0 0 2px rgba(255,255,255,.06), 0 8px 18px rgba(0,0,0,.22);
+  flex: 0 0 auto;
+}
+.player-avatar.xs { --size: 24px; }
+.player-avatar.sm { --size: 30px; }
+.player-avatar.md { --size: 40px; }
+.player-avatar.lg { --size: 56px; }
+.player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.player-avatar.active {
+  border-color: var(--pc);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pc) 34%, transparent), 0 0 22px color-mix(in srgb, var(--pc) 45%, transparent);
+}
+.player-avatar.winner {
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250,204,21,.25), 0 0 24px rgba(250,204,21,.45);
+}
+.player-avatar.offline {
+  opacity: .45;
+  filter: grayscale(.65);
+}
+.player-avatar[data-player-name]:active::after {
+  content: attr(data-player-name);
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 9999;
+  max-width: min(82vw, 360px);
+  padding: 9px 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(15,23,42,.92);
+  border: 1px solid rgba(255,255,255,.18);
+  font-size: .9rem;
+  white-space: nowrap;
+}
+.player-score > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: min(38vw, 180px);
+}
+.player-score.p2 > span { justify-content: center; }
+.player-score .player-label-name { max-width: 112px; }
+.player-chip .player-avatar { margin-right: 1px; }
+.player-chip b { display: inline-flex; align-items: center; min-width:0; }
+.quiz-score, .mini-score { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px 12px; }
+.whoami-score b { display:flex; align-items:center; justify-content:center; gap:6px; min-width:0; }
+.dice-card small .player-label { justify-content:center; }
+
+.guess-time-wrap {
+  width: min(96vw, 980px);
+  display: grid;
+  gap: 14px;
+  margin: 0 auto;
+}
+.guess-time-card {
+  border-radius: 30px;
+  padding: clamp(16px, 4vw, 28px);
+  background: linear-gradient(145deg, rgba(139,92,246,.20), rgba(6,182,212,.12)), rgba(255,255,255,.07);
+  border: 1px solid var(--line);
+  box-shadow: 0 26px 70px rgba(0,0,0,.28);
+  text-align: center;
+  display: grid;
+  gap: 16px;
+}
+.guess-time-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: left;
+}
+.guess-time-title .game-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  box-shadow: 0 14px 30px rgba(139,92,246,.35);
+}
+.guess-time-title h2 { margin: 0 0 3px; font-size: clamp(1.5rem, 6vw, 2.7rem); }
+.guess-time-title p { margin: 0; color: var(--muted); }
+.guess-active-player {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid var(--line);
+}
+.guess-active-player small { color: var(--muted); }
+.guess-mode-row {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 12px 28px rgba(139,92,246,.28);
+}
+.timer-display {
+  min-height: 94px;
+  border-radius: 26px;
+  display:grid;
+  place-items:center;
+  padding: 16px;
+  font-weight: 1000;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .04em;
+  font-size: clamp(2.2rem, 14vw, 6rem);
+  color: #fff;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.18), transparent 48%), linear-gradient(135deg, rgba(15,23,42,.95), rgba(30,41,59,.88));
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: inset 0 -12px 36px rgba(0,0,0,.25), 0 18px 48px rgba(0,0,0,.22);
+}
+.timer-display.hidden-timer {
+  font-size: clamp(1.1rem, 5vw, 2rem);
+  letter-spacing: 0;
+  padding-inline: 22px;
+}
+.guess-actions { display:flex; justify-content:center; }
+.guess-main-btn {
+  min-width: min(82vw, 320px);
+  min-height: 86px;
+  border:0;
+  border-radius: 999px;
+  color:#fff;
+  font-size: clamp(1.4rem, 6vw, 2.35rem);
+  font-weight: 1000;
+  box-shadow: 0 22px 54px rgba(0,0,0,.30);
+  transform: translateZ(0);
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+}
+.guess-main-btn:active { transform: scale(.97); }
+.guess-main-btn.start { background: linear-gradient(135deg, #22c55e, #06b6d4); }
+.guess-main-btn.stop { background: linear-gradient(135deg, #f97316, #e11d48); animation: stopPulse 1s ease-in-out infinite alternate; }
+@keyframes stopPulse { from { filter: brightness(1); box-shadow:0 18px 42px rgba(225,29,72,.25); } to { filter: brightness(1.12); box-shadow:0 24px 60px rgba(225,29,72,.48); } }
+.guess-result-card {
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  border-radius: 24px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--line);
+  animation: popIn .28s ease both;
+}
+.guess-result-card div { min-width:0; padding: 10px; border-radius: 18px; background: rgba(255,255,255,.07); }
+.guess-result-card small { display:block; color: var(--muted); margin-bottom: 4px; }
+.guess-result-card b { font-variant-numeric: tabular-nums; }
+.guess-result-card strong { grid-column: 1 / -1; color: #facc15; font-size: 1.25rem; }
+.guess-results {
+  border-radius: 28px;
+  padding: 14px;
+  overflow-x: auto;
+}
+.guess-results h3 { margin: 0 0 10px; }
+.guess-results table {
+  width:100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  min-width: 620px;
+}
+.guess-results th { color: var(--muted); font-size: .78rem; text-align:left; padding: 0 8px; }
+.guess-results td {
+  padding: 9px 8px;
+  background: rgba(255,255,255,.07);
+  border-top: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-variant-numeric: tabular-nums;
+}
+.guess-results td:first-child { border-radius: 14px 0 0 14px; border-left: 1px solid rgba(255,255,255,.08); font-weight:900; }
+.guess-results td:last-child { border-radius: 0 14px 14px 0; border-right: 1px solid rgba(255,255,255,.08); color:#facc15; font-weight:900; }
+body.light .guess-time-card,
+body.light .guess-results,
+body.light .guess-active-player,
+body.light .guess-result-card {
+  background: rgba(255,255,255,.78);
+  color:#101527;
+  border-color: rgba(15,23,42,.12);
+}
+body.light .timer-display {
+  background: linear-gradient(135deg, #1f2a44, #0f172a);
+  color:#fff;
+}
+body.light .guess-results td,
+body.light .guess-result-card div {
+  background: rgba(15,23,42,.08);
+  border-color: rgba(15,23,42,.08);
+}
+body.light .player-avatar[data-player-name]:active::after { background: rgba(15,23,42,.94); color:#fff; }
+@media (max-width: 640px) {
+  .player-score .player-label { flex-direction: column; gap:3px; }
+  .player-score .player-label-name { max-width: 78px; font-size:.75rem; }
+  .player-avatar.sm { --size: 28px; }
+  .player-avatar.md { --size: 36px; }
+  .player-avatar.lg { --size: 48px; }
+  .guess-time-title { align-items:flex-start; justify-content:flex-start; }
+  .guess-result-card { grid-template-columns:1fr; }
+  .guess-results { padding: 10px; }
+}

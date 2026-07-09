@@ -50,7 +50,8 @@ const gameMeta = {
   teamquiz: { emoji: '🏁', maxPlayers: 10, minPlayers: 2, supportsBot: false, category: 'team' },
   mathrace: { emoji: '🧮', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
   biblequiz: { emoji: '📖', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'bible' },
-  whoami: { emoji: '🎭', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' }
+  whoami: { emoji: '🎭', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
+  guesstime: { emoji: '⏱️', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' }
 };
 
 const rooms = new Map();
@@ -179,6 +180,19 @@ function makeProblem() {
   return { text: `${a} ${op} ${b}`, answer };
 }
 
+function newGuessTimeTarget(mode = 'minute') {
+  if (mode === 'random') return 1000 + Math.floor(Math.random() * (300000 - 1000 + 1));
+  return 60000;
+}
+
+function formatMs(ms) {
+  const safe = Math.max(0, Math.round(Number(ms) || 0));
+  const minutes = Math.floor(safe / 60000);
+  const seconds = Math.floor((safe % 60000) / 1000);
+  const milli = safe % 1000;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milli).padStart(3, '0')}`;
+}
+
 function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'ttt') return { board: Array(9).fill(null), turn: 0, winner: null, winLine: null, lastMove: null };
   if (game === 'connect4') return { board: Array.from({ length: 6 }, () => Array(7).fill(null)), turn: 0, winner: null, winLine: null, lastMove: null };
@@ -197,6 +211,18 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'biblequiz') return { questions: makeQuestionList('bible'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
   if (game === 'teamquiz') return { questions: makeQuestionList('general'), qIndex: 0, answers: {}, teamPoints: initScores(teamCount), showAnswer: null, finished: false };
   if (game === 'mathrace') return { round: 1, maxRounds: 6, problem: makeProblem(), answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
+  if (game === 'guesstime') return {
+    timeMode: 'minute',
+    targetMs: 60000,
+    activeIndex: 0,
+    phase: 'setup',
+    startAt: null,
+    stoppedAt: null,
+    elapsedMs: null,
+    diffMs: null,
+    attempts: [],
+    lastResult: null
+  };
   if (game === 'whoami') return {
     hostIndex: null,
     scores: initScores(maxPlayers),
@@ -326,8 +352,10 @@ function joinRoom(socket, payload = {}) {
 
   if (room.mode === 'bot') addBot(room);
   if (room.game === 'whoami') prepareWhoAmI(room);
+  if (room.game === 'guesstime') normalizeGuessTimeState(room);
   if (shouldStart(room) && room.status === 'waiting') room.status = 'playing';
   if (room.game === 'whoami') prepareWhoAmI(room);
+  if (room.game === 'guesstime') normalizeGuessTimeState(room);
   socket.join(room.id);
   socket.data.roomId = room.id;
   socket.data.role = role;
@@ -387,6 +415,7 @@ function isPlayersTurn(room, index) {
   if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'nim'].includes(room.game)) return room.state.turn === index;
   if (['millionaire', 'teamquiz', 'mathrace', 'biblequiz'].includes(room.game)) return !room.state.answers[String(index)] && !room.state.showAnswer;
   if (room.game === 'code') return index === 0;
+  if (room.game === 'guesstime') return room.state.activeIndex === index && ['setup','ready','running','stopped'].includes(room.state.phase);
   return true;
 }
 
@@ -424,6 +453,7 @@ function applyAction(room, index, action) {
     case 'biblequiz': return quizAction(room, index, action, false);
     case 'mathrace': return mathRaceAction(room, index, action);
     case 'whoami': return whoamiAction(room, index, action);
+    case 'guesstime': return guessTimeAction(room, index, action);
   }
 }
 
@@ -745,6 +775,127 @@ function mathRaceAction(room, index, action) {
 }
 
 
+function guessTimeActiveIndices(room) {
+  return activePlayers(room).filter(p => !p.isBot).map(p => p.index);
+}
+
+function normalizeGuessTimeState(room) {
+  if (room.game !== 'guesstime') return;
+  const s = room.state;
+  const active = guessTimeActiveIndices(room);
+  if (!active.length) return;
+  if (!active.includes(s.activeIndex)) s.activeIndex = active[0];
+  if (!s.targetMs) s.targetMs = newGuessTimeTarget(s.timeMode || 'minute');
+  if (!Array.isArray(s.attempts)) s.attempts = [];
+}
+
+function nextGuessTimeIndex(room) {
+  const s = room.state;
+  const active = guessTimeActiveIndices(room);
+  const attempted = new Set((s.attempts || []).map(a => a.playerIndex));
+  const remaining = active.filter(i => !attempted.has(i));
+  if (!remaining.length) return null;
+  const pos = remaining.indexOf(s.activeIndex);
+  if (pos >= 0 && remaining[pos + 1] !== undefined) return remaining[pos + 1];
+  return remaining[0];
+}
+
+function sortedGuessTimeResults(state) {
+  return [...(state.attempts || [])].sort((a, b) => (a.diffMs || 0) - (b.diffMs || 0));
+}
+
+function guessTimeAction(room, index, action) {
+  normalizeGuessTimeState(room);
+  const s = room.state;
+  const type = action.type;
+  const active = guessTimeActiveIndices(room);
+  if (!active.length) return;
+
+  if (type === 'setMode' && (s.phase === 'setup' || s.phase === 'ready') && (s.attempts || []).length === 0) {
+    const mode = action.mode === 'random' ? 'random' : 'minute';
+    s.timeMode = mode;
+    s.targetMs = newGuessTimeTarget(mode);
+    s.phase = 'ready';
+    s.lastResult = null;
+    s.elapsedMs = null;
+    s.diffMs = null;
+    return;
+  }
+
+  if (index !== s.activeIndex) return;
+
+  if (type === 'start' && (s.phase === 'setup' || s.phase === 'ready' || s.phase === 'stopped')) {
+    if ((s.attempts || []).some(a => a.playerIndex === index)) return;
+    s.phase = 'running';
+    s.startAt = Date.now();
+    s.stoppedAt = null;
+    s.elapsedMs = null;
+    s.diffMs = null;
+    s.lastResult = null;
+    return;
+  }
+
+  if (type === 'stop' && s.phase === 'running' && s.startAt) {
+    const stoppedAt = Date.now();
+    const elapsedMs = Math.max(0, stoppedAt - s.startAt);
+    const diffMs = Math.abs(elapsedMs - s.targetMs);
+    const result = {
+      playerIndex: index,
+      targetMs: s.targetMs,
+      stoppedMs: elapsedMs,
+      diffMs,
+      startedAt: s.startAt,
+      stoppedAt
+    };
+    s.attempts = (s.attempts || []).filter(a => a.playerIndex !== index).concat(result);
+    s.phase = 'stopped';
+    s.stoppedAt = stoppedAt;
+    s.elapsedMs = elapsedMs;
+    s.diffMs = diffMs;
+    s.lastResult = result;
+    s.startAt = null;
+
+    const attempted = new Set(s.attempts.map(a => a.playerIndex));
+    const allDone = active.every(i => attempted.has(i));
+    if (allDone) {
+      s.phase = 'finished';
+      const sorted = sortedGuessTimeResults(s);
+      const winnerIndex = sorted[0]?.playerIndex ?? null;
+      setTimeout(() => {
+        const liveRoom = rooms.get(room.id);
+        if (!liveRoom || liveRoom.status !== 'playing' || liveRoom.game !== 'guesstime') return;
+        const liveSorted = sortedGuessTimeResults(liveRoom.state);
+        const liveWinner = liveSorted[0]?.playerIndex ?? null;
+        finishRound(liveRoom, liveWinner, {
+          type: 'guesstime',
+          targetMs: liveRoom.state.targetMs,
+          results: liveSorted,
+          lastMove: `🎯 ${formatMs(liveRoom.state.targetMs)} · ${room.players[index]?.name || 'Player'}: ${formatMs(elapsedMs)} (${diffMs} ms)`
+        });
+      }, 2400);
+    } else {
+      const currentStop = stoppedAt;
+      setTimeout(() => {
+        const liveRoom = rooms.get(room.id);
+        if (!liveRoom || liveRoom.status !== 'playing' || liveRoom.game !== 'guesstime') return;
+        const liveState = liveRoom.state;
+        if (liveState.phase !== 'stopped' || liveState.stoppedAt !== currentStop) return;
+        const next = nextGuessTimeIndex(liveRoom);
+        if (next === null) return;
+        liveState.activeIndex = next;
+        liveState.phase = 'ready';
+        liveState.startAt = null;
+        liveState.stoppedAt = null;
+        liveState.elapsedMs = null;
+        liveState.diffMs = null;
+        liveState.lastResult = null;
+        emitRoom(liveRoom);
+      }, 2600);
+    }
+  }
+}
+
+
 function whoamiActiveIndices(room) {
   return activePlayers(room).filter(p => !p.isBot).map(p => p.index);
 }
@@ -937,6 +1088,7 @@ function newRound(room) {
   room.state = initState(room.game, meta.maxPlayers, room.teamCount);
   if (room.game === 'whoami' && previousHostIndex !== null && previousHostIndex !== undefined) room.state.hostIndex = previousHostIndex;
   if (room.game === 'whoami') prepareWhoAmI(room);
+  if (room.game === 'guesstime') normalizeGuessTimeState(room);
   room.winnerMessage = null;
   room.review = null;
   room.lastRound = null;
@@ -1035,6 +1187,7 @@ io.on('connection', (socket) => {
     for (const player of room.players) if (player && player.socketId === socket.id) player.connected = false;
     room.spectators.delete(socket.id);
     if (room.game === 'whoami') prepareWhoAmI(room);
+    if (room.game === 'guesstime') normalizeGuessTimeState(room);
     emitRoom(room);
     setTimeout(() => cleanupRoom(room.id), 1000 * 60 * 10);
   });

@@ -4,22 +4,22 @@ const I18N = {
   ru: {
     appTitle:'SMQ Games', appSubtitle:'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle:'Войти через Google', continueGuest:'Продолжить как гость', googleHint:'Google сохраняет фото, цвет профиля, настройки и историю игр.', installApp:'Скачать как приложение', installUnavailable:'Установка появится после открытия сайта в Chrome/браузере и обновления страницы.', installReady:'Можно установить SMQ Games как приложение.', appInstalled:'SMQ Games установлено.', updateApp:'Обновить приложение', updateChecking:'Проверяем обновление...', updateReady:'Обновляем приложение...',
     hello:'Привет', mobileGame:'Игровая арена', chooseGame:'Выбери игру', chooseMode:'Играй один, с компьютером, с друзьями или командами.', newGame:'Новая игра', game:'Игра', mode:'Режим', onlineRoom:'Онлайн-комната', playComputer:'С компьютером', createRoom:'Создать комнату', joinRoom:'Войти в комнату', joinAsPlayer:'Играть', watch:'Наблюдать', history:'История игр', refresh:'Обновить', spectators:'Наблюдатели', copyPlayerLink:'Ссылка игроку', copySpectatorLink:'Ссылка зрителю', newRound:'Новая партия', profile:'Профиль', changePhoto:'Изменить фото', resetPhoto:'Сбросить', name:'Имя', profileColor:'Цвет игрока', language:'Язык', fontSize:'Размер шрифта', small:'Маленький', medium:'Средний', large:'Большой', xlarge:'Очень большой', theme:'Тема', darkTheme:'Тёмная', lightTheme:'Светлая', music:'Музыка', musicOn:'Включить музыку', musicOff:'Выключить музыку', volume:'Громкость', uploadMusic:'Добавить свою музыку', saveProfile:'Сохранить профиль', logout:'Выйти', continue:'Продолжить', myPlaylist:'Мой плейлист', addSong:'Добавить песню', songTitle:'Название песни', audioLink:'Ссылка на аудио', delete:'Удалить', playlistEmpty:'Плейлист пока пуст. Добавьте песню.', playlistLimit:'Можно добавить не больше 10 песен', nowPlaying:'Сейчас играет', previousSong:'Предыдущая песня', nextSong:'Следующая песня', play:'Play', pause:'Pause', invalidSong:'Добавьте название и ссылку на аудио',
-    copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', source:'Источник', easy:'Лёгкий', hard:'Сложный', whoamiHost:'Ведущий', whoamiCurrent:'Сейчас отвечает', whoamiQuestion:'Вопрос', whoamiGo:'ГО', whoamiSpinning:'Рулетка крутится...', whoamiAnswer:'Ответить', whoamiPass:'Передать вопрос', whoamiConfirm:'Засчитать ответ', whoamiReject:'Не засчитывать', whoamiAssignHost:'Назначить ведущим', whoamiFinish:'Завершить игру', whoamiWaitingHost:'Ждём решение ведущего', whoamiPoints:'Очки', whoamiPassHint:'Передача забирает очки, но следующий ответ приносит больше.', whoamiChoosePlayer:'Кому передать?', originalGetsNew:'получает новый вопрос, если ответ засчитан.', 
-    games:{ rps:['Камень · Ножницы · Бумага','Быстрая дуэль'], ttt:['Крестики-нолики','Цветные X и O'], dice:['Кубики','У кого выпадет больше'], connect4:['Четыре в ряд','Собери линию'], memory:['Мемори','Найди пары'], twentyone:['21','Дойди ровно до 21'], reaction:['Реакция','Кто быстрее'], checkers:['Шашки','Стратегия 8×8'], nim:['Ним','Логика с палочками'], code:['Взлом кода','Логика и дедукция'], millionaire:['Кто хочет стать миллионером','Библейские вопросы до 10 игроков'], teamquiz:['Командная викторина','2, 3 или 4 команды'], mathrace:['Математическая гонка','Быстрый счёт до 10 игроков'], biblequiz:['Что? Где? Когда? — Библия','Библейские вопросы разной сложности'], whoami:['Кто я?','Ведущий, вопросы, передачи и очки'] },
+    copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', source:'Источник', easy:'Лёгкий', hard:'Сложный', whoamiHost:'Ведущий', whoamiCurrent:'Сейчас отвечает', whoamiQuestion:'Вопрос', whoamiGo:'ГО', whoamiSpinning:'Рулетка крутится...', whoamiAnswer:'Ответить', whoamiPass:'Передать вопрос', whoamiConfirm:'Засчитать ответ', whoamiReject:'Не засчитывать', whoamiAssignHost:'Назначить ведущим', whoamiFinish:'Завершить игру', whoamiWaitingHost:'Ждём решение ведущего', whoamiPoints:'Очки', whoamiPassHint:'Передача забирает очки, но следующий ответ приносит больше.', whoamiChoosePlayer:'Кому передать?', originalGetsNew:'получает новый вопрос, если ответ засчитан.', guessTime:'Угадай время', stopTimerAt:'Останови таймер на', start:'Старт', stop:'Стоп', timerRunningBlind:'Таймер запущен. Останови его в нужный момент.', targetTime:'Целевое время', stoppedTime:'Время остановки', difference:'Разница', milliseconds:'миллисекунд', veryClose:'Очень близко!', goodTry:'Хорошая попытка!', tryAgain:'Попробуй ещё раз!', results:'Результаты', randomTime:'Случайное время', oneMinute:'1 минута', waitingStart:'Ожидание старта', timerGoes:'Таймер идёт', playerStopped:'Игрок остановил таймер', currentPlayer:'Активный игрок', place:'Место', timeMode:'Режим времени', yourTimerHidden:'Вы не видите таймер. Другие игроки и зрители видят время.', 
+    games:{ rps:['Камень · Ножницы · Бумага','Быстрая дуэль'], ttt:['Крестики-нолики','Цветные X и O'], dice:['Кубики','У кого выпадет больше'], connect4:['Четыре в ряд','Собери линию'], memory:['Мемори','Найди пары'], twentyone:['21','Дойди ровно до 21'], reaction:['Реакция','Кто быстрее'], checkers:['Шашки','Стратегия 8×8'], nim:['Ним','Логика с палочками'], code:['Взлом кода','Логика и дедукция'], millionaire:['Кто хочет стать миллионером','Библейские вопросы до 10 игроков'], teamquiz:['Командная викторина','2, 3 или 4 команды'], mathrace:['Математическая гонка','Быстрый счёт до 10 игроков'], biblequiz:['Что? Где? Когда? — Библия','Библейские вопросы разной сложности'], whoami:['Кто я?','Ведущий, вопросы, передачи и очки'], guesstime:['Угадай время','Останови таймер вслепую'] },
     moves:{ rock:'Камень', paper:'Бумага', scissors:'Ножницы' }
   },
   es: {
     appTitle:'SMQ Games', appSubtitle:'Juega online con amigos, contra la computadora o mira una sala.', loginGoogle:'Entrar con Google', continueGuest:'Continuar como invitado', googleHint:'Google guarda tu foto, color, ajustes e historial.', installApp:'Descargar como app', installUnavailable:'La instalación aparecerá después de abrir el sitio en Chrome/navegador y actualizar.', installReady:'Puedes instalar SMQ Games como app.', appInstalled:'SMQ Games instalado.', updateApp:'Actualizar app', updateChecking:'Buscando actualización...', updateReady:'Actualizando la app...',
     hello:'Hola', mobileGame:'Arena de juegos', chooseGame:'Elige un juego', chooseMode:'Juega solo, contra computadora, con amigos o en equipos.', newGame:'Nuevo juego', game:'Juego', mode:'Modo', onlineRoom:'Sala online', playComputer:'Computadora', createRoom:'Crear sala', joinRoom:'Entrar a sala', joinAsPlayer:'Jugar', watch:'Observar', history:'Historial', refresh:'Actualizar', spectators:'Observadores', copyPlayerLink:'Link jugador', copySpectatorLink:'Link observador', newRound:'Nueva partida', profile:'Perfil', changePhoto:'Cambiar foto', resetPhoto:'Restablecer', name:'Nombre', profileColor:'Color del jugador', language:'Idioma', fontSize:'Tamaño de letra', small:'Pequeño', medium:'Mediano', large:'Grande', xlarge:'Muy grande', theme:'Tema', darkTheme:'Oscuro', lightTheme:'Claro', music:'Música', musicOn:'Activar música', musicOff:'Apagar música', volume:'Volumen', uploadMusic:'Agregar tu música', saveProfile:'Guardar perfil', logout:'Salir', continue:'Continuar', myPlaylist:'Mi playlist', addSong:'Agregar canción', songTitle:'Nombre de la canción', audioLink:'Enlace de audio', delete:'Eliminar', playlistEmpty:'La playlist está vacía. Agrega una canción.', playlistLimit:'Puedes agregar máximo 10 canciones', nowPlaying:'Reproduciendo ahora', previousSong:'Canción anterior', nextSong:'Siguiente canción', play:'Play', pause:'Pause', invalidSong:'Agrega el nombre y el enlace de audio',
-    copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', source:'Fuente', easy:'Fácil', hard:'Difícil', whoamiHost:'Conductor', whoamiCurrent:'Responde ahora', whoamiQuestion:'Pregunta', whoamiGo:'GO', whoamiSpinning:'La ruleta gira...', whoamiAnswer:'Responder', whoamiPass:'Pasar pregunta', whoamiConfirm:'Aceptar respuesta', whoamiReject:'No aceptar', whoamiAssignHost:'Hacer conductor', whoamiFinish:'Terminar juego', whoamiWaitingHost:'Esperando al conductor', whoamiPoints:'Puntos', whoamiPassHint:'Pasar resta puntos, pero el siguiente acierto da más.', whoamiChoosePlayer:'¿A quién pasar?', originalGetsNew:'recibe otra pregunta si se acepta la respuesta.', 
-    games:{ rps:['Piedra · Papel · Tijeras','Duelo rápido'], ttt:['Tres en raya','X y O de color'], dice:['Dados','Gana el número mayor'], connect4:['Cuatro en línea','Conecta una línea'], memory:['Memoria','Encuentra pares'], twentyone:['21','Llega a 21'], reaction:['Reacción','El más rápido'], checkers:['Damas','Estrategia 8×8'], nim:['Nim','Lógica con palitos'], code:['Romper el código','Deducción lógica'], millionaire:['¿Quién quiere ser millonario?','Preguntas bíblicas hasta 10 jugadores'], teamquiz:['Trivia por equipos','2, 3 o 4 equipos'], mathrace:['Carrera matemática','Cálculo rápido'], biblequiz:['¿Qué? ¿Dónde? ¿Cuándo? — Biblia','Preguntas bíblicas por dificultad'], whoami:['¿Quién soy?','Conductor, preguntas, pases y puntos'] },
+    copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', source:'Fuente', easy:'Fácil', hard:'Difícil', whoamiHost:'Conductor', whoamiCurrent:'Responde ahora', whoamiQuestion:'Pregunta', whoamiGo:'GO', whoamiSpinning:'La ruleta gira...', whoamiAnswer:'Responder', whoamiPass:'Pasar pregunta', whoamiConfirm:'Aceptar respuesta', whoamiReject:'No aceptar', whoamiAssignHost:'Hacer conductor', whoamiFinish:'Terminar juego', whoamiWaitingHost:'Esperando al conductor', whoamiPoints:'Puntos', whoamiPassHint:'Pasar resta puntos, pero el siguiente acierto da más.', whoamiChoosePlayer:'¿A quién pasar?', originalGetsNew:'recibe otra pregunta si se acepta la respuesta.', guessTime:'Adivina el tiempo', stopTimerAt:'Detén el temporizador en', start:'Iniciar', stop:'Detener', timerRunningBlind:'El temporizador está en marcha. Detenlo en el momento correcto.', targetTime:'Tiempo objetivo', stoppedTime:'Tiempo detenido', difference:'Diferencia', milliseconds:'milisegundos', veryClose:'¡Muy cerca!', goodTry:'¡Buen intento!', tryAgain:'Inténtalo de nuevo', results:'Resultados', randomTime:'Tiempo aleatorio', oneMinute:'1 minuto', waitingStart:'Esperando inicio', timerGoes:'El temporizador está corriendo', playerStopped:'El jugador detuvo el temporizador', currentPlayer:'Jugador activo', place:'Lugar', timeMode:'Modo de tiempo', yourTimerHidden:'No ves el temporizador. Los demás jugadores y observadores sí ven el tiempo.', 
+    games:{ rps:['Piedra · Papel · Tijeras','Duelo rápido'], ttt:['Tres en raya','X y O de color'], dice:['Dados','Gana el número mayor'], connect4:['Cuatro en línea','Conecta una línea'], memory:['Memoria','Encuentra pares'], twentyone:['21','Llega a 21'], reaction:['Reacción','El más rápido'], checkers:['Damas','Estrategia 8×8'], nim:['Nim','Lógica con palitos'], code:['Romper el código','Deducción lógica'], millionaire:['¿Quién quiere ser millonario?','Preguntas bíblicas hasta 10 jugadores'], teamquiz:['Trivia por equipos','2, 3 o 4 equipos'], mathrace:['Carrera matemática','Cálculo rápido'], biblequiz:['¿Qué? ¿Dónde? ¿Cuándo? — Biblia','Preguntas bíblicas por dificultad'], whoami:['¿Quién soy?','Conductor, preguntas, pases y puntos'], guesstime:['Adivina el tiempo','Detén el temporizador a ciegas'] },
     moves:{ rock:'Piedra', paper:'Papel', scissors:'Tijeras' }
   },
   en: {
     appTitle:'SMQ Games', appSubtitle:'Play online with friends, against the computer, or watch a room.', loginGoogle:'Sign in with Google', continueGuest:'Continue as guest', googleHint:'Google saves your photo, color, settings, and history.', installApp:'Download as app', installUnavailable:'Install will appear after opening the site in Chrome/browser and refreshing.', installReady:'You can install SMQ Games as an app.', appInstalled:'SMQ Games installed.', updateApp:'Update app', updateChecking:'Checking for update...', updateReady:'Updating app...',
     hello:'Hello', mobileGame:'Game arena', chooseGame:'Choose a game', chooseMode:'Play solo, vs computer, with friends, or in teams.', newGame:'New game', game:'Game', mode:'Mode', onlineRoom:'Online room', playComputer:'Computer', createRoom:'Create room', joinRoom:'Join room', joinAsPlayer:'Play', watch:'Watch', history:'Game history', refresh:'Refresh', spectators:'Spectators', copyPlayerLink:'Player link', copySpectatorLink:'Spectator link', newRound:'New round', profile:'Profile', changePhoto:'Change photo', resetPhoto:'Reset', name:'Name', profileColor:'Player color', language:'Language', fontSize:'Font size', small:'Small', medium:'Medium', large:'Large', xlarge:'Extra large', theme:'Theme', darkTheme:'Dark', lightTheme:'Light', music:'Music', musicOn:'Turn music on', musicOff:'Turn music off', volume:'Volume', uploadMusic:'Add your music', saveProfile:'Save profile', logout:'Log out', continue:'Continue', myPlaylist:'My playlist', addSong:'Add song', songTitle:'Song title', audioLink:'Audio link', delete:'Delete', playlistEmpty:'Your playlist is empty. Add a song.', playlistLimit:'You can add up to 10 songs only', nowPlaying:'Now playing', previousSong:'Previous song', nextSong:'Next song', play:'Play', pause:'Pause', invalidSong:'Add the song title and audio link',
-    copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', source:'Source', easy:'Easy', hard:'Hard', whoamiHost:'Host', whoamiCurrent:'Answering now', whoamiQuestion:'Question', whoamiGo:'GO', whoamiSpinning:'Roulette is spinning...', whoamiAnswer:'Answer', whoamiPass:'Pass question', whoamiConfirm:'Confirm answer', whoamiReject:'Reject', whoamiAssignHost:'Make host', whoamiFinish:'Finish game', whoamiWaitingHost:'Waiting for host', whoamiPoints:'Points', whoamiPassHint:'Passing costs points, but the next answer gives more.', whoamiChoosePlayer:'Pass to whom?', originalGetsNew:'gets a new question if the answer is accepted.', 
-    games:{ rps:['Rock · Paper · Scissors','Fast duel'], ttt:['Tic Tac Toe','Colored X and O'], dice:['Dice Duel','Highest roll wins'], connect4:['Four in a Row','Connect a line'], memory:['Memory Match','Find pairs'], twentyone:['Twenty One','Reach 21 exactly'], reaction:['Reaction Tap','Fastest wins'], checkers:['Checkers','8×8 strategy'], nim:['Nim','Logic with sticks'], code:['Code Breaker','Logic deduction'], millionaire:['Who Wants to Be a Millionaire','Bible questions for up to 10 players'], teamquiz:['Team Quiz','2, 3 or 4 teams'], mathrace:['Math Race','Fast arithmetic'], biblequiz:['What? Where? When? — Bible','Bible questions by difficulty'], whoami:['Who am I?','Host, questions, passes and points'] },
+    copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', source:'Source', easy:'Easy', hard:'Hard', whoamiHost:'Host', whoamiCurrent:'Answering now', whoamiQuestion:'Question', whoamiGo:'GO', whoamiSpinning:'Roulette is spinning...', whoamiAnswer:'Answer', whoamiPass:'Pass question', whoamiConfirm:'Confirm answer', whoamiReject:'Reject', whoamiAssignHost:'Make host', whoamiFinish:'Finish game', whoamiWaitingHost:'Waiting for host', whoamiPoints:'Points', whoamiPassHint:'Passing costs points, but the next answer gives more.', whoamiChoosePlayer:'Pass to whom?', originalGetsNew:'gets a new question if the answer is accepted.', guessTime:'Guess the Time', stopTimerAt:'Stop the timer at', start:'Start', stop:'Stop', timerRunningBlind:'The timer is running. Stop it at the right moment.', targetTime:'Target time', stoppedTime:'Stopped time', difference:'Difference', milliseconds:'milliseconds', veryClose:'Very close!', goodTry:'Good try!', tryAgain:'Try again', results:'Results', randomTime:'Random time', oneMinute:'1 minute', waitingStart:'Waiting for start', timerGoes:'Timer is running', playerStopped:'Player stopped the timer', currentPlayer:'Active player', place:'Place', timeMode:'Time mode', yourTimerHidden:'You cannot see the timer. Other players and spectators can see the time.', 
+    games:{ rps:['Rock · Paper · Scissors','Fast duel'], ttt:['Tic Tac Toe','Colored X and O'], dice:['Dice Duel','Highest roll wins'], connect4:['Four in a Row','Connect a line'], memory:['Memory Match','Find pairs'], twentyone:['Twenty One','Reach 21 exactly'], reaction:['Reaction Tap','Fastest wins'], checkers:['Checkers','8×8 strategy'], nim:['Nim','Logic with sticks'], code:['Code Breaker','Logic deduction'], millionaire:['Who Wants to Be a Millionaire','Bible questions for up to 10 players'], teamquiz:['Team Quiz','2, 3 or 4 teams'], mathrace:['Math Race','Fast arithmetic'], biblequiz:['What? Where? When? — Bible','Bible questions by difficulty'], whoami:['Who am I?','Host, questions, passes and points'], guesstime:['Guess the Time','Stop the timer blindly'] },
     moves:{ rock:'Rock', paper:'Paper', scissors:'Scissors' }
   }
 };
@@ -27,7 +27,7 @@ const I18N = {
 const games = [
   { id:'rps', emoji:'✊', max:2 }, { id:'ttt', emoji:'⭕', max:2 }, { id:'dice', emoji:'🎲', max:2 }, { id:'connect4', emoji:'🔴', max:2 },
   { id:'memory', emoji:'🧠', max:2 }, { id:'twentyone', emoji:'21', max:2 }, { id:'reaction', emoji:'⚡', max:2 }, { id:'checkers', emoji:'⚫', max:2 },
-  { id:'nim', emoji:'🪵', max:2 }, { id:'code', emoji:'🔐', max:1 }, { id:'millionaire', emoji:'💰', max:10 }, { id:'biblequiz', emoji:'📖', max:10 }, { id:'whoami', emoji:'🎭', max:10 }, { id:'teamquiz', emoji:'🏁', max:10 }, { id:'mathrace', emoji:'🧮', max:10 }
+  { id:'nim', emoji:'🪵', max:2 }, { id:'code', emoji:'🔐', max:1 }, { id:'millionaire', emoji:'💰', max:10 }, { id:'biblequiz', emoji:'📖', max:10 }, { id:'whoami', emoji:'🎭', max:10 }, { id:'guesstime', emoji:'⏱️', max:10 }, { id:'teamquiz', emoji:'🏁', max:10 }, { id:'mathrace', emoji:'🧮', max:10 }
 ];
 
 const state = {
@@ -195,6 +195,39 @@ function avatarInitial(name) { return (name || 'S').trim().slice(0,1).toUpperCas
 function setAvatar(imgEl, fallbackEl, url, name) { if (url) { imgEl.src = url; imgEl.style.display = 'block'; fallbackEl.style.display = 'none'; } else { imgEl.removeAttribute('src'); imgEl.style.display = 'none'; fallbackEl.style.display = 'inline'; fallbackEl.textContent = avatarInitial(name); } }
 function myIndex() { const m = String(state.role || '').match(/^player(\d+)$/); return m ? Number(m[1]) - 1 : -1; }
 function activePlayers(room) { return (room.players || []).map((p,i) => p ? { ...p, index:i } : null).filter(Boolean); }
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+}
+function initials(name) {
+  const parts = String(name || 'S').trim().split(/\s+/).filter(Boolean);
+  return (parts[0]?.[0] || 'S').toUpperCase() + (parts[1]?.[0] || '').toUpperCase();
+}
+function playerAvatar(p, size = 'sm', extraClass = '') {
+  const name = escapeHtml(p?.name || 'Player');
+  const color = p?.color || '#8b5cf6';
+  const active = state.room?.state?.turn === p?.index || state.room?.state?.activeIndex === p?.index || state.room?.state?.currentHolder === p?.index || state.room?.state?.currentPlayer === p?.index;
+  const winner = state.room?.winnerMessage?.winnerIndex === p?.index || state.room?.lastRound?.winnerIndex === p?.index;
+  const faded = p && p.connected === false ? ' offline' : '';
+  const ring = active ? ' active' : winner ? ' winner' : '';
+  const img = p?.avatarUrl ? `<img src="${escapeHtml(p.avatarUrl)}" alt="${name}" loading="lazy"/>` : `<span>${escapeHtml(initials(p?.name))}</span>`;
+  return `<span class="player-avatar ${size} ${extraClass}${ring}${faded}" style="--pc:${color}" title="${name}" data-player-name="${name}">${img}</span>`;
+}
+function playerLabel(p, size = 'sm') {
+  const name = escapeHtml(p?.name || 'Player');
+  return `<span class="player-label">${playerAvatar(p, size)}<span class="player-label-name">${name}</span></span>`;
+}
+function formatGameTime(ms) {
+  const safe = Math.max(0, Math.round(Number(ms) || 0));
+  const m = Math.floor(safe / 60000);
+  const sec = Math.floor((safe % 60000) / 1000);
+  const milli = safe % 1000;
+  return `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}.${String(milli).padStart(3, '0')}`;
+}
+function guessTimeRating(diff) {
+  if (diff <= 250) return t('veryClose');
+  if (diff <= 1500) return t('goodTry');
+  return t('tryAgain');
+}
 
 function updateProfileUI() {
   const u = state.user || { name:'Player' };
@@ -364,14 +397,15 @@ function renderRoom(room) {
   document.documentElement.style.setProperty('--p1', p1?.color || '#06b6d4');
   $('roomCodeLabel').textContent = room.id;
   $('gameTitle').textContent = t(`games.${room.game}`)?.[0] || room.game;
-  $('p1Name').textContent = p0?.name || 'Player 1'; $('p2Name').textContent = p1?.name || (room.mode === 'bot' ? 'SMQ Bot' : 'Player 2');
+  $('p1Name').innerHTML = p0 ? playerLabel(p0, 'sm') : escapeHtml('Player 1');
+  $('p2Name').innerHTML = p1 ? playerLabel(p1, 'sm') : escapeHtml(room.mode === 'bot' ? 'SMQ Bot' : 'Player 2');
   $('p1Score').textContent = room.scores[0] ?? 0; $('p2Score').textContent = room.scores[1] ?? 0; $('spectatorCount').textContent = room.spectators || 0;
   renderPlayerStrip(room); renderTurnBanner(room); renderGame(room); renderReviewPanel(room); maybeShowWinner(room); maybeSaveRoundHistory(room);
 }
 
 function renderPlayerStrip(room) {
   const strip = $('playerStrip'); if (!strip) return;
-  strip.innerHTML = activePlayers(room).map(p => `<div class="player-chip" style="--pc:${p.color || '#8b5cf6'}"><span>${p.isBot ? '🤖' : '●'}</span><b>${p.name}</b><em>${room.game === 'teamquiz' ? `${t('team')} ${p.team + 1} · ` : ''}${room.scores[p.index] || 0}</em></div>`).join('');
+  strip.innerHTML = activePlayers(room).map(p => `<div class="player-chip" style="--pc:${p.color || '#8b5cf6'}">${playerAvatar(p, 'md')}<b>${escapeHtml(p.name)}${p.isBot ? ' 🤖' : ''}</b><em>${room.game === 'teamquiz' ? `${t('team')} ${p.team + 1} · ` : ''}${room.scores[p.index] || 0}</em></div>`).join('');
 }
 
 function summarizeLastMove(room) {
@@ -393,6 +427,14 @@ function renderTurnBanner(room) {
     else if (s.phase === 'awaitingHost') banner.textContent = `${t('whoamiWaitingHost')}: ${room.players?.[s.hostIndex]?.name || t('whoamiHost')}`;
     else if (s.phase === 'question') banner.textContent = `${t('whoamiCurrent')}: ${room.players?.[s.currentHolder]?.name || 'Player'}`;
     else banner.textContent = s.currentPlayer === idx ? t('yourTurn') : `${t('whoamiCurrent')}: ${room.players?.[s.currentPlayer]?.name || 'Player'}`;
+    return;
+  }
+  if (room.game === 'guesstime') {
+    const s = room.state || {};
+    const activeName = room.players?.[s.activeIndex]?.name || 'Player';
+    if (s.phase === 'running') banner.textContent = s.activeIndex === idx ? t('timerRunningBlind') : `${t('timerGoes')}: ${activeName}`;
+    else if (s.phase === 'stopped' || s.phase === 'finished') banner.textContent = `${t('playerStopped')}: ${activeName}`;
+    else banner.textContent = s.activeIndex === idx ? t('yourTurn') : `${t('currentPlayer')}: ${activeName}`;
     return;
   }
   if (['millionaire','teamquiz','mathrace','biblequiz'].includes(room.game)) { banner.textContent = room.state.answers?.[String(idx)] ? t('answered') : t('yourTurn'); return; }
@@ -424,7 +466,7 @@ function sendAction(action) { state.socket?.emit('game_action', action); }
 function renderGame(room) {
   const board = $('gameBoard'); state.selectedChecker = null;
   if (room.status === 'waiting') { board.innerHTML = `<div class="total-card"><h2>${t('waitingFriend')}</h2><p>${location.origin}${room.playerLink}</p></div>`; return; }
-  const map = { rps:renderRps, ttt:renderTtt, dice:renderDice, connect4:renderConnect4, memory:renderMemory, twentyone:renderTwentyOne, reaction:renderReaction, checkers:renderCheckers, nim:renderNim, code:renderCode, millionaire:renderMillionaire, biblequiz:renderMillionaire, teamquiz:renderMillionaire, mathrace:renderMathRace, whoami:renderWhoAmI };
+  const map = { rps:renderRps, ttt:renderTtt, dice:renderDice, connect4:renderConnect4, memory:renderMemory, twentyone:renderTwentyOne, reaction:renderReaction, checkers:renderCheckers, nim:renderNim, code:renderCode, millionaire:renderMillionaire, biblequiz:renderMillionaire, teamquiz:renderMillionaire, mathrace:renderMathRace, whoami:renderWhoAmI, guesstime:renderGuessTime };
   (map[room.game] || renderRps)(board, room);
 }
 
@@ -443,7 +485,7 @@ function renderTtt(board, room) {
 function renderDice(board, room) {
   const faces = ['⚀','⚁','⚂','⚃','⚄','⚅'];
   const players = activePlayers(room).slice(0, 4);
-  board.innerHTML = `<div class="dice-grid">${players.map(p => `<div class="dice-card" style="--pc:${p.color}"><small>${p.name}</small><div class="dice-face">${room.state.rolls[p.index] ? faces[room.state.rolls[p.index]-1] : '🎲'}</div></div>`).join('')}<button class="btn primary full" id="rollBtn" ${!canAct(false) || room.state.rolls?.[myIndex()] ? 'disabled' : ''}>${t('roll')}</button></div>`;
+  board.innerHTML = `<div class="dice-grid">${players.map(p => `<div class="dice-card" style="--pc:${p.color}"><small>${playerLabel(p, 'sm')}</small><div class="dice-face">${room.state.rolls[p.index] ? faces[room.state.rolls[p.index]-1] : '🎲'}</div></div>`).join('')}<button class="btn primary full" id="rollBtn" ${!canAct(false) || room.state.rolls?.[myIndex()] ? 'disabled' : ''}>${t('roll')}</button></div>`;
   $('rollBtn') && ($('rollBtn').onclick = () => sendAction({ type:'roll' }));
 }
 
@@ -458,7 +500,7 @@ function renderConnect4(board, room) {
 }
 
 function renderMemory(board, room) {
-  board.innerHTML = `<div class="memory-board">${room.state.cards.map(card => `<button class="memory-card ${card.value ? '' : 'closed'} ${card.matched ? 'matched' : ''}" data-card="${card.id}" ${!canAct(true) || card.matched || card.revealed ? 'disabled' : ''}>${card.value || '?'}</button>`).join('')}</div><div class="mini-score">${room.state.pairScore?.map((s,i)=>`${room.players[i]?.name || 'P'+(i+1)}: ${s}`).join(' · ')}</div>`;
+  board.innerHTML = `<div class="memory-board">${room.state.cards.map(card => `<button class="memory-card ${card.value ? '' : 'closed'} ${card.matched ? 'matched' : ''}" data-card="${card.id}" ${!canAct(true) || card.matched || card.revealed ? 'disabled' : ''}>${card.value || '?'}</button>`).join('')}</div><div class="mini-score">${room.state.pairScore?.map((score,i)=>room.players[i] ? `${playerAvatar({...room.players[i], index:i}, 'xs')} ${escapeHtml(room.players[i].name)}: ${score}` : `P${i+1}: ${score}`).join(' · ')}</div>`;
   board.querySelectorAll('[data-card]').forEach(btn => btn.onclick = () => sendAction({ card:Number(btn.dataset.card) }));
 }
 
@@ -583,14 +625,65 @@ function renderMillionaire(board, room) {
   const src = srcText ? `<small class="source-line">${t('source')}: ${srcText}</small>` : '';
   const qText = l10n(q.q);
   const answers = l10nList(q.a);
-  board.innerHTML = `<div class="quiz-wrap"><div class="quiz-score">${isTeam ? room.teamScores.map((x,i)=>`${t('team')} ${i+1}: ${s.teamPoints?.[i] ?? 0}`).join(' · ') : activePlayers(room).map(p=>`${p.name}: ${s.points?.[p.index] ?? 0}`).join(' · ')}</div><div class="question-card"><small>${t('question')} ${s.qIndex + 1}/${s.questions.length}</small>${diff}<h2>${qText}</h2>${src}</div><div class="answer-grid">${answers.map((a,i) => `<button class="answer-btn ${s.showAnswer ? (i === s.showAnswer.correct ? 'correct' : (s.answers?.[String(idx)] === i ? 'wrong' : '')) : ''}" data-answer="${i}" ${!canAct(false) || answered || s.showAnswer ? 'disabled' : ''}>${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div>${answered && !s.showAnswer ? `<p class="hint-line">${t('answered')}</p>` : ''}</div>`;
+  board.innerHTML = `<div class="quiz-wrap"><div class="quiz-score">${isTeam ? room.teamScores.map((x,i)=>`${t('team')} ${i+1}: ${s.teamPoints?.[i] ?? 0}`).join(' · ') : activePlayers(room).map(p=>`${playerAvatar(p, 'xs')} ${escapeHtml(p.name)}: ${s.points?.[p.index] ?? 0}`).join(' · ')}</div><div class="question-card"><small>${t('question')} ${s.qIndex + 1}/${s.questions.length}</small>${diff}<h2>${qText}</h2>${src}</div><div class="answer-grid">${answers.map((a,i) => `<button class="answer-btn ${s.showAnswer ? (i === s.showAnswer.correct ? 'correct' : (s.answers?.[String(idx)] === i ? 'wrong' : '')) : ''}" data-answer="${i}" ${!canAct(false) || answered || s.showAnswer ? 'disabled' : ''}>${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div>${answered && !s.showAnswer ? `<p class="hint-line">${t('answered')}</p>` : ''}</div>`;
   board.querySelectorAll('[data-answer]').forEach(btn => btn.onclick = () => sendAction({ answer:Number(btn.dataset.answer) }));
 }
 
 function renderMathRace(board, room) {
   const s = room.state; const idx = myIndex(); const answered = s.answers?.[String(idx)] !== undefined;
-  board.innerHTML = `<div class="math-wrap"><div class="quiz-score">${activePlayers(room).map(p=>`${p.name}: ${s.points?.[p.index] ?? 0}`).join(' · ')}</div><div class="total-card"><small>${s.round}/${s.maxRounds}</small><div class="total-number">${s.problem.text}</div>${s.showAnswer ? `<p>${t('correct')}: ${s.showAnswer.correct}</p>` : `<input id="mathInput" class="input code-input" inputmode="numeric" placeholder="?" ${!canAct(false) || answered ? 'disabled' : ''}/><button id="mathBtn" class="btn primary full" ${!canAct(false) || answered ? 'disabled' : ''}>${t('send')}</button>`}</div></div>`;
+  board.innerHTML = `<div class="math-wrap"><div class="quiz-score">${activePlayers(room).map(p=>`${playerAvatar(p, 'xs')} ${escapeHtml(p.name)}: ${s.points?.[p.index] ?? 0}`).join(' · ')}</div><div class="total-card"><small>${s.round}/${s.maxRounds}</small><div class="total-number">${s.problem.text}</div>${s.showAnswer ? `<p>${t('correct')}: ${s.showAnswer.correct}</p>` : `<input id="mathInput" class="input code-input" inputmode="numeric" placeholder="?" ${!canAct(false) || answered ? 'disabled' : ''}/><button id="mathBtn" class="btn primary full" ${!canAct(false) || answered ? 'disabled' : ''}>${t('send')}</button>`}</div></div>`;
   $('mathBtn') && ($('mathBtn').onclick = () => sendAction({ answer: Number($('mathInput').value) }));
+}
+
+
+function renderGuessTime(board, room) {
+  const s = room.state || {};
+  const idx = myIndex();
+  const isActive = idx >= 0 && idx === s.activeIndex && state.role !== 'spectator';
+  const players = activePlayers(room).filter(p => !p.isBot);
+  const active = room.players?.[s.activeIndex] ? { ...room.players[s.activeIndex], index: s.activeIndex } : players[0];
+  const target = Number(s.targetMs || 60000);
+  const running = s.phase === 'running' && s.startAt;
+  const elapsed = running ? Math.max(0, Date.now() - Number(s.startAt)) : Number(s.elapsedMs || s.lastResult?.stoppedMs || 0);
+  const visibleTimer = running && !isActive;
+  const statusKey = s.phase === 'running' ? 'timerGoes' : s.phase === 'stopped' || s.phase === 'finished' ? 'playerStopped' : 'waitingStart';
+  const last = s.lastResult;
+  const attempts = Array.isArray(s.attempts) ? [...s.attempts].sort((a,b) => (a.diffMs || 0) - (b.diffMs || 0)) : [];
+  const canConfigure = isActive && ['setup','ready'].includes(s.phase) && attempts.length === 0;
+  const canStart = isActive && ['setup','ready'].includes(s.phase) && !attempts.some(a => a.playerIndex === idx);
+  const canStop = isActive && s.phase === 'running';
+  const resultCard = last ? `<div class="guess-result-card">
+      <div><small>${t('targetTime')}</small><b>${formatGameTime(last.targetMs)}</b></div>
+      <div><small>${t('stoppedTime')}</small><b>${formatGameTime(last.stoppedMs)}</b></div>
+      <div><small>${t('difference')}</small><b>${Math.round(last.diffMs)} ms</b></div>
+      <strong>${guessTimeRating(last.diffMs)}</strong>
+    </div>` : '';
+  const rows = attempts.map((a, i) => {
+    const p = room.players?.[a.playerIndex] ? { ...room.players[a.playerIndex], index:a.playerIndex } : { name:`Player ${a.playerIndex + 1}`, index:a.playerIndex };
+    return `<tr><td>${i + 1}</td><td>${playerAvatar(p, 'sm')}</td><td>${escapeHtml(p.name)}</td><td>${formatGameTime(a.targetMs)}</td><td>${formatGameTime(a.stoppedMs)}</td><td>${Math.round(a.diffMs)} ms</td></tr>`;
+  }).join('');
+  board.innerHTML = `<div class="guess-time-wrap">
+    <div class="guess-time-card">
+      <div class="guess-time-title"><span class="game-icon">⏱️</span><div><h2>${t('guessTime')}</h2><p>${t('stopTimerAt')} <b>${formatGameTime(target)}</b></p></div></div>
+      <div class="guess-active-player"><small>${t('currentPlayer')}</small>${active ? playerLabel(active, 'lg') : '—'}</div>
+      ${canConfigure ? `<div class="guess-mode-row"><span>${t('timeMode')}</span><button class="chip-btn ${s.timeMode !== 'random' ? 'active' : ''}" data-guess-mode="minute">${t('oneMinute')}</button><button class="chip-btn ${s.timeMode === 'random' ? 'active' : ''}" data-guess-mode="random">${t('randomTime')}</button></div>` : ''}
+      <div class="timer-display ${isActive && running ? 'hidden-timer' : ''}">${visibleTimer ? formatGameTime(elapsed) : running ? t('timerRunningBlind') : formatGameTime(Number(s.elapsedMs || 0))}</div>
+      ${isActive && running ? `<p class="hint-line">${t('yourTimerHidden')}</p>` : `<p class="hint-line">${t(statusKey)}</p>`}
+      <div class="guess-actions">
+        ${canStart ? `<button class="guess-main-btn start" data-guess-start>${t('start')}</button>` : ''}
+        ${canStop ? `<button class="guess-main-btn stop" data-guess-stop>${t('stop')}</button>` : ''}
+      </div>
+      ${resultCard}
+    </div>
+    <div class="guess-results glass">
+      <h3>${t('results')}</h3>
+      <table><thead><tr><th>${t('place')}</th><th></th><th>${t('players')}</th><th>${t('targetTime')}</th><th>${t('stoppedTime')}</th><th>${t('difference')}</th></tr></thead><tbody>${rows || `<tr><td colspan="6">${t('waitingStart')}</td></tr>`}</tbody></table>
+    </div>
+  </div>`;
+  board.querySelectorAll('[data-guess-mode]').forEach(btn => btn.onclick = () => sendAction({ type:'setMode', mode:btn.dataset.guessMode }));
+  board.querySelector('[data-guess-start]')?.addEventListener('click', () => sendAction({ type:'start' }));
+  board.querySelector('[data-guess-stop]')?.addEventListener('click', () => sendAction({ type:'stop' }));
+  if (running && state.room?.game === 'guesstime') setTimeout(() => state.room?.game === 'guesstime' && renderGuessTime($('gameBoard'), state.room), 37);
 }
 
 
@@ -609,7 +702,7 @@ function renderWhoAmI(board, room) {
   const passCost = 1 + (s.transferDepth || 0);
   const canStart = idx >= 0 && s.phase === 'ready' && s.currentPlayer === idx;
   const canAnswer = idx >= 0 && s.phase === 'question' && s.currentHolder === idx;
-  const scoreCards = players.map(p => `<div class="whoami-score" style="--pc:${p.color || '#8b5cf6'}"><b>${p.name}${p.index === s.hostIndex ? ' 👑' : ''}</b><strong>${s.scores?.[p.index] ?? 0}</strong></div>`).join('');
+  const scoreCards = players.map(p => `<div class="whoami-score" style="--pc:${p.color || '#8b5cf6'}"><b>${playerAvatar(p, 'md')} ${escapeHtml(p.name)}${p.index === s.hostIndex ? ' 👑' : ''}</b><strong>${s.scores?.[p.index] ?? 0}</strong></div>`).join('');
   const hostControls = isHost ? `<div class="whoami-host-controls"><button class="chip-btn danger-soft" data-finish-whoami>${t('whoamiFinish')}</button>${players.filter(p => p.index !== idx).map(p => `<button class="chip-btn" data-host-target="${p.index}">👑 ${p.name}</button>`).join('')}</div>` : '';
 
   let body = '';
