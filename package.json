@@ -1,28 +1,21 @@
 {
   "name": "online-games-site",
-  "version": "1.1.0",
-  "description": "Красочный сайт с онлайн-играми: комнаты, наблюдатели, игра с компьютером, профиль, языки RU/ES/EN и мобильный UI.",
+  "version": "4.0.0",
+  "description": "Mobile-first online games site with Google login, profiles, history, bots, spectators, animations and music.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": [
-    "games",
-    "socket.io",
-    "online",
-    "mobile",
-    "tic-tac-toe",
-    "connect-four",
-    "dice",
-    "rock-paper-scissors",
-    "spectator",
-    "bot"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.19.2",
-    "socket.io": "^4.7.5"
+    "express": "^4.18.3",
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "socket.io": "^4.7.5",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

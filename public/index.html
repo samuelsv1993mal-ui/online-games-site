@@ -1,353 +1,184 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#25105f" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="SMQ Games" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>SMQ Games</title>
+  <meta name="theme-color" content="#12162d" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
-<body data-theme="dark" data-font="medium">
-  <div class="ambient-bg" aria-hidden="true">
-    <span class="orb orb-one"></span>
-    <span class="orb orb-two"></span>
-    <span class="orb orb-three"></span>
-    <span class="spark spark-a">✦</span>
-    <span class="spark spark-b">●</span>
-    <span class="spark spark-c">◆</span>
-  </div>
+<body>
+  <div class="aurora"></div>
+  <canvas id="confettiCanvas" class="confetti" aria-hidden="true"></canvas>
 
-  <main class="app-shell">
-    <header class="app-topbar">
-      <button class="brand-chip" id="homeBtn" type="button" aria-label="SMQ Games">
-        <span class="app-logo mini">🎮</span>
-        <span>
-          <strong>SMQ Games</strong>
-          <small data-i18n="topbarSubtitle">Онлайн-игры</small>
-        </span>
-      </button>
-
-      <div class="topbar-actions">
-        <select class="language-select languageSelect" aria-label="Language">
-          <option value="ru">RU</option>
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-        </select>
-        <button class="avatar-button hidden" id="profileBtn" type="button" aria-label="Profile">
-          <img id="topAvatarImg" alt="" class="avatar-img hidden" />
-          <span id="topAvatarInitials">S</span>
-        </button>
-      </div>
-    </header>
-
-    <section class="auth-view" id="loginView">
-      <div class="auth-card">
-        <div class="brand-row centered-brand">
-          <div class="app-logo">🎮</div>
-          <div>
-            <p class="eyebrow">SMQ Games</p>
-            <strong data-i18n="loginBrand">Игровая платформа для друзей</strong>
-          </div>
+  <main id="app" class="app-shell">
+    <section id="loginScreen" class="screen login-screen">
+      <div class="brand-card pop-in">
+        <div class="brand-logo">SMQ</div>
+        <h1 data-i18n="appTitle">SMQ Games</h1>
+        <p data-i18n="appSubtitle">Играй онлайн, с другом, против компьютера или наблюдай за комнатой.</p>
+        <div class="login-actions">
+          <a class="btn primary full" href="/auth/google" id="googleLoginBtn">G&nbsp; <span data-i18n="loginGoogle">Войти через Google</span></a>
+          <button class="btn ghost full" id="guestLoginBtn" data-i18n="continueGuest">Продолжить как гость</button>
         </div>
-
-        <div class="badge" data-i18n="loginBadge">🌍 Русский · Español · English</div>
-        <h1 data-i18n="loginTitle">Войди и играй онлайн</h1>
-        <p class="hero-text" data-i18n="loginText">Создай профиль, выбери язык, тему и играй с другом, компьютером или просто наблюдай за комнатой.</p>
-
-        <button class="google-btn" id="googleLoginBtn" type="button">
-          <span class="google-icon">G</span>
-          <span data-i18n="googleLogin">Войти через Google</span>
-        </button>
-
-        <button class="secondary-btn wide" id="guestLoginBtn" type="button" data-i18n="guestLogin">Продолжить как гость</button>
-        <p class="hint-text" data-i18n="loginHint">Google-вход подготовлен как страница входа. Для настоящего OAuth позже нужно добавить Google Client ID.</p>
+        <p class="hint" id="googleHint" data-i18n="googleHint">Google-вход сохраняет фото профиля и историю игр.</p>
       </div>
     </section>
 
-    <section class="hero-card hidden" id="homeView">
-      <div class="hero-content">
-        <div class="brand-row">
-          <div class="app-logo">🎮</div>
+    <section id="homeScreen" class="screen hidden">
+      <header class="app-header glass">
+        <div class="header-left">
+          <button class="avatar-btn" id="openProfileBtn"><img id="headerAvatar" alt="avatar" /><span id="avatarFallback">S</span></button>
           <div>
-            <p class="eyebrow">SMQ Games</p>
-            <strong data-i18n="homeBrand">Игры для двоих онлайн</strong>
+            <div class="hello" data-i18n="hello">Привет</div>
+            <strong id="headerName">Player</strong>
           </div>
         </div>
-
-        <div class="badge" data-i18n="homeBadge">⚡ Онлайн · Компьютер · Наблюдатели</div>
-        <h1 data-i18n="homeTitle">Играй как в мобильном приложении</h1>
-        <p class="hero-text" data-i18n="homeText">Создай комнату, отправь код другу, сыграй против компьютера или зайди наблюдателем и смотри партию в реальном времени.</p>
-
-        <div class="game-showcase" aria-label="Games">
-          <span data-i18n="showcaseRps">✊ КНБ</span>
-          <span data-i18n="showcaseTtt">⭕ Крестики</span>
-          <span data-i18n="showcaseDice">🎲 Кубики</span>
-          <span data-i18n="showcaseC4">🟡 4 в ряд</span>
-        </div>
-
-        <div class="profile-summary">
-          <div class="avatar-large">
-            <img id="homeAvatarImg" alt="" class="avatar-img hidden" />
-            <span id="homeAvatarInitials">S</span>
-          </div>
-          <div>
-            <p class="eyebrow" data-i18n="yourProfile">Твой профиль</p>
-            <strong id="homeProfileName">Player</strong>
-            <button class="text-btn" id="openProfileFromHomeBtn" type="button" data-i18n="openSettings">Настройки профиля</button>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <label>
-            <span data-i18n="nameLabel">Твоё имя</span>
-            <input id="nameInput" type="text" maxlength="22" autocomplete="off" />
-          </label>
-
-          <label>
-            <span data-i18n="gameLabel">Игра</span>
-            <select id="gameInput">
-              <option value="rps" data-i18n="gameRps">✊ Камень · Ножницы · Бумага</option>
-              <option value="ttt" data-i18n="gameTtt">⭕ Крестики-нолики</option>
-              <option value="dice" data-i18n="gameDice">🎲 Кубики</option>
-              <option value="c4" data-i18n="gameC4">🟡 Четыре в ряд</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="mode-cards" role="group" aria-label="Mode">
-          <label class="mode-card active" id="onlineModeCard">
-            <input type="radio" name="mode" value="online" checked />
-            <span>🌐</span>
-            <strong data-i18n="modeOnlineTitle">С другом онлайн</strong>
-            <small data-i18n="modeOnlineText">Создай комнату и отправь ссылку.</small>
-          </label>
-          <label class="mode-card" id="computerModeCard">
-            <input type="radio" name="mode" value="computer" />
-            <span>🤖</span>
-            <strong data-i18n="modeComputerTitle">С компьютером</strong>
-            <small data-i18n="modeComputerText">Играй сразу против SMQ Bot.</small>
-          </label>
-        </div>
-
-        <div class="actions-row">
-          <button class="primary-btn" id="createRoomBtn" type="button" data-i18n="createRoom">Создать комнату</button>
-        </div>
-
-        <div class="join-box two-actions">
-          <input id="roomInput" type="text" maxlength="5" autocomplete="off" data-i18n-placeholder="roomCodePlaceholder" placeholder="Код комнаты" />
-          <button class="secondary-btn" id="joinRoomBtn" type="button" data-i18n="joinRoom">Войти</button>
-          <button class="ghost-btn" id="watchRoomBtn" type="button" data-i18n="watchRoom">Наблюдать</button>
-        </div>
-
-        <p class="error-text" id="errorText"></p>
-      </div>
-
-      <div class="preview-card">
-        <div class="floating-card top-card">
-          <span data-i18n="previewMode">Режим</span>
-          <strong>🤖 Bot</strong>
-        </div>
-        <div class="phone-preview">
-          <div class="preview-header"></div>
-          <div class="preview-screen-title">SMQ Games</div>
-          <div class="preview-board">
-            <div>X</div><div>O</div><div>X</div>
-            <div>O</div><div>X</div><div></div>
-            <div></div><div>O</div><div>X</div>
-          </div>
-          <div class="preview-actions">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-        <div class="floating-card bottom-card">
-          <span data-i18n="previewSpectators">Наблюдатели</span>
-          <strong>👀 Live</strong>
-        </div>
-      </div>
-    </section>
-
-    <section class="profile-view hidden" id="profileView">
-      <div class="profile-card">
-        <div class="profile-head">
-          <div>
-            <p class="eyebrow">SMQ Games</p>
-            <h1 data-i18n="profileTitle">Профиль и настройки</h1>
-            <p class="hero-text" data-i18n="profileText">Настрой фото, язык, размер текста и тему сайта.</p>
-          </div>
-          <button class="ghost-btn" id="closeProfileBtn" type="button" data-i18n="backToGames">К играм</button>
-        </div>
-
-        <div class="profile-grid">
-          <div class="photo-panel">
-            <div class="avatar-xl">
-              <img id="profileAvatarImg" alt="" class="avatar-img hidden" />
-              <span id="profileAvatarInitials">S</span>
-            </div>
-            <label class="upload-btn">
-              <span data-i18n="changePhoto">Изменить фото</span>
-              <input id="avatarInput" type="file" accept="image/*" />
-            </label>
-          </div>
-
-          <div class="settings-panel">
-            <label>
-              <span data-i18n="profileNameLabel">Имя профиля</span>
-              <input id="profileNameInput" type="text" maxlength="22" />
-            </label>
-
-            <label>
-              <span data-i18n="languageLabel">Язык сайта</span>
-              <select class="languageSelect" id="profileLanguageInput">
-                <option value="ru">Русский</option>
-                <option value="es">Español</option>
-                <option value="en">English</option>
-              </select>
-            </label>
-
-            <label>
-              <span data-i18n="fontSizeLabel">Размер шрифта</span>
-              <select id="fontSizeInput">
-                <option value="small" data-i18n="fontSmall">Маленький</option>
-                <option value="medium" data-i18n="fontMedium">Средний</option>
-                <option value="large" data-i18n="fontLarge">Большой</option>
-              </select>
-            </label>
-
-            <label>
-              <span data-i18n="themeLabel">Тема</span>
-              <select id="themeInput">
-                <option value="dark" data-i18n="themeDark">Тёмная</option>
-                <option value="light" data-i18n="themeLight">Светлая</option>
-              </select>
-            </label>
-
-            <div class="settings-actions">
-              <button class="primary-btn" id="saveProfileBtn" type="button" data-i18n="saveProfile">Сохранить</button>
-              <button class="ghost-btn danger" id="logoutBtn" type="button" data-i18n="logout">Выйти</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="game-view hidden" id="gameView">
-      <header class="game-header">
-        <div class="room-block">
-          <p class="eyebrow" data-i18n="roomLabel">Комната</p>
-          <div class="room-code-wrap">
-            <h2 id="roomCode">-----</h2>
-            <button class="tiny-btn" id="copyRoomBtn" type="button" data-i18n="copyCode">Код</button>
-            <button class="tiny-btn" id="shareRoomBtn" type="button" data-i18n="shareLink">Ссылка</button>
-            <button class="tiny-btn" id="shareWatchBtn" type="button" data-i18n="watchLink">Наблюдать</button>
-          </div>
-          <div class="room-meta">
-            <span id="roleBadge" class="game-pill">Player</span>
-            <span id="modeBadge" class="game-pill">Online</span>
-            <span id="spectatorBadge" class="game-pill">👀 0</span>
-          </div>
-        </div>
-
         <div class="header-actions">
-          <select id="gameSelect" class="game-select">
-            <option value="rps" data-i18n="gameRpsShort">✊ КНБ</option>
-            <option value="ttt" data-i18n="gameTtt">⭕ Крестики-нолики</option>
-            <option value="dice" data-i18n="gameDice">🎲 Кубики</option>
-            <option value="c4" data-i18n="gameC4">🟡 Четыре в ряд</option>
+          <select id="quickLang" class="mini-select" aria-label="Language">
+            <option value="ru">RU</option>
+            <option value="es">ES</option>
+            <option value="en">EN</option>
           </select>
-          <button class="ghost-btn" id="resetGameBtn" type="button" data-i18n="newRound">Новая партия</button>
-          <button class="ghost-btn danger" id="resetScoresBtn" type="button" data-i18n="resetScores">Сброс</button>
-          <button class="ghost-btn" id="leaveRoomBtn" type="button" data-i18n="leaveRoom">Выйти</button>
+          <button class="icon-btn" id="themeBtn" title="Theme">◐</button>
         </div>
       </header>
 
-      <div class="status-grid">
-        <article class="player-card" id="playerXCard">
-          <div class="symbol x-symbol">X</div>
-          <div>
-            <p data-i18n="playerX">Игрок X</p>
-            <strong id="playerXName">...</strong>
+      <div class="home-grid">
+        <section class="hero glass">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n="mobileGame">Мобильная онлайн-арена</p>
+            <h2 data-i18n="chooseGame">Выбери игру</h2>
+            <p data-i18n="chooseMode">Играй с компьютером или создай комнату для друга.</p>
           </div>
-        </article>
+          <div class="hero-orb">🎮</div>
+        </section>
 
-        <article class="score-card">
-          <p data-i18n="scoreLabel">Счёт</p>
-          <strong id="scoreText">0 : 0</strong>
-          <span id="drawText">Ничьи: 0</span>
-        </article>
+        <section class="panel glass create-panel">
+          <h3 data-i18n="newGame">Новая игра</h3>
+          <label data-i18n="game">Игра</label>
+          <div id="gameCards" class="game-cards"></div>
 
-        <article class="player-card" id="playerOCard">
-          <div class="symbol o-symbol">O</div>
-          <div>
-            <p data-i18n="playerO">Игрок O</p>
-            <strong id="playerOName">...</strong>
+          <label data-i18n="mode">Режим</label>
+          <div class="segmented">
+            <button class="segment active" data-mode="online" data-i18n="onlineRoom">Онлайн-комната</button>
+            <button class="segment" data-mode="bot" data-i18n="playComputer">С компьютером</button>
           </div>
-        </article>
+          <button class="btn primary full" id="createRoomBtn" data-i18n="createRoom">Создать комнату</button>
+        </section>
+
+        <section class="panel glass join-panel">
+          <h3 data-i18n="joinRoom">Войти в комнату</h3>
+          <input id="roomCodeInput" class="input" placeholder="ABCDE" maxlength="8" />
+          <div class="two-buttons">
+            <button class="btn secondary" id="joinPlayerBtn" data-i18n="joinAsPlayer">Играть</button>
+            <button class="btn ghost" id="joinSpectatorBtn" data-i18n="watch">Наблюдать</button>
+          </div>
+        </section>
+
+        <section class="panel glass history-panel">
+          <div class="panel-title-row">
+            <h3 data-i18n="history">История игр</h3>
+            <button class="small-link" id="refreshHistoryBtn" data-i18n="refresh">Обновить</button>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </section>
       </div>
+    </section>
 
-      <div class="notice" id="noticeText"></div>
-
-      <section class="game-panel" id="rpsPanel">
-        <div class="panel-title">
-          <div>
-            <p class="eyebrow" data-i18n="gameOne">Игра 1</p>
-            <h3 data-i18n="rpsTitle">Камень · Ножницы · Бумага</h3>
+    <section id="roomScreen" class="screen hidden room-screen">
+      <header class="arena-top glass">
+        <button class="icon-btn" id="backHomeBtn">←</button>
+        <div class="scoreboard">
+          <div class="player-score p1">
+            <span id="p1Name">Player 1</span>
+            <strong id="p1Score">0</strong>
           </div>
-          <span class="game-pill" data-i18n="rpsPill">Быстрый раунд</span>
-        </div>
-
-        <div class="rps-grid">
-          <button class="move-btn rock" data-move="rock" type="button"><span>✊</span><span data-i18n="rock">Камень</span></button>
-          <button class="move-btn scissors" data-move="scissors" type="button"><span>✌️</span><span data-i18n="scissors">Ножницы</span></button>
-          <button class="move-btn paper" data-move="paper" type="button"><span>✋</span><span data-i18n="paper">Бумага</span></button>
-        </div>
-
-        <div class="result-box" id="rpsResult"></div>
-      </section>
-
-      <section class="game-panel hidden" id="tttPanel">
-        <div class="panel-title">
-          <div>
-            <p class="eyebrow" data-i18n="gameTwo">Игра 2</p>
-            <h3 data-i18n="tttTitle">Крестики-нолики</h3>
+          <div class="score-center">
+            <span id="gameTitle">Game</span>
+            <b id="roomCodeLabel">-----</b>
           </div>
-          <span class="game-pill" data-i18n="tttPill">Стратегия 3×3</span>
-        </div>
-        <div class="ttt-board" id="tttBoard" aria-label="Tic tac toe board"></div>
-      </section>
-
-      <section class="game-panel hidden" id="dicePanel">
-        <div class="panel-title">
-          <div>
-            <p class="eyebrow" data-i18n="gameThree">Игра 3</p>
-            <h3 data-i18n="diceTitle">Кубики</h3>
+          <div class="player-score p2">
+            <span id="p2Name">Player 2</span>
+            <strong id="p2Score">0</strong>
           </div>
-          <span class="game-pill" data-i18n="dicePill">Кто выбросит больше</span>
         </div>
+      </header>
 
-        <div class="dice-stage">
-          <div class="die-card"><p data-i18n="playerX">Игрок X</p><div class="die-face" id="dieX">?</div></div>
-          <button class="primary-btn roll-btn" id="rollDiceBtn" type="button" data-i18n="rollDice">Бросить кубик</button>
-          <div class="die-card"><p data-i18n="playerO">Игрок O</p><div class="die-face" id="dieO">?</div></div>
-        </div>
-        <div class="result-box" id="diceResult"></div>
-      </section>
-
-      <section class="game-panel hidden" id="c4Panel">
-        <div class="panel-title">
-          <div>
-            <p class="eyebrow" data-i18n="gameFour">Игра 4</p>
-            <h3 data-i18n="c4Title">Четыре в ряд</h3>
+      <section class="arena">
+        <div class="room-tools glass">
+          <div><span data-i18n="spectators">Наблюдатели</span>: <b id="spectatorCount">0</b></div>
+          <div class="tool-buttons">
+            <button class="chip-btn" id="copyPlayerLinkBtn" data-i18n="copyPlayerLink">Ссылка игроку</button>
+            <button class="chip-btn" id="copySpectatorLinkBtn" data-i18n="copySpectatorLink">Ссылка зрителю</button>
+            <button class="chip-btn" id="newRoundBtn" data-i18n="newRound">Новая партия</button>
           </div>
-          <span class="game-pill" data-i18n="c4Pill">Собери линию из 4</span>
         </div>
-        <div class="c4-board" id="c4Board" aria-label="Connect four board"></div>
+        <div id="turnBanner" class="turn-banner">...</div>
+        <div id="gameBoard" class="game-board"></div>
       </section>
     </section>
   </main>
 
+  <aside id="profileDrawer" class="drawer hidden">
+    <div class="drawer-backdrop" id="closeProfileBackdrop"></div>
+    <div class="drawer-panel glass">
+      <button class="icon-btn close" id="closeProfileBtn">×</button>
+      <h2 data-i18n="profile">Профиль</h2>
+      <div class="profile-photo-row">
+        <div class="profile-photo"><img id="profileAvatar" alt="avatar" /><span id="profileFallback">S</span></div>
+        <div>
+          <input type="file" id="avatarInput" accept="image/*" hidden />
+          <button class="btn secondary small" id="changeAvatarBtn" data-i18n="changePhoto">Изменить фото</button>
+          <button class="btn ghost small" id="clearAvatarBtn" data-i18n="resetPhoto">Сбросить</button>
+        </div>
+      </div>
+      <label data-i18n="name">Имя</label>
+      <input id="profileName" class="input" />
+      <label data-i18n="language">Язык</label>
+      <select id="profileLang" class="input">
+        <option value="ru">Русский</option>
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+      <label data-i18n="fontSize">Размер шрифта</label>
+      <select id="fontSizeSelect" class="input">
+        <option value="small" data-i18n="small">Маленький</option>
+        <option value="medium" data-i18n="medium">Средний</option>
+        <option value="large" data-i18n="large">Большой</option>
+        <option value="xlarge" data-i18n="xlarge">Очень большой</option>
+      </select>
+      <label data-i18n="theme">Тема</label>
+      <select id="themeSelect" class="input">
+        <option value="dark" data-i18n="darkTheme">Тёмная</option>
+        <option value="light" data-i18n="lightTheme">Светлая</option>
+      </select>
+
+      <div class="music-box">
+        <h3 data-i18n="music">Музыка</h3>
+        <button class="btn primary full" id="toggleMusicBtn" data-i18n="musicOn">Включить музыку</button>
+        <label data-i18n="volume">Громкость</label>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.35" />
+        <label data-i18n="uploadMusic">Добавить свою музыку</label>
+        <input type="file" id="musicInput" accept="audio/*" class="input file-input" />
+      </div>
+
+      <button class="btn primary full" id="saveProfileBtn" data-i18n="saveProfile">Сохранить профиль</button>
+      <button class="btn ghost full" id="logoutBtn" data-i18n="logout">Выйти</button>
+    </div>
+  </aside>
+
+  <div id="winnerOverlay" class="winner-overlay hidden">
+    <div class="winner-card">
+      <div class="winner-emoji">🏆</div>
+      <h2 id="winnerText">WINNER!</h2>
+      <button class="btn primary" id="winnerNextBtn" data-i18n="continue">Продолжить</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <audio id="bgMusic" loop preload="auto" src="/assets/smq-theme.wav"></audio>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/client.js"></script>
 </body>
