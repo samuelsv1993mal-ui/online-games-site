@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "5.0.0",
-  "description": "SMQ Games PWA with stable responsive game boards, install button, Firebase auth, profiles, history, animations and music.",
+  "version": "6.0.0",
+  "description": "SMQ Games PWA with Firebase auth, fullscreen games, stable boards, Bible quiz, and Who Am I host-led party game.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

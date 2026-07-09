@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const { Server } = require('socket.io');
 const { v4: uuid } = require('uuid');
+const WHOAMI_QUESTIONS = require('./data/whoami-questions.json');
 
 const PORT = process.env.PORT || 3000;
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -98,7 +99,8 @@ const gameMeta = {
   millionaire: { emoji: '💰', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
   teamquiz: { emoji: '🏁', maxPlayers: 10, minPlayers: 2, supportsBot: false, category: 'team' },
   mathrace: { emoji: '🧮', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
-  biblequiz: { emoji: '📖', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'bible' }
+  biblequiz: { emoji: '📖', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'bible' },
+  whoami: { emoji: '🎭', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' }
 };
 
 const rooms = new Map();
@@ -158,6 +160,7 @@ function makeRoom({ game, mode, teamCount }) {
     winnerMessage: null,
     review: null,
     lastRound: null,
+    hostIndex: null,
     createdAt: Date.now(),
     state: initState(safeGame, meta.maxPlayers, count)
   };
@@ -200,6 +203,22 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'biblequiz') return { questions: makeQuestionList('bible'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
   if (game === 'teamquiz') return { questions: makeQuestionList('general'), qIndex: 0, answers: {}, teamPoints: initScores(teamCount), showAnswer: null, finished: false };
   if (game === 'mathrace') return { round: 1, maxRounds: 6, problem: makeProblem(), answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
+  if (game === 'whoami') return {
+    hostIndex: null,
+    scores: initScores(maxPlayers),
+    order: [],
+    turnPos: 0,
+    currentPlayer: null,
+    currentHolder: null,
+    originalPlayer: null,
+    transferDepth: 0,
+    phase: 'ready',
+    question: null,
+    pending: null,
+    used: [],
+    spinEndsAt: null,
+    lastEvent: null
+  };
   return { moves: initScores(maxPlayers).map(() => null), winner: null, result: null };
 }
 
@@ -299,6 +318,10 @@ function joinRoom(socket, payload = {}) {
       const member = makeMember(socket, payload, index);
       member.team = room.game === 'teamquiz' ? index % room.teamCount : index;
       room.players[index] = member;
+      if (room.game === 'whoami' && (room.state.hostIndex === null || room.state.hostIndex === undefined)) {
+        room.state.hostIndex = index;
+        room.hostIndex = index;
+      }
       role = `player${index + 1}`;
     } else {
       room.spectators.add(socket.id);
@@ -308,7 +331,9 @@ function joinRoom(socket, payload = {}) {
   }
 
   if (room.mode === 'bot') addBot(room);
+  if (room.game === 'whoami') prepareWhoAmI(room);
   if (shouldStart(room) && room.status === 'waiting') room.status = 'playing';
+  if (room.game === 'whoami') prepareWhoAmI(room);
   socket.join(room.id);
   socket.data.roomId = room.id;
   socket.data.role = role;
@@ -333,6 +358,7 @@ function serializeRoom(room) {
     ties: room.ties,
     teamCount: room.teamCount,
     teamScores: room.teamScores,
+    hostIndex: room.game === 'whoami' ? room.state.hostIndex : room.hostIndex,
     state: safeState(room),
     review: room.review,
     winnerMessage: room.winnerMessage,
@@ -345,6 +371,11 @@ function serializeRoom(room) {
 function safeState(room) {
   if (room.game === 'memory') return { ...room.state, cards: room.state.cards.map(c => ({ id: c.id, value: c.revealed || c.matched ? c.value : null, revealed: c.revealed, matched: c.matched })) };
   if (room.game === 'code') return { ...room.state, secret: undefined };
+  if (room.game === 'whoami') {
+    const state = { ...room.state };
+    if (state.phase === 'spinning' && state.question) state.question = { id: state.question.id };
+    return state;
+  }
   return room.state;
 }
 
@@ -369,7 +400,14 @@ function handleAction(socket, action) {
   const room = rooms.get(socket.data.roomId);
   if (!room || room.status !== 'playing') return;
   const index = currentPlayerIndex(socket, room);
-  if (index < 0 || !isPlayersTurn(room, index)) return;
+  if (index < 0) return;
+  if (room.game === 'whoami') {
+    whoamiAction(room, index, action || {});
+    room.scores = [...(room.state.scores || room.scores)];
+    emitRoom(room);
+    return;
+  }
+  if (!isPlayersTurn(room, index)) return;
   applyAction(room, index, action || {});
   emitRoom(room);
   if (room.mode === 'bot') maybeBotMove(room);
@@ -391,6 +429,7 @@ function applyAction(room, index, action) {
     case 'teamquiz': return quizAction(room, index, action, true);
     case 'biblequiz': return quizAction(room, index, action, false);
     case 'mathrace': return mathRaceAction(room, index, action);
+    case 'whoami': return whoamiAction(room, index, action);
   }
 }
 
@@ -692,6 +731,165 @@ function mathRaceAction(room, index, action) {
   }
 }
 
+
+function whoamiActiveIndices(room) {
+  return activePlayers(room).filter(p => !p.isBot).map(p => p.index);
+}
+
+function prepareWhoAmI(room) {
+  if (room.game !== 'whoami') return;
+  const s = room.state;
+  const active = whoamiActiveIndices(room);
+  s.order = (s.order || []).filter(i => active.includes(i));
+  for (const i of active) if (!s.order.includes(i)) s.order.push(i);
+  if (s.hostIndex === null || s.hostIndex === undefined || !active.includes(s.hostIndex)) s.hostIndex = active[0] ?? null;
+  room.hostIndex = s.hostIndex;
+  if ((s.currentPlayer === null || s.currentPlayer === undefined || !active.includes(s.currentPlayer)) && active.length) {
+    s.currentPlayer = s.order[s.turnPos % s.order.length] ?? active[0];
+  }
+  if (s.currentHolder !== null && s.currentHolder !== undefined && !active.includes(s.currentHolder)) s.currentHolder = s.currentPlayer;
+  if (!Array.isArray(s.scores)) s.scores = initScores(room.players.length);
+  room.scores = [...s.scores];
+}
+
+function pickWhoAmIQuestion(state) {
+  if (!Array.isArray(state.used)) state.used = [];
+  let available = WHOAMI_QUESTIONS.filter(q => !state.used.includes(q.id));
+  if (!available.length) {
+    state.used = [];
+    available = [...WHOAMI_QUESTIONS];
+  }
+  const q = available[Math.floor(Math.random() * available.length)];
+  state.used.push(q.id);
+  return q;
+}
+
+function resetWhoAmIQuestionState(state) {
+  state.currentHolder = null;
+  state.originalPlayer = null;
+  state.transferDepth = 0;
+  state.phase = 'ready';
+  state.question = null;
+  state.pending = null;
+  state.spinEndsAt = null;
+}
+
+function nextWhoAmITurn(room, preferredIndex = null) {
+  prepareWhoAmI(room);
+  const s = room.state;
+  const order = s.order || [];
+  if (!order.length) return;
+  if (preferredIndex !== null && order.includes(preferredIndex)) {
+    s.currentPlayer = preferredIndex;
+    s.turnPos = order.indexOf(preferredIndex);
+  } else {
+    const currentPos = Math.max(0, order.indexOf(s.currentPlayer));
+    s.turnPos = (currentPos + 1) % order.length;
+    s.currentPlayer = order[s.turnPos];
+  }
+  resetWhoAmIQuestionState(s);
+}
+
+function finishWhoAmIGame(room) {
+  prepareWhoAmI(room);
+  const players = activePlayers(room).filter(p => !p.isBot);
+  if (!players.length) return;
+  const scores = room.state.scores || [];
+  const max = Math.max(...players.map(p => scores[p.index] || 0));
+  const winners = players.filter(p => (scores[p.index] || 0) === max).map(p => p.index);
+  room.scores = [...scores];
+  finishRound(room, winners.length === 1 ? winners[0] : null, {
+    type: 'whoami',
+    lastMove: `Финальный счёт: ${players.map(p => `${p.name} ${scores[p.index] || 0}`).join(' · ')}`
+  });
+}
+
+function whoamiAction(room, index, action) {
+  if (room.game !== 'whoami' || room.status !== 'playing') return;
+  prepareWhoAmI(room);
+  const s = room.state;
+  const active = whoamiActiveIndices(room);
+  const type = String(action.type || '');
+  const isHost = index === s.hostIndex;
+
+  if (type === 'assignHost' && isHost) {
+    const target = Number(action.targetIndex);
+    if (Number.isInteger(target) && active.includes(target)) {
+      s.hostIndex = target;
+      room.hostIndex = target;
+      s.lastEvent = `${room.players[target]?.name || 'Player'} теперь ведущий`;
+    }
+    return;
+  }
+
+  if (type === 'finishGame' && isHost) {
+    finishWhoAmIGame(room);
+    return;
+  }
+
+  if (type === 'startSpin' && s.phase === 'ready' && index === s.currentPlayer) {
+    const delay = 5000 + Math.floor(Math.random() * 10000);
+    const q = pickWhoAmIQuestion(s);
+    s.phase = 'spinning';
+    s.question = q;
+    s.originalPlayer = index;
+    s.currentHolder = index;
+    s.transferDepth = 0;
+    s.pending = null;
+    s.spinEndsAt = Date.now() + delay;
+    s.lastEvent = `${room.players[index]?.name || 'Player'} запускает рулетку`;
+    const roomId = room.id;
+    const questionId = q.id;
+    setTimeout(() => {
+      const r = rooms.get(roomId);
+      if (!r || r.game !== 'whoami' || r.status !== 'playing') return;
+      if (r.state.phase !== 'spinning' || r.state.question?.id !== questionId) return;
+      r.state.phase = 'question';
+      r.state.lastEvent = `Вопрос №${questionId}`;
+      emitRoom(r);
+    }, delay);
+    return;
+  }
+
+  if (type === 'answer' && s.phase === 'question' && index === s.currentHolder) {
+    const points = 2 + (s.transferDepth || 0);
+    s.phase = 'awaitingHost';
+    s.pending = { player: index, points, at: Date.now() };
+    s.lastEvent = `${room.players[index]?.name || 'Player'} отвечает. Ожидаем ведущего: +${points}`;
+    return;
+  }
+
+  if (type === 'pass' && s.phase === 'question' && index === s.currentHolder) {
+    const target = Number(action.targetIndex);
+    if (!Number.isInteger(target) || !active.includes(target) || target === index) return;
+    const cost = 1 + (s.transferDepth || 0);
+    s.scores[index] = (s.scores[index] || 0) - cost;
+    s.transferDepth = (s.transferDepth || 0) + 1;
+    s.currentHolder = target;
+    s.pending = null;
+    s.lastEvent = `${room.players[index]?.name || 'Player'} передаёт вопрос игроку ${room.players[target]?.name || 'Player'}: -${cost}`;
+    room.scores = [...s.scores];
+    return;
+  }
+
+  if (type === 'hostConfirm' && isHost && s.phase === 'awaitingHost' && s.pending) {
+    const accepted = !!action.accept;
+    const pending = s.pending;
+    if (accepted) {
+      s.scores[pending.player] = (s.scores[pending.player] || 0) + pending.points;
+      room.scores = [...s.scores];
+      s.lastEvent = `${room.players[pending.player]?.name || 'Player'} получает +${pending.points}`;
+      const repeatForOriginal = pending.player !== s.originalPlayer ? s.originalPlayer : null;
+      nextWhoAmITurn(room, repeatForOriginal);
+    } else {
+      s.phase = 'question';
+      s.pending = null;
+      s.lastEvent = `Ведущий просит продолжить ответ или передать вопрос`;
+    }
+    return;
+  }
+}
+
 function finishRound(room, winnerIndex, details = {}) {
   if (room.status !== 'playing') return;
   const reviewId = uuid();
@@ -722,7 +920,10 @@ function finalizeRound(roomId, reviewId) {
 
 function newRound(room) {
   const meta = gameMeta[room.game];
+  const previousHostIndex = room.game === 'whoami' ? room.state?.hostIndex : null;
   room.state = initState(room.game, meta.maxPlayers, room.teamCount);
+  if (room.game === 'whoami' && previousHostIndex !== null && previousHostIndex !== undefined) room.state.hostIndex = previousHostIndex;
+  if (room.game === 'whoami') prepareWhoAmI(room);
   room.winnerMessage = null;
   room.review = null;
   room.lastRound = null;
@@ -820,6 +1021,7 @@ io.on('connection', (socket) => {
     if (!room) return;
     for (const player of room.players) if (player && player.socketId === socket.id) player.connected = false;
     room.spectators.delete(socket.id);
+    if (room.game === 'whoami') prepareWhoAmI(room);
     emitRoom(room);
     setTimeout(() => cleanupRoom(room.id), 1000 * 60 * 10);
   });

@@ -756,3 +756,162 @@ body.light .connect-cell {
     background: linear-gradient(145deg, var(--bg), var(--bg2));
   }
 }
+
+/* v9 · Who am I game */
+.whoami-wrap {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  color: var(--text);
+}
+.whoami-score-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+.whoami-score {
+  min-height: 70px;
+  padding: 10px 12px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--pc) 18%, var(--card));
+  border: 1px solid color-mix(in srgb, var(--pc) 52%, var(--line));
+  box-shadow: inset 0 0 18px color-mix(in srgb, var(--pc) 16%, transparent);
+  display: grid;
+  gap: 2px;
+}
+.whoami-score b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.whoami-score strong { font-size: clamp(1.55rem, 7vw, 3rem); line-height: .95; color: var(--accent); }
+.whoami-host-controls {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+}
+.danger-soft { background: color-mix(in srgb, var(--danger) 26%, rgba(255,255,255,.08)) !important; }
+.whoami-event {
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255,255,255,.07);
+  border: 1px solid var(--line);
+}
+.whoami-stage {
+  min-height: min(58svh, 620px);
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--my-color) 26%, transparent), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.05));
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 4vmin, 30px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.whoami-stage::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background: conic-gradient(from 90deg, transparent, rgba(0,232,255,.18), transparent, rgba(255,206,74,.18), transparent);
+  animation: slowSpin 12s linear infinite;
+  pointer-events: none;
+}
+.whoami-stage > * { position: relative; z-index: 1; }
+@keyframes slowSpin { to { transform: rotate(360deg); } }
+.whoami-go {
+  width: clamp(180px, 48vmin, 360px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 4px solid color-mix(in srgb, var(--accent) 64%, white);
+  color: #08111f;
+  background: radial-gradient(circle at 32% 28%, #ffffff, var(--accent) 40%, #ff6a00 84%);
+  box-shadow: 0 30px 80px rgba(255,206,74,.34), inset 0 0 30px rgba(255,255,255,.65);
+  font-size: clamp(3.3rem, 18vw, 8rem);
+  font-weight: 1000;
+  letter-spacing: -.06em;
+  transition: transform .45s cubic-bezier(.18,.9,.22,1.18), width .45s ease, box-shadow .2s ease;
+}
+.whoami-go:not(:disabled):active { transform: scale(.96); }
+.whoami-go.locked { opacity: .45; filter: grayscale(.35); }
+.whoami-go.spinning {
+  animation: rouletteSpin .52s linear infinite, pulseWin .7s ease-in-out infinite alternate;
+}
+@keyframes rouletteSpin { to { transform: rotate(360deg); } }
+.whoami-go.small {
+  width: clamp(86px, 20vmin, 130px);
+  font-size: clamp(1.7rem, 7vw, 3rem);
+  animation: moveQuestionNumber .55s cubic-bezier(.18,.9,.22,1.1) both;
+}
+@keyframes moveQuestionNumber {
+  from { transform: translateY(90px) scale(1.7); opacity: .2; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.question-stage { align-content: start; gap: 14px; }
+.whoami-question-card {
+  width: min(100%, 820px);
+  padding: clamp(18px, 5vmin, 34px);
+  border-radius: 30px;
+  background: color-mix(in srgb, var(--card-strong) 80%, transparent);
+  border: 1px solid var(--line);
+  animation: questionReveal .5s cubic-bezier(.18,.9,.22,1.1) both;
+}
+@keyframes questionReveal {
+  from { opacity: 0; transform: translateY(16px) scale(.96); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.whoami-question-card small,
+.whoami-question-card p { color: var(--muted); }
+.whoami-question-card h2 {
+  font-size: clamp(1.55rem, 6.8vw, 3.4rem);
+  line-height: 1.08;
+  margin: 12px 0;
+}
+.whoami-actions,
+.whoami-host-decision {
+  width: min(100%, 820px);
+  display: grid;
+  gap: 12px;
+}
+.pass-box {
+  padding: 12px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--line);
+}
+.pass-box > div { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.pass-target { border-color: color-mix(in srgb, var(--pc) 60%, var(--line)); background: color-mix(in srgb, var(--pc) 20%, rgba(255,255,255,.08)); }
+.whoami-await {
+  width: min(100%, 720px);
+  padding: 14px;
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--accent) 18%, rgba(255,255,255,.08));
+  border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--line));
+  display: grid;
+  gap: 4px;
+}
+body.light .whoami-stage,
+body.light .whoami-question-card,
+body.light .whoami-event,
+body.light .pass-box,
+body.light .whoami-await {
+  color: #101527;
+  background-color: rgba(255,255,255,.78);
+}
+body.light .whoami-question-card h2,
+body.light .whoami-score b,
+body.light .whoami-host-controls .chip-btn { color: #101527; }
+
+@media (max-width: 560px) {
+  .whoami-wrap { gap: 10px; }
+  .whoami-score-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .whoami-score { min-height: 60px; border-radius: 16px; }
+  .whoami-stage { min-height: min(56svh, 560px); border-radius: 24px; padding: 12px; }
+  .whoami-question-card { border-radius: 22px; }
+  .whoami-host-controls { font-size: .82rem; }
+}
