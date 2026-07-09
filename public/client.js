@@ -572,30 +572,35 @@ function renderReaction(board, room) {
 function clientValidateCheckersMove(board, player, fr, fc, tr, tc) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
   const piece = board?.[fr]?.[fc];
-  if (!piece || piece.p !== player || board?.[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
+  const target = board?.[tr]?.[tc];
+  if (!piece || piece.p !== player || target || (tr + tc) % 2 !== 1) return null;
   const dr = tr - fr, dc = tc - fc;
   const adr = Math.abs(dr), adc = Math.abs(dc);
   if (adr !== adc || adr === 0) return null;
 
-  // Old stable movement: tap a checker, then tap a highlighted square.
-  // Men move one step forward, but they may capture diagonally backward too.
+  // Simple checker: moves one square forward, captures one enemy forward/backward.
   if (!piece.k) {
     const forward = player === 0 ? -1 : 1;
     if (adr === 1 && dr === forward) return { capture: null };
     if (adr === 2) {
       const mr = fr + dr / 2, mc = fc + dc / 2;
-      if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+      const middle = board?.[mr]?.[mc];
+      if (middle && middle.p !== player) return { capture: [mr, mc] };
     }
     return null;
   }
 
-  // Kings: reliable one-step movement/capture like the old version.
-  if (adr === 1) return { capture: null };
-  if (adr === 2) {
-    const mr = fr + dr / 2, mc = fc + dc / 2;
-    if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+  // King checker: chess-style stable selection, flying diagonally any length.
+  const sr = Math.sign(dr), sc = Math.sign(dc);
+  let enemy = null;
+  for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
+    const current = board?.[r]?.[c];
+    if (!current) continue;
+    if (current.p === player) return null;
+    if (enemy) return null;
+    enemy = [r, c];
   }
-  return null;
+  return { capture: enemy };
 }
 
 function clientLegalCheckersMoves(board, player, fromOnly = null) {
@@ -604,25 +609,35 @@ function clientLegalCheckersMoves(board, player, fromOnly = null) {
     if (fromOnly && (fromOnly[0] !== r || fromOnly[1] !== c)) continue;
     const piece = board?.[r]?.[c];
     if (!piece || piece.p !== player) continue;
-    const deltas = [];
-    const forward = player === 0 ? -1 : 1;
     if (piece.k) {
       for (const dr of [-1, 1]) for (const dc of [-1, 1]) {
-        deltas.push([dr, dc], [dr * 2, dc * 2]);
+        for (let step = 1; step < 8; step++) {
+          const tr = r + dr * step, tc = c + dc * step;
+          if (tr < 0 || tr > 7 || tc < 0 || tc > 7) break;
+          const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+          if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+        }
       }
     } else {
-      for (const dc of [-1, 1]) deltas.push([forward, dc]);
-      for (const dr of [-2, 2]) for (const dc of [-2, 2]) deltas.push([dr, dc]);
-    }
-    for (const [dr, dc] of deltas) {
-      const tr = r + dr, tc = c + dc;
-      const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
-      if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      const forward = player === 0 ? -1 : 1;
+      for (const dc of [-1, 1]) {
+        const tr = r + forward, tc = c + dc;
+        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
+        const tr = r + dr, tc = c + dc;
+        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
     }
   }
   return moves;
 }
 
+function checkerMoveLabel(move) {
+  return `${String.fromCharCode(65 + move.to[1])}${8 - move.to[0]}${move.capture ? ' ×' : ''}`;
+}
 
 function toggleBoardFullscreen() {
   const wrap = document.querySelector('.checkers-wrap, .chess-wrap');
@@ -643,55 +658,55 @@ function bindBoardFullscreen(board) {
 function boardToolbarHtml() {
   return `<div class="board-toolbar"><button class="chip-btn board-full-btn" type="button" data-board-fullscreen>⛶ ${t('boardFullscreen')}</button></div>`;
 }
+
 function renderCheckers(board, room) {
   const idx = myIndex();
-  const isMyTurn = room.status === 'playing' && idx >= 0 && room.state?.turn === idx;
+  const canMove = room.status === 'playing' && idx >= 0 && state.role !== 'spectator' && room.state?.turn === idx;
   const selected = state.selectedChecker;
-  const legalMoves = selected && isMyTurn ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
+  const allMyMoves = canMove ? clientLegalCheckersMoves(room.state.board, idx) : [];
+  const legalMoves = selected && canMove ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
   const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
-  let html = '<div class="checkers-wrap">' + boardToolbarHtml() + '<div class="rules-tip">💡 ' + t('checkersHint') + '</div><div class="checkers-board" id="checkersBoardTap">';
+  const lastMove = room.state.lastMove || {};
+  let html = `<div class="checkers-wrap">${boardToolbarHtml()}<div class="rules-tip">💡 ${t('checkersHint')}</div><div class="checkers-board recreated-checkers-board">`;
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
     const dark = (r+c)%2 === 1;
+    const isMine = piece && piece.p === idx;
+    const hasMove = allMyMoves.some(m => m.from[0] === r && m.from[1] === c);
     const isSelected = selected && selected[0] === r && selected[1] === c;
     const targetKey = `${r},${c}`;
-    const isTarget = dark && selected && !piece && isMyTurn;
-    const targetClass = isTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
-    const movable = isMyTurn && piece && piece.p === idx ? 'movable-piece' : '';
-    html += `<button type="button" class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${movable}" data-r="${r}" data-c="${c}">${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
+    const legalTarget = selected && !piece && legalTargets.has(targetKey) ? 'legal-target' : '';
+    const movable = isMine && hasMove ? 'movable-piece' : '';
+    const wasFrom = lastMove.from && lastMove.from[0] === r && lastMove.from[1] === c;
+    const wasTo = lastMove.to && lastMove.to[0] === r && lastMove.to[1] === c;
+    html += `<button type="button" class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${legalTarget} ${movable} ${wasFrom ? 'move-from' : ''} ${wasTo ? 'capture-hit' : ''}" data-r="${r}" data-c="${c}">${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
   }));
   const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.captured ? ' ×' : ''}` : t('selectMove');
-  const tray = selected && isMyTurn && legalMoves.length
-    ? `<div class="move-tray">${legalMoves.map((m, i) => `<button class="chip-btn move-choice" type="button" data-checkers-index="${i}">${String.fromCharCode(65 + m.to[1])}${8 - m.to[0]}${m.capture ? ' ×' : ''}</button>`).join('')}</div>`
-    : `<div class="move-tray muted">${isMyTurn ? t('selectMove') : t('opponentTurn')}</div>`;
-  board.innerHTML = html + `</div><div class="checkers-status">${last}</div>${tray}</div>`;
+  const moveTray = selected && legalMoves.length
+    ? `<div class="move-tray">${legalMoves.map((m, i) => `<button class="chip-btn move-choice" type="button" data-checkers-index="${i}">${checkerMoveLabel(m)}</button>`).join('')}</div>`
+    : `<div class="move-tray muted">${canMove ? t('selectMove') : t('opponentTurn')}</div>`;
+  board.innerHTML = html + `</div><div class="checkers-status">${last}</div>${moveTray}</div>`;
+  bindBoardFullscreen(board);
 
-  const tapBoard = $('checkersBoardTap');
-  const handleTap = (target) => {
-    const cell = target.closest?.('.checkers-cell');
-    if (!cell || !tapBoard.contains(cell)) return;
-    const r = Number(cell.dataset.r), c = Number(cell.dataset.c);
-    const dark = (r + c) % 2 === 1;
-    const piece = room.state.board?.[r]?.[c];
-    if (!dark) return;
-    if (!isMyTurn) { toast(t('opponentTurn')); return; }
-    if (piece && piece.p === idx) {
-      state.selectedChecker = [r, c];
-      renderCheckers(board, room);
-      return;
-    }
-    if (state.selectedChecker) {
-      const move = clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c);
-      if (move) {
+  board.querySelectorAll('.checkers-cell').forEach(btn => {
+    const r = Number(btn.dataset.r), c = Number(btn.dataset.c);
+    btn.onclick = () => {
+      if (!canMove) return toast(t('opponentTurn'));
+      const piece = room.state.board?.[r]?.[c];
+      if (piece && piece.p === idx) {
+        const moves = clientLegalCheckersMoves(room.state.board, idx, [r,c]);
+        if (!moves.length) return toast(t('selectMove'));
+        state.selectedChecker = [r,c];
+        renderCheckers(board, room);
+        return;
+      }
+      if (state.selectedChecker && legalTargets.has(`${r},${c}`)) {
         sendAction({ from: state.selectedChecker, to:[r,c] });
         state.selectedChecker = null;
-      } else {
+      } else if (state.selectedChecker) {
         toast(t('selectMove'));
       }
-    }
-  };
-  tapBoard.onclick = (event) => handleTap(event.target);
-  tapBoard.ontouchend = (event) => { event.preventDefault(); handleTap(event.target); };
-  bindBoardFullscreen(board);
+    };
+  });
   board.querySelectorAll('[data-checkers-index]').forEach(btn => {
     btn.onclick = () => {
       const move = legalMoves[Number(btn.dataset.checkersIndex)];

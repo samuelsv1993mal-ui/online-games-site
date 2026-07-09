@@ -678,7 +678,8 @@ function checkersAction(room, index, action) {
 function validateCheckersMove(board, player, fr, fc, tr, tc) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
   const piece = board?.[fr]?.[fc];
-  if (!piece || piece.p !== player || board?.[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
+  const target = board?.[tr]?.[tc];
+  if (!piece || piece.p !== player || target || (tr + tc) % 2 !== 1) return null;
   const dr = tr - fr, dc = tc - fc;
   const adr = Math.abs(dr), adc = Math.abs(dc);
   if (adr !== adc || adr === 0) return null;
@@ -688,17 +689,22 @@ function validateCheckersMove(board, player, fr, fc, tr, tc) {
     if (adr === 1 && dr === forward) return { capture: null };
     if (adr === 2) {
       const mr = fr + dr / 2, mc = fc + dc / 2;
-      if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+      const middle = board?.[mr]?.[mc];
+      if (middle && middle.p !== player) return { capture: [mr, mc] };
     }
     return null;
   }
 
-  if (adr === 1) return { capture: null };
-  if (adr === 2) {
-    const mr = fr + dr / 2, mc = fc + dc / 2;
-    if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+  const sr = Math.sign(dr), sc = Math.sign(dc);
+  let enemy = null;
+  for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
+    const current = board?.[r]?.[c];
+    if (!current) continue;
+    if (current.p === player) return null;
+    if (enemy) return null;
+    enemy = [r, c];
   }
-  return null;
+  return { capture: enemy };
 }
 
 function legalCheckersMoves(board, player) {
@@ -706,17 +712,27 @@ function legalCheckersMoves(board, player) {
   for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
     const piece = board?.[r]?.[c];
     if (!piece || piece.p !== player) continue;
-    const deltas = [];
-    const forward = player === 0 ? -1 : 1;
     if (piece.k) {
-      for (const dr of [-1, 1]) for (const dc of [-1, 1]) deltas.push([dr, dc], [dr * 2, dc * 2]);
+      for (const dr of [-1, 1]) for (const dc of [-1, 1]) {
+        for (let step = 1; step < 8; step++) {
+          const tr = r + dr * step, tc = c + dc * step;
+          if (tr < 0 || tr > 7 || tc < 0 || tc > 7) break;
+          const move = validateCheckersMove(board, player, r, c, tr, tc);
+          if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+        }
+      }
     } else {
-      for (const dc of [-1, 1]) deltas.push([forward, dc]);
-      for (const dr of [-2, 2]) for (const dc of [-2, 2]) deltas.push([dr, dc]);
-    }
-    for (const [dr, dc] of deltas) {
-      const move = validateCheckersMove(board, player, r, c, r + dr, c + dc);
-      if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture });
+      const forward = player === 0 ? -1 : 1;
+      for (const dc of [-1, 1]) {
+        const tr = r + forward, tc = c + dc;
+        const move = validateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
+        const tr = r + dr, tc = c + dc;
+        const move = validateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
     }
   }
   return moves;
