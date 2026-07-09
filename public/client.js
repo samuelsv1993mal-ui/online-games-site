@@ -571,26 +571,29 @@ function renderReaction(board, room) {
 
 function clientValidateCheckersMove(board, player, fr, fc, tr, tc) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
-  const piece = board[fr]?.[fc];
-  if (!piece || piece.p !== player || board[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
+  const piece = board?.[fr]?.[fc];
+  if (!piece || piece.p !== player || board?.[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
   const dr = tr - fr, dc = tc - fc;
-  if (Math.abs(dr) !== Math.abs(dc) || dr === 0) return null;
-  if (piece.k) {
-    const sr = Math.sign(dr), sc = Math.sign(dc);
-    let enemy = null;
-    for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
-      const current = board[r][c];
-      if (!current) continue;
-      if (current.p === player) return null;
-      if (enemy) return null;
-      enemy = [r, c];
+  const adr = Math.abs(dr), adc = Math.abs(dc);
+  if (adr !== adc || adr === 0) return null;
+
+  // Old stable movement: tap a checker, then tap a highlighted square.
+  // Men move one step forward, but they may capture diagonally backward too.
+  if (!piece.k) {
+    const forward = player === 0 ? -1 : 1;
+    if (adr === 1 && dr === forward) return { capture: null };
+    if (adr === 2) {
+      const mr = fr + dr / 2, mc = fc + dc / 2;
+      if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
     }
-    return { capture: enemy };
+    return null;
   }
-  if (Math.abs(dr) === 1 && Math.abs(dc) === 1 && dr === (player === 0 ? -1 : 1)) return { capture: null };
-  if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
+
+  // Kings: reliable one-step movement/capture like the old version.
+  if (adr === 1) return { capture: null };
+  if (adr === 2) {
     const mr = fr + dr / 2, mc = fc + dc / 2;
-    if (board[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+    if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
   }
   return null;
 }
@@ -599,24 +602,22 @@ function clientLegalCheckersMoves(board, player, fromOnly = null) {
   const moves = [];
   for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
     if (fromOnly && (fromOnly[0] !== r || fromOnly[1] !== c)) continue;
-    const piece = board[r][c];
+    const piece = board?.[r]?.[c];
     if (!piece || piece.p !== player) continue;
+    const deltas = [];
+    const forward = player === 0 ? -1 : 1;
     if (piece.k) {
-      for (const dr of [-1, 1]) for (const dc of [-1, 1]) for (let step = 1; step < 8; step++) {
-        const tr = r + dr * step, tc = c + dc * step;
-        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
-        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      for (const dr of [-1, 1]) for (const dc of [-1, 1]) {
+        deltas.push([dr, dc], [dr * 2, dc * 2]);
       }
     } else {
-      for (const dc of [-1, 1]) {
-        const tr = r + (player === 0 ? -1 : 1), tc = c + dc;
-        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
-        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
-      }
-      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
-        const move = clientValidateCheckersMove(board, player, r, c, r + dr, c + dc);
-        if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture });
-      }
+      for (const dc of [-1, 1]) deltas.push([forward, dc]);
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) deltas.push([dr, dc]);
+    }
+    for (const [dr, dc] of deltas) {
+      const tr = r + dr, tc = c + dc;
+      const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+      if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
     }
   }
   return moves;
@@ -624,40 +625,58 @@ function clientLegalCheckersMoves(board, player, fromOnly = null) {
 
 function renderCheckers(board, room) {
   const idx = myIndex();
-  const canMove = canAct(true) && idx >= 0;
+  const isMyTurn = room.status === 'playing' && idx >= 0 && room.state?.turn === idx;
   const selected = state.selectedChecker;
-  const legalMoves = selected && canMove ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
+  const legalMoves = selected && isMyTurn ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
   const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
-  let html = '<div class="checkers-wrap"><div class="rules-tip">💡 ' + t('checkersHint') + '</div><div class="checkers-board">';
+  let html = '<div class="checkers-wrap"><div class="rules-tip">💡 ' + t('checkersHint') + '</div><div class="checkers-board" id="checkersBoardTap">';
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
     const dark = (r+c)%2 === 1;
     const isSelected = selected && selected[0] === r && selected[1] === c;
     const targetKey = `${r},${c}`;
-    const isEmptyDarkTarget = dark && selected && !piece && canMove;
-    const targetClass = isEmptyDarkTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
-    const movable = canMove && piece && piece.p === idx ? 'movable-piece' : '';
-    html += `<button type="button" class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${movable}" data-r="${r}" data-c="${c}" ${!dark ? 'disabled' : ''}>${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
+    const isTarget = dark && selected && !piece && isMyTurn;
+    const targetClass = isTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
+    const movable = isMyTurn && piece && piece.p === idx ? 'movable-piece' : '';
+    html += `<button type="button" class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${movable}" data-r="${r}" data-c="${c}">${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
   }));
   const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.captured ? ' ×' : ''}` : t('selectMove');
-  board.innerHTML = html + `</div><div class="checkers-status">${last}</div></div>`;
-  board.querySelectorAll('.checkers-cell.dark').forEach(btn => {
-    const r = Number(btn.dataset.r), c = Number(btn.dataset.c);
+  const tray = selected && isMyTurn && legalMoves.length
+    ? `<div class="move-tray">${legalMoves.map((m, i) => `<button class="chip-btn move-choice" type="button" data-checkers-index="${i}">${String.fromCharCode(65 + m.to[1])}${8 - m.to[0]}${m.capture ? ' ×' : ''}</button>`).join('')}</div>`
+    : `<div class="move-tray muted">${isMyTurn ? t('selectMove') : t('opponentTurn')}</div>`;
+  board.innerHTML = html + `</div><div class="checkers-status">${last}</div>${tray}</div>`;
+
+  const tapBoard = $('checkersBoardTap');
+  const handleTap = (target) => {
+    const cell = target.closest?.('.checkers-cell');
+    if (!cell || !tapBoard.contains(cell)) return;
+    const r = Number(cell.dataset.r), c = Number(cell.dataset.c);
+    const dark = (r + c) % 2 === 1;
+    const piece = room.state.board?.[r]?.[c];
+    if (!dark) return;
+    if (!isMyTurn) { toast(t('opponentTurn')); return; }
+    if (piece && piece.p === idx) {
+      state.selectedChecker = [r, c];
+      renderCheckers(board, room);
+      return;
+    }
+    if (state.selectedChecker) {
+      const move = clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c);
+      if (move) {
+        sendAction({ from: state.selectedChecker, to:[r,c] });
+        state.selectedChecker = null;
+      } else {
+        toast(t('selectMove'));
+      }
+    }
+  };
+  tapBoard.onclick = (event) => handleTap(event.target);
+  tapBoard.ontouchend = (event) => { event.preventDefault(); handleTap(event.target); };
+  board.querySelectorAll('[data-checkers-index]').forEach(btn => {
     btn.onclick = () => {
-      const piece = room.state.board[r][c];
-      if (!canMove) return;
-      if (piece && piece.p === idx) {
-        state.selectedChecker = [r,c];
-        renderCheckers(board, room);
-        return;
-      }
-      if (state.selectedChecker) {
-        if (clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c)) {
-          sendAction({ from: state.selectedChecker, to:[r,c] });
-          state.selectedChecker = null;
-        } else {
-          toast(t('selectMove'));
-        }
-      }
+      const move = legalMoves[Number(btn.dataset.checkersIndex)];
+      if (!move) return;
+      sendAction({ from: move.from, to: move.to });
+      state.selectedChecker = null;
     };
   });
 }

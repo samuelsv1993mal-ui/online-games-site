@@ -660,28 +660,26 @@ function checkersAction(room, index, action) {
 
 function validateCheckersMove(board, player, fr, fc, tr, tc) {
   if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
-  const piece = board[fr][fc];
-  if (!piece || piece.p !== player || board[tr][tc] || (tr + tc) % 2 !== 1) return null;
+  const piece = board?.[fr]?.[fc];
+  if (!piece || piece.p !== player || board?.[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
   const dr = tr - fr, dc = tc - fc;
-  if (Math.abs(dr) !== Math.abs(dc) || dr === 0) return null;
+  const adr = Math.abs(dr), adc = Math.abs(dc);
+  if (adr !== adc || adr === 0) return null;
 
-  if (piece.k) {
-    const sr = Math.sign(dr), sc = Math.sign(dc);
-    let enemy = null;
-    for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
-      const current = board[r][c];
-      if (!current) continue;
-      if (current.p === player) return null;
-      if (enemy) return null;
-      enemy = [r, c];
+  if (!piece.k) {
+    const forward = player === 0 ? -1 : 1;
+    if (adr === 1 && dr === forward) return { capture: null };
+    if (adr === 2) {
+      const mr = fr + dr / 2, mc = fc + dc / 2;
+      if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
     }
-    return { capture: enemy };
+    return null;
   }
 
-  if (Math.abs(dr) === 1 && Math.abs(dc) === 1 && dr === (player === 0 ? -1 : 1)) return { capture: null };
-  if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
+  if (adr === 1) return { capture: null };
+  if (adr === 2) {
     const mr = fr + dr / 2, mc = fc + dc / 2;
-    if (board[mr][mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+    if (board?.[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
   }
   return null;
 }
@@ -689,28 +687,23 @@ function validateCheckersMove(board, player, fr, fc, tr, tc) {
 function legalCheckersMoves(board, player) {
   const moves = [];
   for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
-    const piece = board[r][c];
+    const piece = board?.[r]?.[c];
     if (!piece || piece.p !== player) continue;
+    const deltas = [];
+    const forward = player === 0 ? -1 : 1;
     if (piece.k) {
-      for (const dr of [-1, 1]) for (const dc of [-1, 1]) for (let step = 1; step < 8; step++) {
-        const tr = r + dr * step, tc = c + dc * step;
-        const move = validateCheckersMove(board, player, r, c, tr, tc);
-        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
-      }
+      for (const dr of [-1, 1]) for (const dc of [-1, 1]) deltas.push([dr, dc], [dr * 2, dc * 2]);
     } else {
-      for (const dc of [-1, 1]) {
-        const tr = r + (player === 0 ? -1 : 1), tc = c + dc;
-        { const move = validateCheckersMove(board, player, r, c, tr, tc); if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture }); }
-      }
-      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
-        { const move = validateCheckersMove(board, player, r, c, r + dr, c + dc); if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture }); }
-      }
+      for (const dc of [-1, 1]) deltas.push([forward, dc]);
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) deltas.push([dr, dc]);
+    }
+    for (const [dr, dc] of deltas) {
+      const move = validateCheckersMove(board, player, r, c, r + dr, c + dc);
+      if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture });
     }
   }
   return moves;
 }
-
-
 
 function cloneChessBoard(board) {
   return board.map(row => row.map(cell => cell ? { ...cell } : null));

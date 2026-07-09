@@ -1638,3 +1638,14 @@ body.light .playlist-native {
   .checkers-cell.piece.movable-piece span { animation: none; }
   .chess-alert { font-size:.9rem; padding:8px 10px; }
 }
+
+
+/* v18: final tap-only checkers fix */
+.checkers-board { touch-action: manipulation; }
+.checkers-cell { pointer-events: auto !important; cursor: pointer !important; touch-action: manipulation !important; -webkit-tap-highlight-color: transparent; }
+.checkers-cell span { pointer-events: none !important; }
+.checkers-cell[disabled] { pointer-events: auto !important; }
+.checkers-cell.movable-piece span { animation: checkerReadyPulse 1.5s ease-in-out infinite; }
+.checkers-cell.legal-target { outline: 4px solid rgba(34,197,94,.95) !important; outline-offset: -4px; }
+.checkers-cell.illegal-target { outline: 2px solid rgba(239,68,68,.38) !important; outline-offset: -2px; }
+.move-choice { min-height: 42px; }
