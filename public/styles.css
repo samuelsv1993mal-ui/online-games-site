@@ -295,3 +295,56 @@ h1 { font-size: clamp(2rem, 9vw, 3.2rem); margin-bottom: 8px; }
   .memory-board { gap:8px; }
   .answer-btn { padding:14px; }
 }
+
+/* v7 logo + readability polish */
+.logo-shell { padding: 0; overflow: visible; background: transparent; border-radius: 32px; box-shadow: 0 0 44px rgba(0,232,255,.34); }
+.logo-shell img { width: 100%; height: 100%; display: block; filter: drop-shadow(0 18px 30px rgba(0,0,0,.28)); }
+body.light { background: radial-gradient(circle at 10% 0%, rgba(139,92,246,.18), transparent 30%), radial-gradient(circle at 90% 8%, rgba(0,184,216,.18), transparent 30%), linear-gradient(145deg, #f5f6ff, #ffffff); }
+body.light .brand-card,
+body.light .glass,
+body.light .panel,
+body.light .drawer-panel { background: rgba(255,255,255,.88); color: #111827; border-color: rgba(17,24,39,.12); }
+body.light .brand-card p,
+body.light .hello,
+body.light .eyebrow,
+body.light label,
+body.light .game-card small,
+body.light .player-score span,
+body.light .score-center span,
+body.light .game-big-btn small { color: rgba(17,24,39,.72); }
+body.light .input,
+body.light .mini-select,
+body.light .icon-btn,
+body.light .chip-btn,
+body.light .btn.ghost,
+body.light .game-card,
+body.light .segmented,
+body.light .history-item,
+body.light .music-box { background: rgba(255,255,255,.92); color: #111827; border-color: rgba(17,24,39,.14); }
+body.light .segment { color: rgba(17,24,39,.70); }
+body.light .segment.active { color: #fff; }
+body.light .game-big-btn,
+body.light .ttt-cell,
+body.light .dice-card,
+body.light .quiz-wrap .question-card,
+body.light .answer-btn,
+body.light .guess-list div { background: rgba(255,255,255,.92); color: #111827; border-color: rgba(17,24,39,.12); box-shadow: 0 18px 42px rgba(78,70,180,.14); }
+body.light .answer-btn.correct { color:#062113; background: linear-gradient(135deg, rgba(34,197,94,.34), rgba(20,184,166,.20)); border-color: rgba(34,197,94,.44); }
+body.light .answer-btn.wrong { color:#3a0714; background: linear-gradient(135deg, rgba(225,29,72,.25), rgba(249,115,22,.16)); border-color: rgba(225,29,72,.32); }
+body.light .review-panel { color:#111827; background:linear-gradient(135deg, rgba(250,204,21,.30), rgba(139,92,246,.16)); }
+body.light .winner-overlay { background: rgba(255,255,255,.58); }
+.source-line { display:block; margin-top:12px; line-height:1.4; color: var(--muted); }
+.difficulty-badge { display:inline-flex; align-items:center; gap:6px; margin:10px auto 0; padding:6px 10px; border-radius:999px; font-weight:900; font-size:.78rem; border:1px solid var(--line); }
+.diff-easy { color:#22c55e; background:rgba(34,197,94,.12); }
+.diff-medium { color:#facc15; background:rgba(250,204,21,.12); }
+.diff-hard { color:#fb7185; background:rgba(251,113,133,.12); }
+body.light .diff-easy { color:#047857; background:rgba(16,185,129,.16); }
+body.light .diff-medium { color:#a16207; background:rgba(250,204,21,.20); }
+body.light .diff-hard { color:#be123c; background:rgba(244,63,94,.15); }
+.quiz-wrap .question-card { display:grid; gap:8px; }
+.brand-card h1 { letter-spacing:-.04em; }
+@media (max-width: 520px) {
+  .brand-card { border-radius: 30px; padding: 28px 18px; }
+  .brand-logo { width: 86px; height: 86px; }
+  .source-line { font-size:.76rem; }
+}

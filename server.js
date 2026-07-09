@@ -31,19 +31,59 @@ io.engine.use(sessionMiddleware);
 
 const COLORS = ['#8b5cf6', '#06b6d4', '#f97316', '#22c55e', '#e11d48', '#facc15', '#a855f7', '#14b8a6', '#fb7185', '#60a5fa'];
 
-const QUESTIONS = [
-  { q: 'Сколько клеток на стандартной шахматной доске?', a: ['32', '48', '64', '81'], c: 2 },
-  { q: 'Какая планета ближе всего к Солнцу?', a: ['Венера', 'Меркурий', 'Марс', 'Юпитер'], c: 1 },
-  { q: 'Что означает HTML?', a: ['HyperText Markup Language', 'High Tool Machine Logic', 'Home Text Main Link', 'Hyperlink Main Language'], c: 0 },
-  { q: 'Сколько минут в трёх часах?', a: ['120', '150', '180', '210'], c: 2 },
-  { q: 'Какой океан самый большой?', a: ['Атлантический', 'Индийский', 'Северный Ледовитый', 'Тихий'], c: 3 },
-  { q: 'Какая фигура имеет три стороны?', a: ['Квадрат', 'Треугольник', 'Круг', 'Ромб'], c: 1 },
-  { q: 'Какой цвет получится из синего и жёлтого?', a: ['Зелёный', 'Фиолетовый', 'Оранжевый', 'Красный'], c: 0 },
-  { q: 'Сколько будет 9 × 8?', a: ['64', '72', '81', '96'], c: 1 },
-  { q: 'Какая страна использует песо?', a: ['Мексика', 'Канада', 'Япония', 'Норвегия'], c: 0 },
-  { q: 'Как называется самая маленькая единица информации?', a: ['Файл', 'Бит', 'Байт', 'Папка'], c: 1 }
+const GENERAL_QUESTIONS = [
+  { q: 'Сколько клеток на стандартной шахматной доске?', a: ['32', '48', '64', '81'], c: 2, difficulty: 'easy', source: 'Общие знания' },
+  { q: 'Какая планета ближе всего к Солнцу?', a: ['Венера', 'Меркурий', 'Марс', 'Юпитер'], c: 1, difficulty: 'easy', source: 'Общие знания' },
+  { q: 'Что означает HTML?', a: ['HyperText Markup Language', 'High Tool Machine Logic', 'Home Text Main Link', 'Hyperlink Main Language'], c: 0, difficulty: 'medium', source: 'IT' },
+  { q: 'Сколько минут в трёх часах?', a: ['120', '150', '180', '210'], c: 2, difficulty: 'easy', source: 'Математика' },
+  { q: 'Какой океан самый большой?', a: ['Атлантический', 'Индийский', 'Северный Ледовитый', 'Тихий'], c: 3, difficulty: 'easy', source: 'География' },
+  { q: 'Какая фигура имеет три стороны?', a: ['Квадрат', 'Треугольник', 'Круг', 'Ромб'], c: 1, difficulty: 'easy', source: 'Геометрия' },
+  { q: 'Какой цвет получится из синего и жёлтого?', a: ['Зелёный', 'Фиолетовый', 'Оранжевый', 'Красный'], c: 0, difficulty: 'easy', source: 'Цвета' },
+  { q: 'Сколько будет 9 × 8?', a: ['64', '72', '81', '96'], c: 1, difficulty: 'easy', source: 'Математика' },
+  { q: 'Какая страна использует песо?', a: ['Мексика', 'Канада', 'Япония', 'Норвегия'], c: 0, difficulty: 'easy', source: 'География' },
+  { q: 'Как называется самая маленькая единица информации?', a: ['Файл', 'Бит', 'Байт', 'Папка'], c: 1, difficulty: 'medium', source: 'IT' }
 ];
 
+// Вопросы оригинальные: они составлены по библейским сюжетам и справочным темам,
+// с короткими ссылками на jw.org и wol.jw.org для самостоятельной проверки.
+const BIBLE_QUESTIONS = [
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Бытие 1', q: 'Согласно первой главе Бытия, что Бог создал в первый творческий день?', a: ['свет', 'человека', 'животных суши', 'звёзды как ориентиры времён'], c: 0 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Бытие 6—8', q: 'Кто построил ковчег во время Потопа?', a: ['Авраам', 'Моисей', 'Ной', 'Иона'], c: 2 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Исход 3', q: 'Кому Иегова поручил вывести израильтян из Египта?', a: ['Иисусу Навину', 'Моисею', 'Самуилу', 'Даниилу'], c: 1 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · 1 Самуила 17', q: 'Кто победил Голиафа?', a: ['Саул', 'Давид', 'Ионафан', 'Самсон'], c: 1 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Иона 1—3', q: 'В какой город должен был пойти Иона с вестью от Бога?', a: ['Ниневия', 'Вавилон', 'Иерусалим', 'Дамаск'], c: 0 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Даниил 6', q: 'За что Даниила бросили в яму со львами?', a: ['за отказ молиться Богу', 'за верность молитве Иегове', 'за бегство из Вавилона', 'за спор с царём'], c: 1 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Матфея 3', q: 'Кто крестил Иисуса?', a: ['Пётр', 'Иоанн Креститель', 'Павел', 'Иаков'], c: 1 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Луки 10', q: 'В притче Иисуса кто помог раненому человеку на дороге?', a: ['самарянин', 'священник', 'левит', 'римский воин'], c: 0 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Иоанна 11', q: 'Кого Иисус воскресил после нескольких дней в гробнице?', a: ['Лазаря', 'Иосифа', 'Стефана', 'Варнаву'], c: 0 },
+  { difficulty: 'easy', source: 'jw.org · Библия онлайн · Деяния 9', q: 'Какое имя было у апостола Павла до того, как он стал известен как Павел?', a: ['Савл', 'Сила', 'Тимофей', 'Аполлос'], c: 0 },
+
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Бытие 12', q: 'Что Авраам проявил, когда оставил привычную землю и пошёл туда, куда направил Бог?', a: ['веру и послушание', 'желание стать царём', 'страх перед людьми', 'интерес к торговле'], c: 0 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Бытие 39', q: 'Какое качество особенно видно в поведении Иосифа в доме Потифара?', a: ['зависть', 'верность и нравственная чистота', 'любовь к власти', 'безразличие'], c: 1 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Исход 14', q: 'Какой эпизод показал спасение израильтян у моря?', a: ['переход через Красное море', 'переход через Иордан', 'строительство храма', 'падение Иерихона'], c: 0 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Руфь 1', q: 'Какие качества проявила Руфь по отношению к Ноемини?', a: ['верность и любовь', 'равнодушие', 'соперничество', 'гордость'], c: 0 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · 1 Царей 3', q: 'О чём Соломон попросил Бога в начале своего правления?', a: ['о богатстве', 'о военной силе', 'о мудрости', 'о долгой жизни без условий'], c: 2 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Неемия 2—6', q: 'С какой работой особенно связан Неемия?', a: ['восстановление стены Иерусалима', 'строительство ковчега', 'перевод Библии', 'исход из Египта'], c: 0 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Псалом 1', q: 'С чем сравнивается человек, который любит закон Иеговы и размышляет над ним?', a: ['с деревом у потоков воды', 'с кораблём в буре', 'с горой в пустыне', 'с птицей в клетке'], c: 0 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Матфея 6:33', q: 'Что, по словам Иисуса, должно быть главным приоритетом?', a: ['личная известность', 'поиск Царства и Божьей праведности', 'накопление имущества', 'соперничество'], c: 1 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Матфея 24:14', q: 'Какая работа, по словам Иисуса, будет проводиться перед концом?', a: ['строительство городов', 'проповедь хорошей новости о Царстве', 'сбор налогов', 'поиск политической власти'], c: 1 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Иоанна 13:34,35', q: 'По какому признаку, согласно словам Иисуса, должны узнавать его учеников?', a: ['по одежде', 'по взаимной любви', 'по национальности', 'по богатству'], c: 1 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Галатам 5:22,23', q: 'Что из перечисленного относится к плоду духа?', a: ['зависть', 'самообладание', 'гордость', 'жажда славы'], c: 1 },
+  { difficulty: 'medium', source: 'jw.org · Библия онлайн · Эфесянам 6', q: 'Какой образ использовал Павел, говоря о духовной защите христианина?', a: ['духовные доспехи', 'рыболовная сеть', 'царский трон', 'садовая ограда'], c: 0 },
+
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы к книгам Библии', q: 'Какой библейский писатель известен тем, что был врачом и написал два связанных повествования?', a: ['Лука', 'Марк', 'Иуда', 'Иаков'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Хронология', q: 'Какое событие обычно связывают с выходом Израиля из Египта?', a: ['Пасха', 'Пятидесятница в Иерусалиме', 'разрушение Самарии', 'помазание Давида'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Патриархи', q: 'Кто из сыновей Иакова получил особое благословение, связанное с царской линией?', a: ['Иуда', 'Дан', 'Неффалим', 'Иссахар'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Пророки', q: 'Какой пророк увидел видение сухих костей, оживающих по велению Бога?', a: ['Иезекииль', 'Амос', 'Авдий', 'Наум'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Пророчества', q: 'Какой пророк говорил о “70 неделях” в мессианском пророчестве?', a: ['Даниил', 'Иона', 'Малахия', 'Аггей'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Евангелия', q: 'В каком Евангелии особенно подчёркнута родословная Иисуса от Авраама и Давида?', a: ['Матфея', 'Марка', 'Луки', 'Иоанна'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Деяния', q: 'В каком городе ученики впервые стали известны как христиане?', a: ['Антиохия', 'Коринф', 'Филиппы', 'Эфес'], c: 0 },
+  { difficulty: 'hard', source: 'jw.org · Библия онлайн · Откровение 21', q: 'Какая надежда описана в Откровении 21 как будущие действия Бога для людей?', a: ['устранение смерти и боли', 'создание нового Египта', 'возвращение к ковчегу', 'замена всех языков одним'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Служение Павла', q: 'Кому были адресованы два письма Павла с личными советами молодому надзирателю?', a: ['Тимофею', 'Филимону', 'Титу', 'Варнаве'], c: 0 },
+  { difficulty: 'hard', source: 'jw.org · Библия онлайн · Евреям 11', q: 'Какая глава часто называется обзором примеров веры?', a: ['Евреям 11', 'Римлянам 8', 'Матфея 5', 'Бытие 11'], c: 0 },
+  { difficulty: 'hard', source: 'wol.jw.org · справочные материалы · Библейские города', q: 'Какой город связан с падением стен после обхода города израильтянами?', a: ['Иерихон', 'Ниневия', 'Тир', 'Дамаск'], c: 0 },
+  { difficulty: 'hard', source: 'jw.org · Библия онлайн · 2 Тимофею 3:16,17', q: 'Какую мысль передаёт 2 Тимофею 3:16,17 о Писании?', a: ['оно вдохновлено Богом и полезно для обучения', 'оно только исторический архив', 'оно предназначено только для царей', 'оно не связано с поведением человека'], c: 0 }
+];
 const gameMeta = {
   rps: { emoji: '✊', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
   ttt: { emoji: '⭕', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
@@ -57,7 +97,8 @@ const gameMeta = {
   code: { emoji: '🔐', maxPlayers: 1, minPlayers: 1, supportsBot: false, category: 'solo' },
   millionaire: { emoji: '💰', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
   teamquiz: { emoji: '🏁', maxPlayers: 10, minPlayers: 2, supportsBot: false, category: 'team' },
-  mathrace: { emoji: '🧮', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' }
+  mathrace: { emoji: '🧮', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'party' },
+  biblequiz: { emoji: '📖', maxPlayers: 10, minPlayers: 1, supportsBot: false, category: 'bible' }
 };
 
 const rooms = new Map();
@@ -124,8 +165,12 @@ function makeRoom({ game, mode, teamCount }) {
   return room;
 }
 
-function makeQuestionList() {
-  return QUESTIONS.map(q => ({ ...q })).sort(() => Math.random() - 0.5).slice(0, 7);
+function makeQuestionList(type = 'general') {
+  const bank = type === 'bible' ? BIBLE_QUESTIONS : GENERAL_QUESTIONS;
+  const easy = bank.filter(q => q.difficulty === 'easy').sort(() => Math.random() - 0.5).slice(0, 3);
+  const medium = bank.filter(q => q.difficulty === 'medium').sort(() => Math.random() - 0.5).slice(0, 4);
+  const hard = bank.filter(q => q.difficulty === 'hard').sort(() => Math.random() - 0.5).slice(0, 3);
+  return [...easy, ...medium, ...hard].sort(() => Math.random() - 0.5).slice(0, type === 'bible' ? 10 : 7);
 }
 
 function makeProblem() {
@@ -151,8 +196,9 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'checkers') return { board: initCheckersBoard(), turn: 0, winner: null, lastMove: null, captured: 0 };
   if (game === 'nim') return { sticks: 21, turn: 0, lastTake: null, winner: null };
   if (game === 'code') return { secret: makeSecret(), guesses: [], maxGuesses: 10, winner: null };
-  if (game === 'millionaire') return { questions: makeQuestionList(), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
-  if (game === 'teamquiz') return { questions: makeQuestionList(), qIndex: 0, answers: {}, teamPoints: initScores(teamCount), showAnswer: null, finished: false };
+  if (game === 'millionaire') return { questions: makeQuestionList('general'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
+  if (game === 'biblequiz') return { questions: makeQuestionList('bible'), qIndex: 0, answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
+  if (game === 'teamquiz') return { questions: makeQuestionList('general'), qIndex: 0, answers: {}, teamPoints: initScores(teamCount), showAnswer: null, finished: false };
   if (game === 'mathrace') return { round: 1, maxRounds: 6, problem: makeProblem(), answers: {}, points: initScores(maxPlayers), showAnswer: null, finished: false };
   return { moves: initScores(maxPlayers).map(() => null), winner: null, result: null };
 }
@@ -314,7 +360,7 @@ function isPlayersTurn(room, index) {
   if (!room.players[index] || room.status !== 'playing') return false;
   if (room.players[index].isBot) return true;
   if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'nim'].includes(room.game)) return room.state.turn === index;
-  if (['millionaire', 'teamquiz', 'mathrace'].includes(room.game)) return !room.state.answers[String(index)] && !room.state.showAnswer;
+  if (['millionaire', 'teamquiz', 'mathrace', 'biblequiz'].includes(room.game)) return !room.state.answers[String(index)] && !room.state.showAnswer;
   if (room.game === 'code') return index === 0;
   return true;
 }
@@ -343,6 +389,7 @@ function applyAction(room, index, action) {
     case 'code': return codeAction(room, index, action);
     case 'millionaire': return quizAction(room, index, action, false);
     case 'teamquiz': return quizAction(room, index, action, true);
+    case 'biblequiz': return quizAction(room, index, action, false);
     case 'mathrace': return mathRaceAction(room, index, action);
   }
 }
@@ -614,7 +661,7 @@ function finishQuiz(room, teamMode) {
     const players = activePlayers(room).filter(p => !p.isBot);
     const max = Math.max(...players.map(p => room.state.points[p.index] || 0));
     const winners = players.filter(p => (room.state.points[p.index] || 0) === max).map(p => p.index);
-    finishRound(room, winners.length === 1 ? winners[0] : null, { type: 'millionaire', lastMove: `Финальный счёт: ${room.state.points.filter((_, i) => room.players[i]).join(' · ')}` });
+    finishRound(room, winners.length === 1 ? winners[0] : null, { type: room.game, lastMove: `Финальный счёт: ${room.state.points.filter((_, i) => room.players[i]).join(' · ')}` });
   }
 }
 
