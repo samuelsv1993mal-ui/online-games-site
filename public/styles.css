@@ -1337,3 +1337,118 @@ body.light .wordguess-panel, body.light .playlist-helper, body.light .chess-cell
   .word-cell { min-height: 48px; border-radius: 14px; }
   .word-input-row { grid-template-columns:1fr; }
 }
+
+
+/* v14: stronger selected-game frame, stable touch moves, readable 3D chess */
+.game-card.active {
+  border: 3px solid var(--primary2) !important;
+  outline: 4px solid color-mix(in srgb, var(--primary2) 42%, transparent) !important;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.45) inset, 0 18px 46px rgba(0,232,255,.28) !important;
+}
+.rules-tip {
+  width: min(94vw, 650px);
+  margin: 0 auto 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(15,23,42,.72);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.9);
+  font-weight: 750;
+  text-align: center;
+}
+.move-tray {
+  width: min(94vw, 650px);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px auto 0;
+}
+.move-tray.muted { color: rgba(255,255,255,.78); font-weight: 800; }
+.move-choice { min-height: 42px; border-color: rgba(56,247,161,.42) !important; }
+.checkers-cell, .chess-cell { touch-action: manipulation; user-select: none; -webkit-tap-highlight-color: transparent; }
+.checkers-cell.movable-piece::before, .chess-cell.movable-piece::after {
+  content:'';
+  position:absolute;
+  inset: 10%;
+  border-radius: 18px;
+  border: 3px solid rgba(56,247,161,.42);
+  pointer-events:none;
+}
+.checkers-cell.legal-target::before, .chess-cell.legal-target::before {
+  content:'';
+  position:absolute;
+  width:30%;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(56,247,161,.9), rgba(56,247,161,.22));
+  box-shadow:0 0 0 9px rgba(56,247,161,.16), 0 0 24px rgba(56,247,161,.38);
+  pointer-events:none;
+}
+.checkers-cell.illegal-target::before, .chess-cell.illegal-target::before {
+  content:'';
+  position:absolute;
+  width:28%;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:rgba(255,77,141,.42);
+  box-shadow:0 0 0 8px rgba(255,77,141,.10);
+  pointer-events:none;
+}
+.chess-stage {
+  width:min(94vw, 650px);
+  margin:0 auto;
+  perspective: 950px;
+  padding: clamp(4px, 2vw, 18px) 0;
+}
+.chess-board {
+  transform: rotateX(10deg) rotateZ(-1deg);
+  transform-style: preserve-3d;
+  animation: chessSoftRotate 8s ease-in-out infinite;
+  border: 8px solid rgba(255,255,255,.14);
+  box-shadow: 0 34px 80px rgba(0,0,0,.42), 0 12px 0 rgba(12,18,35,.82);
+  background: rgba(10, 15, 30, .9);
+}
+@keyframes chessSoftRotate {
+  0%,100% { transform: rotateX(9deg) rotateZ(-1deg); }
+  50% { transform: rotateX(13deg) rotateZ(1deg); }
+}
+.chess-cell { min-width:0; min-height:0; overflow:visible; }
+.chess-cell span {
+  display:block;
+  line-height:1;
+  font-family: "DejaVu Sans", "Noto Sans Symbols 2", "Segoe UI Symbol", serif;
+  font-size: clamp(1.25rem, 7.2vw, 3.45rem);
+  transform: translateZ(18px);
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.36));
+  pointer-events:none;
+}
+.chess-cell.piece.p0 span {
+  color:#f8fafc;
+  -webkit-text-stroke: .7px rgba(15,23,42,.9);
+  text-shadow: 0 2px 0 rgba(0,0,0,.26), 0 0 22px rgba(139,92,246,.46);
+}
+.chess-cell.piece.p1 span {
+  color:#ffe08a;
+  -webkit-text-stroke: .7px rgba(92,52,6,.84);
+  text-shadow: 0 2px 0 rgba(0,0,0,.28), 0 0 22px rgba(250,204,21,.45);
+}
+.chess-cell.capture-target::before {
+  content:'';
+  position:absolute;
+  inset: 8%;
+  border-radius: 18px;
+  border: 4px solid rgba(250,204,21,.95);
+  background: transparent;
+  box-shadow: 0 0 22px rgba(250,204,21,.38);
+  pointer-events:none;
+}
+body.light .rules-tip, body.light .move-tray.muted { background: rgba(15,23,42,.82); color:#fff; }
+@media (max-width:720px) {
+  .rules-tip { font-size:.82rem; padding:8px 10px; }
+  .move-choice { flex: 1 1 calc(50% - 8px); }
+  .chess-board { border-width: 5px; transform: rotateX(6deg) rotateZ(-.5deg); }
+  @keyframes chessSoftRotate { 0%,100% { transform: rotateX(5deg) rotateZ(-.5deg); } 50% { transform: rotateX(8deg) rotateZ(.5deg); } }
+  .chess-cell span { font-size: clamp(1.35rem, 8.6vw, 2.8rem); }
+}

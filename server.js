@@ -100,7 +100,7 @@ function initScores(length) {
   return Array.from({ length }, () => 0);
 }
 
-function makeRoom({ game, mode, teamCount }) {
+function makeRoom({ game, mode, teamCount, difficulty }) {
   const safeGame = gameMeta[game] ? game : 'rps';
   const meta = gameMeta[safeGame];
   const id = makeRoomId();
@@ -114,6 +114,7 @@ function makeRoom({ game, mode, teamCount }) {
     scores: initScores(meta.maxPlayers),
     ties: 0,
     teamCount: count,
+    difficulty: ['beginner','normal','expert'].includes(difficulty) ? difficulty : 'normal',
     teamScores: initScores(count),
     status: 'waiting',
     winnerMessage: null,
@@ -350,8 +351,9 @@ function joinRoom(socket, payload = {}) {
   const game = payload.game || 'rps';
   const mode = payload.mode || 'online';
   const teamCount = payload.teamCount || 2;
+  const difficulty = ['beginner','normal','expert'].includes(payload.difficulty) ? payload.difficulty : 'normal';
   let room = payload.roomId ? rooms.get(String(payload.roomId).toUpperCase()) : null;
-  if (!room) room = makeRoom({ game, mode, teamCount });
+  if (!room) room = makeRoom({ game, mode, teamCount, difficulty });
   const wantsSpectator = !!payload.spectate;
   let role = 'spectator';
 
@@ -410,6 +412,7 @@ function serializeRoom(room) {
     scores: room.scores,
     ties: room.ties,
     teamCount: room.teamCount,
+    difficulty: room.difficulty || 'normal',
     teamScores: room.teamScores,
     hostIndex: room.game === 'whoami' ? room.state.hostIndex : room.hostIndex,
     state: safeState(room),
@@ -692,15 +695,15 @@ function legalCheckersMoves(board, player) {
       for (const dr of [-1, 1]) for (const dc of [-1, 1]) for (let step = 1; step < 8; step++) {
         const tr = r + dr * step, tc = c + dc * step;
         const move = validateCheckersMove(board, player, r, c, tr, tc);
-        if (move) moves.push({ from: [r,c], to: [tr,tc] });
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
       }
     } else {
       for (const dc of [-1, 1]) {
         const tr = r + (player === 0 ? -1 : 1), tc = c + dc;
-        if (validateCheckersMove(board, player, r, c, tr, tc)) moves.push({ from: [r,c], to: [tr,tc] });
+        { const move = validateCheckersMove(board, player, r, c, tr, tc); if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture }); }
       }
       for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
-        if (validateCheckersMove(board, player, r, c, r + dr, c + dc)) moves.push({ from: [r,c], to: [r+dr,c+dc] });
+        { const move = validateCheckersMove(board, player, r, c, r + dr, c + dc); if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture }); }
       }
     }
   }
@@ -1237,10 +1240,11 @@ function maybeBotMove(room) {
 
 function chooseBotAction(room) {
   const s = room.state;
+  const diff = room.difficulty || 'normal';
   if (room.game === 'rps') return { move: ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)] };
   if (room.game === 'dice') return { type: 'roll' };
-  if (room.game === 'ttt') return { cell: chooseTttCell(s.board) };
-  if (room.game === 'connect4') return { col: chooseConnect4Col(s.board) };
+  if (room.game === 'ttt') return { cell: diff === 'beginner' ? chooseRandomEmptyCell(s.board) : chooseTttCell(s.board) };
+  if (room.game === 'connect4') return { col: diff === 'beginner' ? chooseRandomConnect4Col(s.board) : chooseConnect4Col(s.board) };
   if (room.game === 'memory') {
     const available = s.cards.map((c, i) => (!c.matched && !c.revealed ? i : null)).filter(v => v !== null);
     return available.length ? { card: available[Math.floor(Math.random() * available.length)] } : null;
@@ -1259,17 +1263,31 @@ function chooseBotAction(room) {
   }
   if (room.game === 'checkers') {
     const moves = legalCheckersMoves(s.board, 1);
-    return moves.length ? moves[Math.floor(Math.random() * moves.length)] : null;
+    const captures = moves.filter(m => m.capture);
+    const pool = diff === 'beginner' ? moves : (captures.length ? captures : moves);
+    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
   }
   if (room.game === 'chess') {
     const moves = legalChessMoves(s.board, 1);
-    return moves.length ? moves[Math.floor(Math.random() * moves.length)] : null;
+    const captures = moves.filter(m => m.capture);
+    const pool = diff === 'beginner' ? moves : (captures.length ? captures : moves);
+    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
   }
   if (room.game === 'nim') {
     const take = s.sticks <= 3 ? s.sticks : ((s.sticks - 1) % 4) || (1 + Math.floor(Math.random() * 3));
     return { take: Math.max(1, Math.min(3, take)) };
   }
   return null;
+}
+
+function chooseRandomEmptyCell(board) {
+  const empty = board.map((v, i) => v === null ? i : null).filter(v => v !== null);
+  return empty[Math.floor(Math.random() * empty.length)] ?? 0;
+}
+function chooseRandomConnect4Col(board) {
+  const valid = [];
+  for (let c = 0; c < 7; c++) if (board[0][c] === null) valid.push(c);
+  return valid[Math.floor(Math.random() * valid.length)] ?? 0;
 }
 
 function chooseTttCell(board) {
