@@ -53,6 +53,20 @@ function sanitizeDataUrl(value) {
   return value;
 }
 
+function sanitizeFirebaseUid(value) {
+  if (typeof value !== 'string') return null;
+  const cleaned = value.replace(/[^a-zA-Z0-9:_-]/g, '').slice(0, 140);
+  return cleaned || null;
+}
+
+function sanitizeAvatarUrl(value) {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  if (!trimmed.startsWith('https://')) return null;
+  if (trimmed.length > 1200) return null;
+  return trimmed;
+}
+
 function getOrCreateGuestUser(req) {
   const db = readDb();
   if (!req.session.guestUserId) req.session.guestUserId = `guest:${uuid()}`;
@@ -361,12 +375,13 @@ function joinRoom(socket, payload) {
   let room = payload?.roomId ? rooms.get(String(payload.roomId).toUpperCase()) : null;
   if (!room) room = makeRoom({ game, mode });
   const name = sanitizeText(payload?.name, user.name || 'Player');
-  const publicName = user.provider === 'google' ? (user.name || name) : name;
+  const firebaseUid = sanitizeFirebaseUid(payload?.firebaseUid);
+  const publicName = name || user.name || 'Player';
   const member = {
     socketId: socket.id,
-    userId: user.id,
+    userId: firebaseUid ? `firebase:${firebaseUid}` : user.id,
     name: publicName,
-    avatarUrl: getAvatar(user),
+    avatarUrl: sanitizeAvatarUrl(payload?.avatarUrl) || getAvatar(user),
     connected: true,
     isBot: false
   };

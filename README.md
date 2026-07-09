@@ -1,102 +1,83 @@
-# SMQ Games — Google, profile, history, full-screen arena, music
+# SMQ Games — Render + Firebase
 
-Это версия сайта для Render с полноценным Node.js + Express + Socket.IO сервером.
+Мобильный сайт с онлайн-играми, комнатами, режимом наблюдателя, игрой с ботом, профилем, музыкой, темами, языками и историей игр.
 
-## Что добавлено
+## Что хранит Firebase
 
-- Google OAuth вход.
-- Фото профиля из Google.
-- Настройки профиля: имя, фото, язык, размер шрифта, светлая/тёмная тема.
-- Сохранение истории игр на сервере в `data/games-db.json`.
-- Игры онлайн, с компьютером и в режиме наблюдателя.
-- Большой игровой экран под телефон.
-- Большой счёт сверху.
-- Имена игроков сверху.
-- Большое сообщение о победе по центру экрана.
-- Анимация победы и конфетти.
-- Фоновая музыка, встроенный оригинальный loop `smq-theme.wav`.
-- Возможность добавить свою музыку на устройстве пользователя.
-- Языки: русский, español, English.
-- Игры: камень-ножницы-бумага, крестики-нолики, кубики, четыре в ряд, мемори, 21, реакция.
+Firebase используется для:
 
-## Запуск локально
+- входа через Google;
+- имени, email и фото профиля Google;
+- настроек профиля: язык, тема, размер шрифта;
+- истории игр;
+- статистики побед, поражений и ничьих.
 
-```bash
-npm install
-npm start
-```
+Render продолжает использоваться для игрового сервера и Socket.IO-комнат.
 
-Открыть:
+## Firebase config
+
+Файл уже создан:
 
 ```text
-http://localhost:3000
+public/firebase-config.js
 ```
 
-## Настройка Google OAuth для Render
+В нём указан web config проекта `smqgames26`.
 
-В Google Cloud Console нужно создать OAuth Client типа **Web application**.
+## Обязательные шаги в Firebase Console
 
-Authorized redirect URI для Render:
+1. Authentication → Sign-in method → Google → Enable → Save.
+2. Authentication → Settings → Authorized domains → Add domain:
 
 ```text
-https://online-games-site.onrender.com/auth/google/callback
+online-games-site.onrender.com
 ```
 
-Если у тебя другой адрес Render, замени домен на свой.
+3. Firestore Database → Create database.
+4. Firestore Rules → вставить правила ниже и нажать Publish.
 
-В Render открой:
+## Firestore Rules
 
-```text
-online-games-site → Environment
+```js
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      match /history/{historyId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
 ```
 
-Добавь переменные:
-
-```text
-GOOGLE_CLIENT_ID=твой_client_id
-GOOGLE_CLIENT_SECRET=твой_client_secret
-SESSION_SECRET=любой_длинный_секретный_текст
-BASE_URL=https://online-games-site.onrender.com
-```
-
-После добавления переменных нажми:
-
-```text
-Manual Deploy → Deploy latest commit
-```
-
-## Render команды
-
-Build Command:
-
-```bash
-npm install
-```
-
-Start Command:
-
-```bash
-node server.js
-```
-
-или:
-
-```bash
-npm start
-```
-
-## Обновление с телефона через Termux
+## Обновление сайта через Termux
 
 ```bash
 cd ~
-cp /storage/emulated/0/Download/online-games-site-google-history-music.zip ~/
-rm -rf ~/online-games-site-v4
-unzip -o online-games-site-google-history-music.zip
-cp -r ~/online-games-site-v4/* ~/online-games-site/
+cp /storage/emulated/0/Download/online-games-site-firebase-auth.zip ~/
+rm -rf ~/online-games-site-v5
+unzip -o online-games-site-firebase-auth.zip
+cp -r ~/online-games-site-v5/* ~/online-games-site/
 cd ~/online-games-site
 git add .
-git commit -m "Add Google OAuth profile history arena music"
+git commit -m "Connect Firebase Google auth and Firestore history"
 git push
 ```
 
-Render сам начнёт деплой после `git push`.
+Render после `git push` должен автоматически сделать новый deploy.
+
+## Render
+
+Настройки Render остаются такими же:
+
+```text
+Build Command: npm install
+Start Command: node server.js
+```
+
+Для Firebase-входа переменные `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET` больше не нужны.

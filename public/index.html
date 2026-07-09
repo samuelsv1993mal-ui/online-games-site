@@ -19,7 +19,7 @@
         <h1 data-i18n="appTitle">SMQ Games</h1>
         <p data-i18n="appSubtitle">Играй онлайн, с другом, против компьютера или наблюдай за комнатой.</p>
         <div class="login-actions">
-          <a class="btn primary full" href="/auth/google" id="googleLoginBtn">G&nbsp; <span data-i18n="loginGoogle">Войти через Google</span></a>
+          <button class="btn primary full" id="googleLoginBtn">G&nbsp; <span data-i18n="loginGoogle">Войти через Google</span></button>
           <button class="btn ghost full" id="guestLoginBtn" data-i18n="continueGuest">Продолжить как гость</button>
         </div>
         <p class="hint" id="googleHint" data-i18n="googleHint">Google-вход сохраняет фото профиля и историю игр.</p>
@@ -179,6 +179,10 @@
 
   <div id="toast" class="toast hidden"></div>
   <audio id="bgMusic" loop preload="auto" src="/assets/smq-theme.wav"></audio>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+  <script src="/firebase-config.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/client.js"></script>
 </body>

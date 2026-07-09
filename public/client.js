@@ -4,21 +4,21 @@ const I18N = {
   ru: {
     appTitle: 'SMQ Games', appSubtitle: 'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle: 'Войти через Google', continueGuest: 'Продолжить как гость', googleHint: 'Google-вход сохраняет фото профиля и историю игр.',
     hello: 'Привет', mobileGame: 'Мобильная онлайн-арена', chooseGame: 'Выбери игру', chooseMode: 'Играй с компьютером или создай комнату для друга.', newGame: 'Новая игра', game: 'Игра', mode: 'Режим', onlineRoom: 'Онлайн-комната', playComputer: 'С компьютером', createRoom: 'Создать комнату', joinRoom: 'Войти в комнату', joinAsPlayer: 'Играть', watch: 'Наблюдать', history: 'История игр', refresh: 'Обновить', spectators: 'Наблюдатели', copyPlayerLink: 'Ссылка игроку', copySpectatorLink: 'Ссылка зрителю', newRound: 'Новая партия', profile: 'Профиль', changePhoto: 'Изменить фото', resetPhoto: 'Сбросить', name: 'Имя', language: 'Язык', fontSize: 'Размер шрифта', small: 'Маленький', medium: 'Средний', large: 'Большой', xlarge: 'Очень большой', theme: 'Тема', darkTheme: 'Тёмная', lightTheme: 'Светлая', music: 'Музыка', musicOn: 'Включить музыку', musicOff: 'Выключить музыку', volume: 'Громкость', uploadMusic: 'Добавить свою музыку', saveProfile: 'Сохранить профиль', logout: 'Выйти', continue: 'Продолжить',
-    copied: 'Ссылка скопирована', waitingFriend: 'Ждём второго игрока...', youSpectator: 'Вы наблюдатель', yourTurn: 'Ваш ход', opponentTurn: 'Ход соперника', botTurn: 'Ход компьютера', roomCreated: 'Комната создана', profileSaved: 'Профиль сохранён', googleNotConfigured: 'Google-вход нужно настроить в Render переменными GOOGLE_CLIENT_ID и GOOGLE_CLIENT_SECRET.', noHistory: 'Истории пока нет', win: 'Победа', lose: 'Поражение', draw: 'Ничья', vs: 'против', tapWhenGreen: 'Жми, когда станет зелёным!', tooEarly: 'Рано!', go: 'ЖМИ!', total: 'Сумма', add: 'Добавить', roll: 'Бросить', selectMove: 'Выбери ход', chooseCard: 'Открой карту',
+    copied: 'Ссылка скопирована', waitingFriend: 'Ждём второго игрока...', youSpectator: 'Вы наблюдатель', yourTurn: 'Ваш ход', opponentTurn: 'Ход соперника', botTurn: 'Ход компьютера', roomCreated: 'Комната создана', profileSaved: 'Профиль сохранён', googleNotConfigured: 'Google-вход нужно включить в Firebase Authentication и добавить домен Render.', noHistory: 'Истории пока нет', win: 'Победа', lose: 'Поражение', draw: 'Ничья', vs: 'против', tapWhenGreen: 'Жми, когда станет зелёным!', tooEarly: 'Рано!', go: 'ЖМИ!', total: 'Сумма', add: 'Добавить', roll: 'Бросить', selectMove: 'Выбери ход', chooseCard: 'Открой карту',
     games: { rps: ['Камень · Ножницы · Бумага', 'Быстрая дуэль на удачу'], ttt: ['Крестики-нолики', 'Классика 3×3'], dice: ['Кубики', 'У кого выпадет больше'], connect4: ['Четыре в ряд', 'Собери линию первым'], memory: ['Мемори', 'Запоминай пары карточек'], twentyone: ['21', 'Дойди ровно до 21'], reaction: ['Реакция', 'Кто нажмёт быстрее'] },
     moves: { rock: 'Камень', paper: 'Бумага', scissors: 'Ножницы' }
   },
   es: {
     appTitle: 'SMQ Games', appSubtitle: 'Juega online con un amigo, contra la computadora o mira una sala.', loginGoogle: 'Entrar con Google', continueGuest: 'Continuar como invitado', googleHint: 'Con Google se guardan tu foto de perfil y tu historial.',
     hello: 'Hola', mobileGame: 'Arena móvil online', chooseGame: 'Elige un juego', chooseMode: 'Juega contra la computadora o crea una sala para tu amigo.', newGame: 'Nuevo juego', game: 'Juego', mode: 'Modo', onlineRoom: 'Sala online', playComputer: 'Contra computadora', createRoom: 'Crear sala', joinRoom: 'Entrar a sala', joinAsPlayer: 'Jugar', watch: 'Observar', history: 'Historial', refresh: 'Actualizar', spectators: 'Observadores', copyPlayerLink: 'Link jugador', copySpectatorLink: 'Link observador', newRound: 'Nueva partida', profile: 'Perfil', changePhoto: 'Cambiar foto', resetPhoto: 'Restablecer', name: 'Nombre', language: 'Idioma', fontSize: 'Tamaño de letra', small: 'Pequeño', medium: 'Mediano', large: 'Grande', xlarge: 'Muy grande', theme: 'Tema', darkTheme: 'Oscuro', lightTheme: 'Claro', music: 'Música', musicOn: 'Activar música', musicOff: 'Apagar música', volume: 'Volumen', uploadMusic: 'Agregar tu música', saveProfile: 'Guardar perfil', logout: 'Salir', continue: 'Continuar',
-    copied: 'Link copiado', waitingFriend: 'Esperando al segundo jugador...', youSpectator: 'Estás observando', yourTurn: 'Tu turno', opponentTurn: 'Turno del rival', botTurn: 'Turno de la computadora', roomCreated: 'Sala creada', profileSaved: 'Perfil guardado', googleNotConfigured: 'Configura Google en Render con GOOGLE_CLIENT_ID y GOOGLE_CLIENT_SECRET.', noHistory: 'Aún no hay historial', win: 'Victoria', lose: 'Derrota', draw: 'Empate', vs: 'contra', tapWhenGreen: '¡Toca cuando esté verde!', tooEarly: '¡Muy pronto!', go: '¡TOCA!', total: 'Total', add: 'Sumar', roll: 'Lanzar', selectMove: 'Elige tu jugada', chooseCard: 'Abre una carta',
+    copied: 'Link copiado', waitingFriend: 'Esperando al segundo jugador...', youSpectator: 'Estás observando', yourTurn: 'Tu turno', opponentTurn: 'Turno del rival', botTurn: 'Turno de la computadora', roomCreated: 'Sala creada', profileSaved: 'Perfil guardado', googleNotConfigured: 'Activa Google en Firebase Authentication y agrega el dominio de Render.', noHistory: 'Aún no hay historial', win: 'Victoria', lose: 'Derrota', draw: 'Empate', vs: 'contra', tapWhenGreen: '¡Toca cuando esté verde!', tooEarly: '¡Muy pronto!', go: '¡TOCA!', total: 'Total', add: 'Sumar', roll: 'Lanzar', selectMove: 'Elige tu jugada', chooseCard: 'Abre una carta',
     games: { rps: ['Piedra · Papel · Tijeras', 'Duelo rápido de suerte'], ttt: ['Tres en raya', 'Clásico 3×3'], dice: ['Dados', 'Gana el número mayor'], connect4: ['Cuatro en línea', 'Forma una línea primero'], memory: ['Memoria', 'Encuentra las parejas'], twentyone: ['21', 'Llega exactamente a 21'], reaction: ['Reacción', '¿Quién toca más rápido?'] },
     moves: { rock: 'Piedra', paper: 'Papel', scissors: 'Tijeras' }
   },
   en: {
     appTitle: 'SMQ Games', appSubtitle: 'Play online with a friend, against the computer, or watch a room.', loginGoogle: 'Sign in with Google', continueGuest: 'Continue as guest', googleHint: 'Google sign-in saves your profile photo and game history.',
     hello: 'Hello', mobileGame: 'Mobile online arena', chooseGame: 'Choose a game', chooseMode: 'Play against the computer or create a room for a friend.', newGame: 'New game', game: 'Game', mode: 'Mode', onlineRoom: 'Online room', playComputer: 'Computer', createRoom: 'Create room', joinRoom: 'Join room', joinAsPlayer: 'Play', watch: 'Watch', history: 'Game history', refresh: 'Refresh', spectators: 'Spectators', copyPlayerLink: 'Player link', copySpectatorLink: 'Spectator link', newRound: 'New round', profile: 'Profile', changePhoto: 'Change photo', resetPhoto: 'Reset', name: 'Name', language: 'Language', fontSize: 'Font size', small: 'Small', medium: 'Medium', large: 'Large', xlarge: 'Extra large', theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', music: 'Music', musicOn: 'Turn music on', musicOff: 'Turn music off', volume: 'Volume', uploadMusic: 'Add your music', saveProfile: 'Save profile', logout: 'Log out', continue: 'Continue',
-    copied: 'Link copied', waitingFriend: 'Waiting for second player...', youSpectator: 'You are watching', yourTurn: 'Your turn', opponentTurn: 'Opponent turn', botTurn: 'Computer turn', roomCreated: 'Room created', profileSaved: 'Profile saved', googleNotConfigured: 'Configure Google on Render with GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.', noHistory: 'No history yet', win: 'Win', lose: 'Loss', draw: 'Draw', vs: 'vs', tapWhenGreen: 'Tap when it turns green!', tooEarly: 'Too early!', go: 'TAP!', total: 'Total', add: 'Add', roll: 'Roll', selectMove: 'Choose your move', chooseCard: 'Open a card',
+    copied: 'Link copied', waitingFriend: 'Waiting for second player...', youSpectator: 'You are watching', yourTurn: 'Your turn', opponentTurn: 'Opponent turn', botTurn: 'Computer turn', roomCreated: 'Room created', profileSaved: 'Profile saved', googleNotConfigured: 'Enable Google in Firebase Authentication and add the Render domain.', noHistory: 'No history yet', win: 'Win', lose: 'Loss', draw: 'Draw', vs: 'vs', tapWhenGreen: 'Tap when it turns green!', tooEarly: 'Too early!', go: 'TAP!', total: 'Total', add: 'Add', roll: 'Roll', selectMove: 'Choose your move', chooseCard: 'Open a card',
     games: { rps: ['Rock · Paper · Scissors', 'Fast luck duel'], ttt: ['Tic Tac Toe', 'Classic 3×3'], dice: ['Dice Duel', 'Highest roll wins'], connect4: ['Four in a Row', 'Connect a line first'], memory: ['Memory Match', 'Find matching pairs'], twentyone: ['Twenty One', 'Reach exactly 21'], reaction: ['Reaction Tap', 'Who taps faster?'] },
     moves: { rock: 'Rock', paper: 'Paper', scissors: 'Scissors' }
   }
@@ -48,6 +48,136 @@ const state = {
   lastRoundKey: null,
   musicOn: localStorage.getItem('smq_music_on') === '1'
 };
+
+let fbApp = null;
+let fbAuth = null;
+let fbDb = null;
+
+function defaultSettings() {
+  return {
+    lang: localStorage.getItem('smq_lang') || 'ru',
+    theme: localStorage.getItem('smq_theme') || 'dark',
+    fontSize: localStorage.getItem('smq_fontSize') || 'medium',
+    musicVolume: Number(localStorage.getItem('smq_volume') || '0.35')
+  };
+}
+
+function initFirebase() {
+  if (fbApp || !window.firebase || !window.firebaseConfig) return !!fbApp;
+  try {
+    fbApp = firebase.apps && firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
+    fbAuth = firebase.auth();
+    fbDb = firebase.firestore();
+    return true;
+  } catch (error) {
+    console.error('Firebase init error:', error);
+    return false;
+  }
+}
+
+function waitForAuthReady() {
+  if (!initFirebase() || !fbAuth) return Promise.resolve(null);
+  return new Promise(resolve => {
+    const unsub = fbAuth.onAuthStateChanged(user => {
+      unsub();
+      resolve(user);
+    }, () => resolve(null));
+  });
+}
+
+function guestId() {
+  let id = localStorage.getItem('smq_guest_id');
+  if (!id) {
+    id = `guest-${Math.random().toString(36).slice(2)}-${Date.now()}`;
+    localStorage.setItem('smq_guest_id', id);
+  }
+  return id;
+}
+
+function localGuestUser() {
+  const settings = defaultSettings();
+  const stored = JSON.parse(localStorage.getItem('smq_guest_profile') || '{}');
+  return {
+    id: guestId(),
+    provider: 'guest',
+    name: stored.name || 'Guest Player',
+    email: null,
+    avatarUrl: stored.avatarData || null,
+    settings: { ...settings, ...(stored.settings || {}) }
+  };
+}
+
+function cleanProfileData(data) {
+  return data && typeof data === 'object' ? data : {};
+}
+
+async function loadFirebaseProfile(fbUser) {
+  const ref = fbDb.collection('users').doc(fbUser.uid);
+  const snap = await ref.get();
+  const current = cleanProfileData(snap.exists ? snap.data() : {});
+  const settings = { ...defaultSettings(), ...(current.settings || {}) };
+  const now = new Date().toISOString();
+  const base = {
+    uid: fbUser.uid,
+    provider: 'google',
+    email: fbUser.email || current.email || null,
+    googleName: fbUser.displayName || current.googleName || 'Google Player',
+    googlePhotoURL: fbUser.photoURL || current.googlePhotoURL || null,
+    photoURL: fbUser.photoURL || current.photoURL || null,
+    settings,
+    updatedAt: now,
+    lastLoginAt: now
+  };
+  if (!snap.exists) {
+    base.name = fbUser.displayName || 'Google Player';
+    base.createdAt = now;
+    base.stats = { played: 0, wins: 0, losses: 0, draws: 0 };
+  }
+  await ref.set(base, { merge: true });
+  const merged = { ...current, ...base, name: current.name || base.name || base.googleName };
+  return {
+    id: fbUser.uid,
+    provider: 'firebase-google',
+    name: merged.name || fbUser.displayName || 'Google Player',
+    email: merged.email || fbUser.email || null,
+    avatarUrl: merged.avatarData || merged.photoURL || fbUser.photoURL || null,
+    googleAvatarUrl: fbUser.photoURL || merged.googlePhotoURL || null,
+    settings: { ...defaultSettings(), ...(merged.settings || {}) },
+    stats: merged.stats || { played: 0, wins: 0, losses: 0, draws: 0 }
+  };
+}
+
+async function signInWithGoogleFirebase() {
+  if (!initFirebase() || !fbAuth) {
+    toast('Firebase не подключён');
+    return;
+  }
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  try {
+    await fbAuth.signInWithPopup(provider);
+    localStorage.setItem('smq_entered', '1');
+    state.entered = true;
+    await loadUser();
+  } catch (error) {
+    console.warn('Popup sign-in failed, trying redirect:', error);
+    try {
+      localStorage.setItem('smq_entered', '1');
+      await fbAuth.signInWithRedirect(provider);
+    } catch (redirectError) {
+      console.error(redirectError);
+      toast('Google вход не сработал. Проверь Authorized domains в Firebase.');
+    }
+  }
+}
+
+function currentSocketIdentity() {
+  const fbUser = fbAuth?.currentUser || null;
+  return {
+    firebaseUid: fbUser?.uid || null,
+    avatarUrl: state.user?.avatarUrl || null
+  };
+}
 
 function t(key) {
   const dict = I18N[state.lang] || I18N.ru;
@@ -112,24 +242,36 @@ async function api(path, options = {}) {
 }
 
 async function loadUser() {
-  const data = await api('/api/me');
-  state.user = data.user;
-  if (state.user?.provider === 'google') state.entered = true;
-  const settings = state.user?.settings || {};
-  state.lang = settings.lang || localStorage.getItem('smq_lang') || state.lang;
-  state.theme = settings.theme || localStorage.getItem('smq_theme') || state.theme;
-  state.fontSize = settings.fontSize || localStorage.getItem('smq_fontSize') || state.fontSize;
-  $('googleLoginBtn').classList.toggle('disabled', !data.googleEnabled);
-  updateProfileUI();
-  applyThemeAndFont();
-  applyI18n();
   const params = new URLSearchParams(location.search);
-  if (params.get('auth') === 'google-not-configured') toast(t('googleNotConfigured'));
   const roomFromPath = getRoomFromPath();
-  if (!state.entered) {
+  const fbUser = await waitForAuthReady();
+
+  if (fbUser) {
+    state.entered = true;
+    localStorage.setItem('smq_entered', '1');
+    state.user = await loadFirebaseProfile(fbUser);
+  } else if (state.entered) {
+    state.user = localGuestUser();
+  } else {
+    state.user = localGuestUser();
+    updateProfileUI();
+    applyThemeAndFont();
+    applyI18n();
     showScreen('loginScreen');
     return;
   }
+
+  const settings = state.user?.settings || defaultSettings();
+  state.lang = settings.lang || localStorage.getItem('smq_lang') || state.lang;
+  state.theme = settings.theme || localStorage.getItem('smq_theme') || state.theme;
+  state.fontSize = settings.fontSize || localStorage.getItem('smq_fontSize') || state.fontSize;
+  localStorage.setItem('smq_lang', state.lang);
+  localStorage.setItem('smq_theme', state.theme);
+  localStorage.setItem('smq_fontSize', state.fontSize);
+
+  updateProfileUI();
+  applyThemeAndFont();
+  applyI18n();
   showScreen('homeScreen');
   await loadHistory();
   if (roomFromPath) joinRoom(roomFromPath, params.get('spectate') === '1');
@@ -162,10 +304,24 @@ function renderGameCards() {
 
 async function loadHistory() {
   try {
-    const data = await api('/api/history');
-    state.history = data.history || [];
+    if (fbAuth?.currentUser && fbDb) {
+      const snap = await fbDb
+        .collection('users')
+        .doc(fbAuth.currentUser.uid)
+        .collection('history')
+        .orderBy('date', 'desc')
+        .limit(50)
+        .get();
+      state.history = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } else {
+      state.history = JSON.parse(localStorage.getItem('smq_guest_history') || '[]');
+    }
     renderHistory();
-  } catch (_) {}
+  } catch (error) {
+    console.error('History load error:', error);
+    state.history = [];
+    renderHistory();
+  }
 }
 
 function renderHistory() {
@@ -206,14 +362,14 @@ function getRoomFromPath() {
 
 function createRoom() {
   setupSocket();
-  state.socket.emit('join_room', { game: state.selectedGame, mode: state.selectedMode, name: state.user?.name || 'Player' });
+  state.socket.emit('join_room', { game: state.selectedGame, mode: state.selectedMode, name: state.user?.name || 'Player', ...currentSocketIdentity() });
   toast(t('roomCreated'));
 }
 
 function joinRoom(roomId, spectate) {
   if (!roomId) return;
   setupSocket();
-  state.socket.emit('join_room', { roomId: roomId.toUpperCase(), spectate: !!spectate, name: state.user?.name || 'Player' });
+  state.socket.emit('join_room', { roomId: roomId.toUpperCase(), spectate: !!spectate, name: state.user?.name || 'Player', ...currentSocketIdentity() });
   history.replaceState({}, '', `/room/${roomId.toUpperCase()}${spectate ? '?spectate=1' : ''}`);
 }
 
@@ -229,6 +385,7 @@ function renderRoom(room) {
   renderTurnBanner(room);
   renderGame(room);
   maybeShowWinner(room);
+  maybeSaveRoundHistory(room);
 }
 
 function renderTurnBanner(room) {
@@ -387,6 +544,57 @@ function launchConfetti() {
   draw();
 }
 
+async function maybeSaveRoundHistory(room) {
+  if (!room || room.status !== 'roundOver' || !room.lastRound) return;
+  if (state.role !== 'player1' && state.role !== 'player2') return;
+  const myIndex = state.role === 'player1' ? 0 : 1;
+  const recordId = `${room.id}-${room.lastRound.at || Date.now()}-${myIndex}`;
+  if (state.lastRoundKey === recordId) return;
+  state.lastRoundKey = recordId;
+
+  const winnerIndex = room.lastRound.winnerIndex;
+  const result = winnerIndex === null || winnerIndex === undefined ? 'draw' : winnerIndex === myIndex ? 'win' : 'lose';
+  const opponent = room.players[myIndex === 0 ? 1 : 0]?.name || (room.mode === 'bot' ? 'SMQ Bot' : 'Unknown');
+  const item = {
+    id: recordId,
+    date: new Date(room.lastRound.at || Date.now()).toISOString(),
+    game: room.game,
+    mode: room.mode,
+    result,
+    opponent,
+    score: `${room.scores[0]}:${room.scores[1]}`,
+    ties: room.ties || 0,
+    roomId: room.id
+  };
+
+  try {
+    if (fbAuth?.currentUser && fbDb) {
+      const userRef = fbDb.collection('users').doc(fbAuth.currentUser.uid);
+      await userRef.collection('history').doc(recordId).set(item, { merge: true });
+      const inc = firebase.firestore.FieldValue.increment;
+      await userRef.set({
+        lastGameAt: item.date,
+        stats: {
+          played: inc(1),
+          wins: inc(result === 'win' ? 1 : 0),
+          losses: inc(result === 'lose' ? 1 : 0),
+          draws: inc(result === 'draw' ? 1 : 0)
+        }
+      }, { merge: true });
+      await loadHistory();
+    } else {
+      const historyItems = JSON.parse(localStorage.getItem('smq_guest_history') || '[]');
+      const withoutDuplicate = historyItems.filter(h => h.id !== recordId);
+      withoutDuplicate.unshift(item);
+      localStorage.setItem('smq_guest_history', JSON.stringify(withoutDuplicate.slice(0, 50)));
+      state.history = withoutDuplicate.slice(0, 50);
+      renderHistory();
+    }
+  } catch (error) {
+    console.error('History save error:', error);
+  }
+}
+
 function setupMusic() {
   const audio = $('bgMusic');
   const custom = localStorage.getItem('smq_custom_music');
@@ -408,16 +616,36 @@ function toggleMusic() {
 async function saveProfile() {
   const avatarData = $('profileAvatar').dataset.newAvatar || undefined;
   const settings = { lang: $('profileLang').value, theme: $('themeSelect').value, fontSize: $('fontSizeSelect').value, musicVolume: Number($('volumeSlider').value) };
-  const data = await api('/api/profile', { method: 'PUT', body: JSON.stringify({ name: $('profileName').value, avatarData, settings }) });
-  state.user = data.user;
-  state.lang = settings.lang; state.theme = settings.theme; state.fontSize = settings.fontSize;
-  localStorage.setItem('smq_lang', state.lang); localStorage.setItem('smq_theme', state.theme); localStorage.setItem('smq_fontSize', state.fontSize);
+  const name = $('profileName').value.trim() || 'Player';
+
+  if (fbAuth?.currentUser && fbDb) {
+    const update = { name, settings, updatedAt: new Date().toISOString() };
+    if (avatarData) update.avatarData = avatarData;
+    await fbDb.collection('users').doc(fbAuth.currentUser.uid).set(update, { merge: true });
+    state.user = await loadFirebaseProfile(fbAuth.currentUser);
+  } else {
+    const guest = localGuestUser();
+    const profile = { name, settings, avatarData: avatarData || guest.avatarUrl || null };
+    localStorage.setItem('smq_guest_profile', JSON.stringify(profile));
+    state.user = localGuestUser();
+  }
+
+  state.lang = settings.lang;
+  state.theme = settings.theme;
+  state.fontSize = settings.fontSize;
+  localStorage.setItem('smq_lang', state.lang);
+  localStorage.setItem('smq_theme', state.theme);
+  localStorage.setItem('smq_fontSize', state.fontSize);
   delete $('profileAvatar').dataset.newAvatar;
-  updateProfileUI(); applyThemeAndFont(); applyI18n(); toast(t('profileSaved'));
+  updateProfileUI();
+  applyThemeAndFont();
+  applyI18n();
+  toast(t('profileSaved'));
 }
 
 function bindEvents() {
-  $('guestLoginBtn').onclick = async () => { localStorage.setItem('smq_entered', '1'); state.entered = true; showScreen('homeScreen'); await loadHistory(); const roomId = getRoomFromPath(); if (roomId) joinRoom(roomId, new URLSearchParams(location.search).get('spectate') === '1'); };
+  $('googleLoginBtn').onclick = signInWithGoogleFirebase;
+  $('guestLoginBtn').onclick = async () => { localStorage.setItem('smq_entered', '1'); state.entered = true; state.user = localGuestUser(); updateProfileUI(); showScreen('homeScreen'); await loadHistory(); const roomId = getRoomFromPath(); if (roomId) joinRoom(roomId, new URLSearchParams(location.search).get('spectate') === '1'); };
   $('openProfileBtn').onclick = () => $('profileDrawer').classList.remove('hidden');
   $('closeProfileBtn').onclick = () => $('profileDrawer').classList.add('hidden');
   $('closeProfileBackdrop').onclick = () => $('profileDrawer').classList.add('hidden');
@@ -439,17 +667,26 @@ function bindEvents() {
   $('changeAvatarBtn').onclick = () => $('avatarInput').click();
   $('avatarInput').onchange = (event) => {
     const file = event.target.files?.[0]; if (!file) return;
-    if (file.size > 900_000) return toast('Max 900 KB');
+    if (file.size > 300_000) return toast('Max 300 KB');
     const reader = new FileReader();
     reader.onload = () => { const data = reader.result; $('profileAvatar').dataset.newAvatar = data; setAvatar($('profileAvatar'), $('profileFallback'), data, $('profileName').value); };
     reader.readAsDataURL(file);
   };
   $('clearAvatarBtn').onclick = async () => {
-    const data = await api('/api/profile', { method: 'PUT', body: JSON.stringify({ name: $('profileName').value, clearAvatar: true, settings: { lang: state.lang, theme: state.theme, fontSize: state.fontSize } }) });
-    state.user = data.user; updateProfileUI();
+    delete $('profileAvatar').dataset.newAvatar;
+    if (fbAuth?.currentUser && fbDb) {
+      await fbDb.collection('users').doc(fbAuth.currentUser.uid).set({ avatarData: firebase.firestore.FieldValue.delete(), photoURL: fbAuth.currentUser.photoURL || null, updatedAt: new Date().toISOString() }, { merge: true });
+      state.user = await loadFirebaseProfile(fbAuth.currentUser);
+    } else {
+      const profile = JSON.parse(localStorage.getItem('smq_guest_profile') || '{}');
+      delete profile.avatarData;
+      localStorage.setItem('smq_guest_profile', JSON.stringify(profile));
+      state.user = localGuestUser();
+    }
+    updateProfileUI();
   };
   $('saveProfileBtn').onclick = saveProfile;
-  $('logoutBtn').onclick = async () => { await fetch('/auth/logout', { method: 'POST' }); localStorage.removeItem('smq_entered'); location.href = '/'; };
+  $('logoutBtn').onclick = async () => { if (fbAuth?.currentUser) await fbAuth.signOut(); localStorage.removeItem('smq_entered'); state.entered = false; state.user = localGuestUser(); location.href = '/'; };
   $('toggleMusicBtn').onclick = toggleMusic;
   $('volumeSlider').oninput = () => { const v = Number($('volumeSlider').value); $('bgMusic').volume = v; localStorage.setItem('smq_volume', String(v)); };
   $('musicInput').onchange = (event) => {
