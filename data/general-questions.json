@@ -1,0 +1,410 @@
+[
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Общие знания",
+      "es": "Conocimiento general",
+      "en": "General knowledge"
+    },
+    "q": {
+      "ru": "Сколько клеток на стандартной шахматной доске?",
+      "es": "¿Cuántas casillas tiene un tablero de ajedrez estándar?",
+      "en": "How many squares are on a standard chessboard?"
+    },
+    "a": {
+      "ru": [
+        "32",
+        "48",
+        "64",
+        "81"
+      ],
+      "es": [
+        "32",
+        "48",
+        "64",
+        "81"
+      ],
+      "en": [
+        "32",
+        "48",
+        "64",
+        "81"
+      ]
+    },
+    "c": 2
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Астрономия",
+      "es": "Astronomía",
+      "en": "Astronomy"
+    },
+    "q": {
+      "ru": "Какая планета ближе всего к Солнцу?",
+      "es": "¿Qué planeta está más cerca del Sol?",
+      "en": "Which planet is closest to the Sun?"
+    },
+    "a": {
+      "ru": [
+        "Венера",
+        "Меркурий",
+        "Марс",
+        "Юпитер"
+      ],
+      "es": [
+        "Venus",
+        "Mercurio",
+        "Marte",
+        "Júpiter"
+      ],
+      "en": [
+        "Venus",
+        "Mercury",
+        "Mars",
+        "Jupiter"
+      ]
+    },
+    "c": 1
+  },
+  {
+    "difficulty": "medium",
+    "source": {
+      "ru": "IT",
+      "es": "IT",
+      "en": "IT"
+    },
+    "q": {
+      "ru": "Что означает HTML?",
+      "es": "¿Qué significa HTML?",
+      "en": "What does HTML stand for?"
+    },
+    "a": {
+      "ru": [
+        "HyperText Markup Language",
+        "High Tool Machine Logic",
+        "Home Text Main Link",
+        "Hyperlink Main Language"
+      ],
+      "es": [
+        "HyperText Markup Language",
+        "High Tool Machine Logic",
+        "Home Text Main Link",
+        "Hyperlink Main Language"
+      ],
+      "en": [
+        "HyperText Markup Language",
+        "High Tool Machine Logic",
+        "Home Text Main Link",
+        "Hyperlink Main Language"
+      ]
+    },
+    "c": 0
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Математика",
+      "es": "Matemáticas",
+      "en": "Math"
+    },
+    "q": {
+      "ru": "Сколько минут в трёх часах?",
+      "es": "¿Cuántos minutos hay en tres horas?",
+      "en": "How many minutes are in three hours?"
+    },
+    "a": {
+      "ru": [
+        "120",
+        "150",
+        "180",
+        "210"
+      ],
+      "es": [
+        "120",
+        "150",
+        "180",
+        "210"
+      ],
+      "en": [
+        "120",
+        "150",
+        "180",
+        "210"
+      ]
+    },
+    "c": 2
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "География",
+      "es": "Geografía",
+      "en": "Geography"
+    },
+    "q": {
+      "ru": "Какой океан самый большой?",
+      "es": "¿Cuál es el océano más grande?",
+      "en": "Which ocean is the largest?"
+    },
+    "a": {
+      "ru": [
+        "Атлантический",
+        "Индийский",
+        "Северный Ледовитый",
+        "Тихий"
+      ],
+      "es": [
+        "Atlántico",
+        "Índico",
+        "Ártico",
+        "Pacífico"
+      ],
+      "en": [
+        "Atlantic",
+        "Indian",
+        "Arctic",
+        "Pacific"
+      ]
+    },
+    "c": 3
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Геометрия",
+      "es": "Geometría",
+      "en": "Geometry"
+    },
+    "q": {
+      "ru": "Какая фигура имеет три стороны?",
+      "es": "¿Qué figura tiene tres lados?",
+      "en": "Which shape has three sides?"
+    },
+    "a": {
+      "ru": [
+        "Квадрат",
+        "Треугольник",
+        "Круг",
+        "Ромб"
+      ],
+      "es": [
+        "Cuadrado",
+        "Triángulo",
+        "Círculo",
+        "Rombo"
+      ],
+      "en": [
+        "Square",
+        "Triangle",
+        "Circle",
+        "Rhombus"
+      ]
+    },
+    "c": 1
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Цвета",
+      "es": "Colores",
+      "en": "Colors"
+    },
+    "q": {
+      "ru": "Какой цвет получится из синего и жёлтого?",
+      "es": "¿Qué color se obtiene al mezclar azul y amarillo?",
+      "en": "What color do you get from blue and yellow?"
+    },
+    "a": {
+      "ru": [
+        "Зелёный",
+        "Фиолетовый",
+        "Оранжевый",
+        "Красный"
+      ],
+      "es": [
+        "Verde",
+        "Morado",
+        "Naranja",
+        "Rojo"
+      ],
+      "en": [
+        "Green",
+        "Purple",
+        "Orange",
+        "Red"
+      ]
+    },
+    "c": 0
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "Математика",
+      "es": "Matemáticas",
+      "en": "Math"
+    },
+    "q": {
+      "ru": "Сколько будет 9 × 8?",
+      "es": "¿Cuánto es 9 × 8?",
+      "en": "What is 9 × 8?"
+    },
+    "a": {
+      "ru": [
+        "64",
+        "72",
+        "81",
+        "96"
+      ],
+      "es": [
+        "64",
+        "72",
+        "81",
+        "96"
+      ],
+      "en": [
+        "64",
+        "72",
+        "81",
+        "96"
+      ]
+    },
+    "c": 1
+  },
+  {
+    "difficulty": "easy",
+    "source": {
+      "ru": "География",
+      "es": "Geografía",
+      "en": "Geography"
+    },
+    "q": {
+      "ru": "Какая страна использует песо?",
+      "es": "¿Qué país usa el peso?",
+      "en": "Which country uses the peso?"
+    },
+    "a": {
+      "ru": [
+        "Мексика",
+        "Канада",
+        "Япония",
+        "Норвегия"
+      ],
+      "es": [
+        "México",
+        "Canadá",
+        "Japón",
+        "Noruega"
+      ],
+      "en": [
+        "Mexico",
+        "Canada",
+        "Japan",
+        "Norway"
+      ]
+    },
+    "c": 0
+  },
+  {
+    "difficulty": "medium",
+    "source": {
+      "ru": "IT",
+      "es": "IT",
+      "en": "IT"
+    },
+    "q": {
+      "ru": "Как называется самая маленькая единица информации?",
+      "es": "¿Cómo se llama la unidad más pequeña de información?",
+      "en": "What is the smallest unit of information called?"
+    },
+    "a": {
+      "ru": [
+        "Файл",
+        "Бит",
+        "Байт",
+        "Папка"
+      ],
+      "es": [
+        "Archivo",
+        "Bit",
+        "Byte",
+        "Carpeta"
+      ],
+      "en": [
+        "File",
+        "Bit",
+        "Byte",
+        "Folder"
+      ]
+    },
+    "c": 1
+  },
+  {
+    "difficulty": "medium",
+    "source": {
+      "ru": "Логика",
+      "es": "Lógica",
+      "en": "Logic"
+    },
+    "q": {
+      "ru": "Если все квадраты — фигуры, что верно?",
+      "es": "Si todos los cuadrados son figuras, ¿qué es correcto?",
+      "en": "If all squares are shapes, what is true?"
+    },
+    "a": {
+      "ru": [
+        "Некоторые фигуры — квадраты",
+        "Все фигуры — квадраты",
+        "Квадраты не фигуры",
+        "Фигуры исчезают"
+      ],
+      "es": [
+        "Algunas figuras son cuadrados",
+        "Todas las figuras son cuadrados",
+        "Los cuadrados no son figuras",
+        "Las figuras desaparecen"
+      ],
+      "en": [
+        "Some shapes are squares",
+        "All shapes are squares",
+        "Squares are not shapes",
+        "Shapes disappear"
+      ]
+    },
+    "c": 0
+  },
+  {
+    "difficulty": "hard",
+    "source": {
+      "ru": "История науки",
+      "es": "Historia de la ciencia",
+      "en": "History of science"
+    },
+    "q": {
+      "ru": "Какой прибор помогает увидеть очень далёкие объекты в космосе?",
+      "es": "¿Qué instrumento ayuda a ver objetos muy lejanos en el espacio?",
+      "en": "Which instrument helps us see very distant objects in space?"
+    },
+    "a": {
+      "ru": [
+        "Микроскоп",
+        "Телескоп",
+        "Барометр",
+        "Компас"
+      ],
+      "es": [
+        "Microscopio",
+        "Telescopio",
+        "Barómetro",
+        "Brújula"
+      ],
+      "en": [
+        "Microscope",
+        "Telescope",
+        "Barometer",
+        "Compass"
+      ]
+    },
+    "c": 1
+  }
+]

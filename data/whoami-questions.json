@@ -2,791 +2,949 @@
   {
     "id": 1,
     "ru": "Какие три слова лучше всего описывают твой характер?",
-    "es": "¿Qué tres palabras describen mejor tu carácter?"
+    "es": "¿Qué tres palabras describen mejor tu carácter?",
+    "en": "Which three words best describe your character?"
   },
   {
     "id": 2,
     "ru": "Какое качество в себе ты особенно ценишь?",
-    "es": "¿Qué cualidad en ti valoras especialmente?"
+    "es": "¿Qué cualidad en ti valoras especialmente?",
+    "en": "What quality in yourself do you especially value?"
   },
   {
     "id": 3,
     "ru": "Какое качество ты стараешься развивать сейчас?",
-    "es": "¿Qué cualidad estás tratando de desarrollar ahora?"
+    "es": "¿Qué cualidad estás tratando de desarrollar ahora?",
+    "en": "What quality are you trying to develop right now?"
   },
   {
     "id": 4,
     "ru": "Что тебя обычно успокаивает, когда тяжело?",
-    "es": "¿Qué suele tranquilizarte cuando estás pasando por algo difícil?"
+    "es": "¿Qué suele tranquilizarte cuando estás pasando por algo difícil?",
+    "en": "What usually calms you when things are difficult?"
   },
   {
     "id": 5,
     "ru": "Что делает тебя радостным в обычный день?",
-    "es": "¿Qué te da alegría en un día normal?"
+    "es": "¿Qué te da alegría en un día normal?",
+    "en": "What brings you joy on an ordinary day?"
   },
   {
     "id": 6,
     "ru": "Тебе легче говорить или слушать?",
-    "es": "¿Te resulta más fácil hablar o escuchar?"
+    "es": "¿Te resulta más fácil hablar o escuchar?",
+    "en": "Is it easier for you to speak or to listen?"
   },
   {
     "id": 7,
     "ru": "Как ты принимаешь важные решения?",
-    "es": "¿Cómo tomas decisiones importantes?"
+    "es": "¿Cómo tomas decisiones importantes?",
+    "en": "How do you make important decisions?"
   },
   {
     "id": 8,
     "ru": "Как ты реагируешь на стресс?",
-    "es": "¿Cómo reaccionas al estrés?"
+    "es": "¿Cómo reaccionas al estrés?",
+    "en": "How do you react to stress?"
   },
   {
     "id": 9,
     "ru": "Что помогает тебе оставаться мягким и добрым?",
-    "es": "¿Qué te ayuda a mantenerte amable y suave?"
+    "es": "¿Qué te ayuda a mantenerte amable y suave?",
+    "en": "What helps you remain gentle and kind?"
   },
   {
     "id": 10,
     "ru": "Какое воспоминание всегда греет твоё сердце?",
-    "es": "¿Qué recuerdo siempre calienta tu corazón?"
+    "es": "¿Qué recuerdo siempre calienta tu corazón?",
+    "en": "What memory always warms your heart?"
   },
   {
     "id": 11,
     "ru": "Что ты больше всего ценишь в людях?",
-    "es": "¿Qué valoras más en las personas?"
+    "es": "¿Qué valoras más en las personas?",
+    "en": "What do you value most in people?"
   },
   {
     "id": 12,
     "ru": "Какая черта делает человека «комфортным» для общения?",
-    "es": "¿Qué cualidad hace que una persona sea “cómoda” para conversar?"
+    "es": "¿Qué cualidad hace que una persona sea “cómoda” para conversar?",
+    "en": "What quality makes a person comfortable to talk with?"
   },
   {
     "id": 13,
     "ru": "Как ты показываешь, что тебе небезразличны другие?",
-    "es": "¿Cómo demuestras que te importan los demás?"
+    "es": "¿Cómo demuestras que te importan los demás?",
+    "en": "How do you show that you care about others?"
   },
   {
     "id": 14,
     "ru": "Как ты поддерживаешь друзей, когда им тяжело?",
-    "es": "¿Cómo apoyas a tus amigos cuando pasan por momentos difíciles?"
+    "es": "¿Cómo apoyas a tus amigos cuando pasan por momentos difíciles?",
+    "en": "How do you support friends when they are going through hard times?"
   },
   {
     "id": 15,
     "ru": "Что тебя больше всего трогает в братской любви?",
-    "es": "¿Qué te conmueve más del amor fraternal?"
+    "es": "¿Qué te conmueve más del amor fraternal?",
+    "en": "What touches you most about brotherly love?"
   },
   {
     "id": 16,
     "ru": "Что ты считаешь настоящей дружбой?",
-    "es": "¿Qué consideras una verdadera amistad?"
+    "es": "¿Qué consideras una verdadera amistad?",
+    "en": "What do you consider true friendship?"
   },
   {
     "id": 17,
     "ru": "Как ты проявляешь благодарность?",
-    "es": "¿Cómo expresas tu agradecimiento?"
+    "es": "¿Cómo expresas tu agradecimiento?",
+    "en": "How do you express gratitude?"
   },
   {
     "id": 18,
     "ru": "Что для тебя значит доверие?",
-    "es": "¿Qué significa para ti la confianza?"
+    "es": "¿Qué significa para ti la confianza?",
+    "en": "What does trust mean to you?"
   },
   {
     "id": 19,
     "ru": "Легко ли тебе открываться другим?",
-    "es": "¿Te resulta fácil abrirte a los demás?"
+    "es": "¿Te resulta fácil abrirte a los demás?",
+    "en": "Is it easy for you to open up to others?"
   },
   {
     "id": 20,
     "ru": "Как ты понимаешь слово «искренность»?",
-    "es": "¿Cómo entiendes la palabra “sinceridad”?"
+    "es": "¿Cómo entiendes la palabra “sinceridad”?",
+    "en": "How do you understand the word sincerity?"
   },
   {
     "id": 21,
     "ru": "Изобрази действия Ноя, когда он строил ковчег, несмотря на насмешки.",
-    "es": "Representa las acciones de Noé cuando construía el arca a pesar de las burlas."
+    "es": "Representa las acciones de Noé cuando construía el arca a pesar de las burlas.",
+    "en": "Act out Noah building the ark despite ridicule."
   },
   {
     "id": 22,
     "ru": "Как ты любишь проводить свободное время?",
-    "es": "¿Cómo te gusta pasar tu tiempo libre?"
+    "es": "¿Cómo te gusta pasar tu tiempo libre?",
+    "en": "How do you like to spend your free time?"
   },
   {
     "id": 23,
     "ru": "Что тебе приносит чувство спокойствия?",
-    "es": "¿Qué te da una sensación de paz?"
+    "es": "¿Qué te da una sensación de paz?",
+    "en": "What gives you a feeling of peace?"
   },
   {
     "id": 24,
     "ru": "Какой твой самый любимый момент дня?",
-    "es": "¿Cuál es tu momento favorito del día?"
+    "es": "¿Cuál es tu momento favorito del día?",
+    "en": "What is your favorite moment of the day?"
   },
   {
     "id": 25,
     "ru": "Что ты делаешь, чтобы восстановить силы?",
-    "es": "¿Qué haces para recuperar energías?"
+    "es": "¿Qué haces para recuperar energías?",
+    "en": "What do you do to regain your strength?"
   },
   {
     "id": 26,
     "ru": "Есть ли у тебя место, где ты чувствуешь мир?",
-    "es": "¿Tienes algún lugar donde sientes verdadera paz?"
+    "es": "¿Tienes algún lugar donde sientes verdadera paz?",
+    "en": "Do you have a place where you feel true peace?"
   },
   {
     "id": 27,
     "ru": "Какой самый добрый поступок для тебя сделали?",
-    "es": "¿Cuál es el gesto más amable que alguien ha tenido contigo?"
+    "es": "¿Cuál es el gesto más amable que alguien ha tenido contigo?",
+    "en": "What is the kindest thing someone has done for you?"
   },
   {
     "id": 28,
     "ru": "Какой маленький жест внимания тебя радует?",
-    "es": "¿Qué pequeño gesto de atención te alegra mucho?"
+    "es": "¿Qué pequeño gesto de atención te alegra mucho?",
+    "en": "What small gesture of attention makes you happy?"
   },
   {
     "id": 29,
     "ru": "Что для тебя значит «дом»?",
-    "es": "¿Qué significa para ti “hogar”?"
+    "es": "¿Qué significa para ti “hogar”?",
+    "en": "What does home mean to you?"
   },
   {
     "id": 30,
     "ru": "Какой подарок ты запомнил больше всего?",
-    "es": "¿Cuál es el regalo que más recuerdas?"
+    "es": "¿Cuál es el regalo que más recuerdas?",
+    "en": "What gift do you remember the most?"
   },
   {
     "id": 31,
     "ru": "Есть ли у тебя приятная ежедневная привычка?",
-    "es": "¿Tienes algún hábito diario que te guste?"
+    "es": "¿Tienes algún hábito diario que te guste?",
+    "en": "Do you have a pleasant daily habit?"
   },
   {
     "id": 32,
     "ru": "Какой жизненный урок изменил тебя сильнее всего?",
-    "es": "¿Qué lección de vida te cambió más?"
+    "es": "¿Qué lección de vida te cambió más?",
+    "en": "What life lesson changed you the most?"
   },
   {
     "id": 33,
     "ru": "Чему ты научился в последний год?",
-    "es": "¿Qué aprendiste en el último año?"
+    "es": "¿Qué aprendiste en el último año?",
+    "en": "What did you learn during the last year?"
   },
   {
     "id": 34,
     "ru": "Какой совет ты бы дал себе 10 лет назад?",
-    "es": "¿Qué consejo te darías a ti mismo de hace diez años?"
+    "es": "¿Qué consejo te darías a ti mismo de hace diez años?",
+    "en": "What advice would you give yourself from ten years ago?"
   },
   {
     "id": 35,
     "ru": "Был ли момент, когда ты почувствовал, что стал сильнее?",
-    "es": "¿Hubo un momento en el que sentiste que te hiciste más fuerte?"
+    "es": "¿Hubo un momento en el que sentiste que te hiciste más fuerte?",
+    "en": "Was there a moment when you felt you had become stronger?"
   },
   {
     "id": 36,
     "ru": "Что помогло тебе вырасти духовно и эмоционально?",
-    "es": "¿Qué te ayudó a crecer espiritual y emocionalmente?"
+    "es": "¿Qué te ayudó a crecer espiritual y emocionalmente?",
+    "en": "What helped you grow spiritually and emotionally?"
   },
   {
     "id": 37,
     "ru": "Какое решение в жизни ты считаешь мудрым?",
-    "es": "¿Qué decisión de tu vida consideras sabia?"
+    "es": "¿Qué decisión de tu vida consideras sabia?",
+    "en": "What decision in your life do you consider wise?"
   },
   {
     "id": 38,
     "ru": "Какой опыт помог тебе стать добрее?",
-    "es": "¿Qué experiencia te ayudó a ser más amable?"
+    "es": "¿Qué experiencia te ayudó a ser más amable?",
+    "en": "What experience helped you become kinder?"
   },
   {
     "id": 39,
     "ru": "Что помогло тебе научиться быть терпеливым?",
-    "es": "¿Qué te ayudó a aprender a ser paciente?"
+    "es": "¿Qué te ayudó a aprender a ser paciente?",
+    "en": "What helped you learn to be patient?"
   },
   {
     "id": 40,
     "ru": "Был ли человек, который сильно повлиял на тебя?",
-    "es": "¿Hubo una persona que influyó mucho en tu vida?"
+    "es": "¿Hubo una persona que influyó mucho en tu vida?",
+    "en": "Was there a person who strongly influenced your life?"
   },
   {
     "id": 41,
     "ru": "Какой момент из прошлого ты вспоминаешь с благодарностью?",
-    "es": "¿Qué momento del pasado recuerdas con gratitud?"
+    "es": "¿Qué momento del pasado recuerdas con gratitud?",
+    "en": "What moment from the past do you remember with gratitude?"
   },
   {
     "id": 42,
     "ru": "Изобрази действия Авраама, когда он был готов послушаться Иегову, не понимая всего.",
-    "es": "Representa las acciones de Abraham cuando obedeció a Jehová sin entenderlo todo."
+    "es": "Representa las acciones de Abraham cuando obedeció a Jehová sin entenderlo todo.",
+    "en": "Act out Abraham being ready to obey Jehovah without understanding everything."
   },
   {
     "id": 43,
     "ru": "Чему ты хотел бы научиться?",
-    "es": "¿Qué te gustaría aprender?"
+    "es": "¿Qué te gustaría aprender?",
+    "en": "What would you like to learn?"
   },
   {
     "id": 44,
     "ru": "Какая духовная цель вдохновляет тебя больше всего?",
-    "es": "¿Qué meta espiritual te inspira más?"
+    "es": "¿Qué meta espiritual te inspira más?",
+    "en": "What spiritual goal inspires you the most?"
   },
   {
     "id": 45,
     "ru": "О чём ты мечтаешь в хорошем, спокойном смысле?",
-    "es": "¿Con qué sueñas, en un sentido bueno y tranquilo?"
+    "es": "¿Con qué sueñas, en un sentido bueno y tranquilo?",
+    "en": "What do you dream about in a good, peaceful way?"
   },
   {
     "id": 46,
     "ru": "Что ты хотел бы улучшить в себе?",
-    "es": "¿Qué te gustaría mejorar en ti mismo?"
+    "es": "¿Qué te gustaría mejorar en ti mismo?",
+    "en": "What would you like to improve in yourself?"
   },
   {
     "id": 47,
     "ru": "Какой навык ты хотел бы развить?",
-    "es": "¿Qué habilidad te gustaría desarrollar?"
+    "es": "¿Qué habilidad te gustaría desarrollar?",
+    "en": "What skill would you like to develop?"
   },
   {
     "id": 48,
     "ru": "Какой маленький шаг ты сейчас делаешь к своим целям?",
-    "es": "¿Qué pequeño paso estás dando ahora hacia tus metas?"
+    "es": "¿Qué pequeño paso estás dando ahora hacia tus metas?",
+    "en": "What small step are you taking now toward your goals?"
   },
   {
     "id": 49,
     "ru": "Какой добрый проект ты хотел бы реализовать?",
-    "es": "¿Qué proyecto bondadoso te gustaría realizar?"
+    "es": "¿Qué proyecto bondadoso te gustaría realizar?",
+    "en": "What kind project would you like to carry out?"
   },
   {
     "id": 50,
     "ru": "Что для тебя означает «быть счастливым»?",
-    "es": "¿Qué significa para ti “ser feliz”?"
+    "es": "¿Qué significa para ti “ser feliz”?",
+    "en": "What does being happy mean to you?"
   },
   {
     "id": 51,
     "ru": "Как бы ты хотел служить другим в новом мире?",
-    "es": "¿Cómo te gustaría servir a los demás en el nuevo mundo?"
+    "es": "¿Cómo te gustaría servir a los demás en el nuevo mundo?",
+    "en": "How would you like to serve others in the new world?"
   },
   {
     "id": 52,
     "ru": "Каким ты хотел бы стать через 5–10 лет — духовно и личностно?",
-    "es": "¿Cómo te gustaría ser dentro de 5–10 años — espiritualmente y como persona?"
+    "es": "¿Cómo te gustaría ser dentro de 5–10 años — espiritualmente y como persona?",
+    "en": "What would you like to be like in 5–10 years, spiritually and personally?"
   },
   {
     "id": 53,
     "ru": "Какой библейский стих помог тебе в трудный момент?",
-    "es": "¿Qué texto bíblico te ayudó en un momento difícil?"
+    "es": "¿Qué texto bíblico te ayudó en un momento difícil?",
+    "en": "What Bible verse helped you during a difficult moment?"
   },
   {
     "id": 54,
     "ru": "Какая речь на собрании произвела на тебя сильное впечатление?",
-    "es": "¿Qué discurso en la reunión te impresionó mucho?"
+    "es": "¿Qué discurso en la reunión te impresionó mucho?",
+    "en": "What meeting talk made a strong impression on you?"
   },
   {
     "id": 55,
     "ru": "Как ты ощущал поддержку Иеговы в последнее время?",
-    "es": "¿Cómo has sentido el apoyo de Jehová últimamente?"
+    "es": "¿Cómo has sentido el apoyo de Jehová últimamente?",
+    "en": "How have you felt Jehovah’s support recently?"
   },
   {
     "id": 56,
     "ru": "Какой библейский персонаж вдохновляет тебя больше всего?",
-    "es": "¿Qué personaje bíblico te inspira más?"
+    "es": "¿Qué personaje bíblico te inspira más?",
+    "en": "Which Bible character inspires you the most?"
   },
   {
     "id": 57,
     "ru": "Какая духовная мысль чаще всего приходит тебе в голову?",
-    "es": "¿Qué pensamiento espiritual te viene más seguido a la mente?"
+    "es": "¿Qué pensamiento espiritual te viene más seguido a la mente?",
+    "en": "What spiritual thought comes to your mind most often?"
   },
   {
     "id": 58,
     "ru": "Что помогает тебе сохранять духовный баланс?",
-    "es": "¿Qué te ayuda a mantener el equilibrio espiritual?"
+    "es": "¿Qué te ayuda a mantener el equilibrio espiritual?",
+    "en": "What helps you keep spiritual balance?"
   },
   {
     "id": 59,
     "ru": "Какая духовная привычка тебе особенно дорога?",
-    "es": "¿Qué hábito espiritual aprecias especialmente?"
+    "es": "¿Qué hábito espiritual aprecias especialmente?",
+    "en": "What spiritual habit is especially precious to you?"
   },
   {
     "id": 60,
     "ru": "В какой момент служения ты чувствуешь радость сильнее всего?",
-    "es": "¿En qué momento del servicio sientes más alegría?"
+    "es": "¿En qué momento del servicio sientes más alegría?",
+    "en": "At what moment in the ministry do you feel the greatest joy?"
   },
   {
     "id": 61,
     "ru": "Какой совет из Библии ты чаще всего применяешь?",
-    "es": "¿Qué consejo bíblico aplicas con más frecuencia?"
+    "es": "¿Qué consejo bíblico aplicas con más frecuencia?",
+    "en": "What Bible advice do you apply most often?"
   },
   {
     "id": 62,
     "ru": "Что помогает тебе доверять Иегове больше?",
-    "es": "¿Qué te ayuda a confiar más en Jehová?"
+    "es": "¿Qué te ayuda a confiar más en Jehová?",
+    "en": "What helps you trust Jehovah more?"
   },
   {
     "id": 63,
     "ru": "Изобрази действия Моисея перед Красным морем.",
-    "es": "Representa las acciones de Moisés frente al mar Rojo."
+    "es": "Representa las acciones de Moisés frente al mar Rojo.",
+    "en": "Act out Moses standing before the Red Sea."
   },
   {
     "id": 64,
     "ru": "Какая черта Иеговы тебя особенно трогает?",
-    "es": "¿Qué cualidad de Jehová te conmueve más?"
+    "es": "¿Qué cualidad de Jehová te conmueve más?",
+    "en": "Which quality of Jehovah touches you especially?"
   },
   {
     "id": 65,
     "ru": "Какой псалом или песня из сборника тебе нравится больше?",
-    "es": "¿Qué salmo o cántico del cancionero te gusta más?"
+    "es": "¿Qué salmo o cántico del cancionero te gusta más?",
+    "en": "Which psalm or song from the songbook do you like the most?"
   },
   {
     "id": 66,
     "ru": "Что помогает тебе быть благодарным каждый день?",
-    "es": "¿Qué te ayuda a ser agradecido cada día?"
+    "es": "¿Qué te ayuda a ser agradecido cada día?",
+    "en": "What helps you be grateful every day?"
   },
   {
     "id": 67,
     "ru": "Какая духовная цель кажется тебе самой важной сейчас?",
-    "es": "¿Qué meta espiritual te parece la más importante ahora?"
+    "es": "¿Qué meta espiritual te parece la más importante ahora?",
+    "en": "What spiritual goal seems most important to you right now?"
   },
   {
     "id": 68,
     "ru": "Как ты чувствуешь заботу собрания?",
-    "es": "¿Cómo sientes el cariño de la congregación?"
+    "es": "¿Cómo sientes el cariño de la congregación?",
+    "en": "How do you feel the care of the congregation?"
   },
   {
     "id": 69,
     "ru": "Что помогает тебе сохранять спокойствие в сложных ситуациях?",
-    "es": "¿Qué te ayuda a mantener la calma en situaciones difíciles?"
+    "es": "¿Qué te ayuda a mantener la calma en situaciones difíciles?",
+    "en": "What helps you stay calm in difficult situations?"
   },
   {
     "id": 70,
     "ru": "Какая черта в людях даёт тебе чувство доверия?",
-    "es": "¿Qué cualidad en las personas te da confianza?"
+    "es": "¿Qué cualidad en las personas te da confianza?",
+    "en": "What quality in people gives you a sense of trust?"
   },
   {
     "id": 71,
     "ru": "Что делает тебя сильнее эмоционально?",
-    "es": "¿Qué te hace más fuerte emocionalmente?"
+    "es": "¿Qué te hace más fuerte emocionalmente?",
+    "en": "What makes you emotionally stronger?"
   },
   {
     "id": 72,
     "ru": "Есть ли у тебя мудрая фраза, которую ты повторяешь себе?",
-    "es": "¿Tienes una frase sabia que te repites a ti mismo?"
+    "es": "¿Tienes una frase sabia que te repites a ti mismo?",
+    "en": "Do you have a wise phrase that you repeat to yourself?"
   },
   {
     "id": 73,
     "ru": "Какой момент из детства ты вспоминаешь с теплом?",
-    "es": "¿Qué momento de tu infancia recuerdas con cariño?"
+    "es": "¿Qué momento de tu infancia recuerdas con cariño?",
+    "en": "What moment from your childhood do you remember with warmth?"
   },
   {
     "id": 74,
     "ru": "Как ты понимаешь слово «мудрость»?",
-    "es": "¿Cómo entiendes la palabra “sabiduría”?"
+    "es": "¿Cómo entiendes la palabra “sabiduría”?",
+    "en": "How do you understand the word wisdom?"
   },
   {
     "id": 75,
     "ru": "Что помогает тебе прощать быстрее?",
-    "es": "¿Qué te ayuda a perdonar más rápido?"
+    "es": "¿Qué te ayuda a perdonar más rápido?",
+    "en": "What helps you forgive more quickly?"
   },
   {
     "id": 76,
     "ru": "Каким ты становишься, когда сильно устаёшь?",
-    "es": "¿Cómo eres cuando estás muy cansado?"
+    "es": "¿Cómo eres cuando estás muy cansado?",
+    "en": "What are you like when you are very tired?"
   },
   {
     "id": 77,
     "ru": "Какие вещи помогают тебе чувствовать себя в безопасности?",
-    "es": "¿Qué cosas te hacen sentir seguro?"
+    "es": "¿Qué cosas te hacen sentir seguro?",
+    "en": "What things help you feel safe?"
   },
   {
     "id": 78,
     "ru": "Как ты справляешься с переживаниями?",
-    "es": "¿Cómo manejas las preocupaciones?"
+    "es": "¿Cómo manejas las preocupaciones?",
+    "en": "How do you deal with worries?"
   },
   {
     "id": 79,
     "ru": "Что помогает тебе сохранять искренность в общении?",
-    "es": "¿Qué te ayuda a mantener la sinceridad al comunicarte?"
+    "es": "¿Qué te ayuda a mantener la sinceridad al comunicarte?",
+    "en": "What helps you keep sincerity in communication?"
   },
   {
     "id": 80,
     "ru": "Что для тебя значит «быть настоящим»?",
-    "es": "¿Qué significa para ti “ser auténtico”?"
+    "es": "¿Qué significa para ti “ser auténtico”?",
+    "en": "What does being authentic mean to you?"
   },
   {
     "id": 81,
     "ru": "Что помогает тебе лучше понимать других?",
-    "es": "¿Qué te ayuda a comprender mejor a los demás?"
+    "es": "¿Qué te ayuda a comprender mejor a los demás?",
+    "en": "What helps you understand others better?"
   },
   {
     "id": 82,
     "ru": "Как ты учишься принимать слабости других людей?",
-    "es": "¿Cómo aprendes a aceptar las debilidades de los demás?"
+    "es": "¿Cómo aprendes a aceptar las debilidades de los demás?",
+    "en": "How do you learn to accept other people’s weaknesses?"
   },
   {
     "id": 83,
     "ru": "Какая черта делает тебя хорошим другом?",
-    "es": "¿Qué cualidad te convierte en un buen amigo?"
+    "es": "¿Qué cualidad te convierte en un buen amigo?",
+    "en": "What quality makes you a good friend?"
   },
   {
     "id": 84,
     "ru": "Изобрази действия Руфи, когда она решила остаться с Ноеминью.",
-    "es": "Representa las acciones de Rut cuando decidió quedarse con Noemí."
+    "es": "Representa las acciones de Rut cuando decidió quedarse con Noemí.",
+    "en": "Act out Ruth deciding to stay with Naomi."
   },
   {
     "id": 85,
     "ru": "Что для тебя самое ценное в жизни?",
-    "es": "¿Qué es lo más valioso para ti en la vida?"
+    "es": "¿Qué es lo más valioso para ti en la vida?",
+    "en": "What is the most precious thing in life for you?"
   },
   {
     "id": 86,
     "ru": "Какое качество ты хотел бы укрепить в себе в этом году?",
-    "es": "¿Qué cualidad te gustaría fortalecer en ti este año?"
+    "es": "¿Qué cualidad te gustaría fortalecer en ti este año?",
+    "en": "What quality would you like to strengthen in yourself this year?"
   },
   {
     "id": 87,
     "ru": "Какой мудрый совет ты получил от близких?",
-    "es": "¿Qué consejo sabio recibiste de alguien cercano?"
+    "es": "¿Qué consejo sabio recibiste de alguien cercano?",
+    "en": "What wise advice did you receive from someone close to you?"
   },
   {
     "id": 88,
     "ru": "Что ты считаешь своим маленьким жизненным достижением?",
-    "es": "¿Qué consideras un pequeño logro en tu vida?"
+    "es": "¿Qué consideras un pequeño logro en tu vida?",
+    "en": "What do you consider a small achievement in your life?"
   },
   {
     "id": 89,
     "ru": "Каким ты видишь себя через 20 лет в новом мире?",
-    "es": "¿Cómo te imaginas dentro de 20 años en el nuevo mundo?"
+    "es": "¿Cómo te imaginas dentro de 20 años en el nuevo mundo?",
+    "en": "How do you imagine yourself in 20 years in the new world?"
   },
   {
     "id": 90,
     "ru": "Каким навыкам ты хотел бы научить других?",
-    "es": "¿Qué habilidades te gustaría enseñar a otros?"
+    "es": "¿Qué habilidades te gustaría enseñar a otros?",
+    "en": "What skills would you like to teach others?"
   },
   {
     "id": 91,
     "ru": "Что бы ты хотел оставить после себя — даже небольшое?",
-    "es": "¿Qué te gustaría dejar como legado, aunque sea pequeño?"
+    "es": "¿Qué te gustaría dejar como legado, aunque sea pequeño?",
+    "en": "What would you like to leave behind, even something small?"
   },
   {
     "id": 92,
     "ru": "Какой дар или талант ты хотел бы развивать дальше?",
-    "es": "¿Qué don o talento te gustaría seguir desarrollando?"
+    "es": "¿Qué don o talento te gustaría seguir desarrollando?",
+    "en": "What gift or talent would you like to keep developing?"
   },
   {
     "id": 93,
     "ru": "Что тебя вдохновляет двигаться вперёд?",
-    "es": "¿Qué te inspira a seguir adelante?"
+    "es": "¿Qué te inspira a seguir adelante?",
+    "en": "What inspires you to keep moving forward?"
   },
   {
     "id": 94,
     "ru": "Какой момент ты мечтаешь пережить в новом мире?",
-    "es": "¿Qué momento sueñas vivir en el nuevo mundo?"
+    "es": "¿Qué momento sueñas vivir en el nuevo mundo?",
+    "en": "What moment do you dream of living in the new world?"
   },
   {
     "id": 95,
     "ru": "Какой новый навык ты хотел бы освоить там?",
-    "es": "¿Qué nueva habilidad te gustaría aprender allí?"
+    "es": "¿Qué nueva habilidad te gustaría aprender allí?",
+    "en": "What new skill would you like to learn there?"
   },
   {
     "id": 96,
     "ru": "О чём ты хотел бы побеседовать с воскресшими людьми?",
-    "es": "¿De qué te gustaría conversar con las personas resucitadas?"
+    "es": "¿De qué te gustaría conversar con las personas resucitadas?",
+    "en": "What would you like to talk about with resurrected people?"
   },
   {
     "id": 97,
     "ru": "Что бы ты хотел увидеть в сотворённой Земле?",
-    "es": "¿Qué te gustaría ver en la Tierra restaurada?"
+    "es": "¿Qué te gustaría ver en la Tierra restaurada?",
+    "en": "What would you like to see on the restored earth?"
   },
   {
     "id": 98,
     "ru": "Какое место ты мечтаешь посетить, когда мир станет идеальным?",
-    "es": "¿Qué lugar te gustaría visitar cuando el mundo sea perfecto?"
+    "es": "¿Qué lugar te gustaría visitar cuando el mundo sea perfecto?",
+    "en": "What place would you like to visit when the world is perfect?"
   },
   {
     "id": 99,
     "ru": "Что ты хотел бы построить или создать?",
-    "es": "¿Qué te gustaría construir o crear?"
+    "es": "¿Qué te gustaría construir o crear?",
+    "en": "What would you like to build or create?"
   },
   {
     "id": 100,
     "ru": "Какой добрый проект ты мечтаешь делать с друзьями?",
-    "es": "¿Qué proyecto bondadoso sueñas hacer con tus amigos?"
+    "es": "¿Qué proyecto bondadoso sueñas hacer con tus amigos?",
+    "en": "What kind project do you dream of doing with friends?"
   },
   {
     "id": 101,
     "ru": "Каким ты хочешь быть как христианин через много лет?",
-    "es": "¿Cómo te gustaría ser como cristiano dentro de muchos años?"
+    "es": "¿Cómo te gustaría ser como cristiano dentro de muchos años?",
+    "en": "What kind of Christian would you like to be many years from now?"
   },
   {
     "id": 102,
     "ru": "Что для тебя значит духовная зрелость?",
-    "es": "¿Qué significa para ti la madurez espiritual?"
+    "es": "¿Qué significa para ti la madurez espiritual?",
+    "en": "What does spiritual maturity mean to you?"
   },
   {
     "id": 103,
     "ru": "Какие качества ты хочешь сохранить навсегда?",
-    "es": "¿Qué cualidades quisieras conservar para siempre?"
+    "es": "¿Qué cualidades quisieras conservar para siempre?",
+    "en": "What qualities would you like to keep forever?"
   },
   {
     "id": 104,
     "ru": "О чём ты чаще всего молишься в последнее время?",
-    "es": "¿Por qué oras más frecuentemente últimamente?"
+    "es": "¿Por qué oras más frecuentemente últimamente?",
+    "en": "What do you most often pray about lately?"
   },
   {
     "id": 105,
     "ru": "Изобрази действия Давида перед встречей с Голиафом.",
-    "es": "Representa las acciones de David antes de enfrentarse a Goliat."
+    "es": "Representa las acciones de David antes de enfrentarse a Goliat.",
+    "en": "Act out David before meeting Goliath."
   },
   {
     "id": 106,
     "ru": "В какой ситуации ты особенно почувствовал себя смелым благодаря Иегове?",
-    "es": "¿En qué ocasión te sentiste especialmente valiente gracias a Jehová?"
+    "es": "¿En qué ocasión te sentiste especialmente valiente gracias a Jehová?",
+    "en": "In what situation did you feel especially brave thanks to Jehovah?"
   },
   {
     "id": 107,
     "ru": "Какая статья «Сторожевой башни» оказала на твою жизнь большое влияние?",
-    "es": "¿Qué artículo de la Atalaya ha causado una gran influencia en tu vida?"
+    "es": "¿Qué artículo de la Atalaya ha causado una gran influencia en tu vida?",
+    "en": "What Watchtower article has had a major influence on your life?"
   },
   {
     "id": 108,
     "ru": "Каким был момент, когда ты наконец принял важное решение или осознал что-то очень значимое?",
-    "es": "¿Cómo fue el momento en el que por fin tomaste una decisión épica o te diste cuenta de algo muy importante?"
+    "es": "¿Cómo fue el momento en el que por fin tomaste una decisión épica o te diste cuenta de algo muy importante?",
+    "en": "What was the moment like when you finally made an important decision or realized something very meaningful?"
   },
   {
     "id": 109,
     "ru": "Какое разъяснение наших убеждений ты особенно ценишь?",
-    "es": "¿Qué aclaración de nuestras creencias agradeces especialmente?"
+    "es": "¿Qué aclaración de nuestras creencias agradeces especialmente?",
+    "en": "What clarification of our beliefs do you especially appreciate?"
   },
   {
     "id": 110,
     "ru": "Как ты видел руку Иеговы в опасной ситуации или когда испытывал страх?",
-    "es": "¿Cómo has visto la mano de Jehová en una situación peligrosa o en la cual sentiste miedo?"
+    "es": "¿Cómo has visto la mano de Jehová en una situación peligrosa o en la cual sentiste miedo?",
+    "en": "How have you seen Jehovah’s hand in a dangerous situation or when you were afraid?"
   },
   {
     "id": 111,
     "ru": "Какая конкретная ситуация испытала твою верность, но ты вышел победителем?",
-    "es": "¿Qué situación en particular puso a prueba tu lealtad pero saliste victorioso?"
+    "es": "¿Qué situación en particular puso a prueba tu lealtad pero saliste victorioso?",
+    "en": "What specific situation tested your loyalty, but you came out victorious?"
   },
   {
     "id": 112,
     "ru": "Из пережитых тобой опытов какой вдохновляет тебя продолжать проповедовать?",
-    "es": "De las experiencias que has vivido, ¿cuál te motiva a seguir predicando?"
+    "es": "De las experiencias que has vivido, ¿cuál te motiva a seguir predicando?",
+    "en": "Which of your experiences motivates you to keep preaching?"
   },
   {
     "id": 113,
     "ru": "Если тебе однажды пришлось отдать всё, что у тебя было, чтобы помочь другому… что побудило тебя к этому? И как ты себя чувствовал?",
-    "es": "Si para ayudar a alguien más alguna vez le tuviste que dar todo lo que tenías, ¿qué te impulsó a hacerlo y cómo te sentiste?"
+    "es": "Si para ayudar a alguien más alguna vez le tuviste que dar todo lo que tenías, ¿qué te impulsó a hacerlo y cómo te sentiste?",
+    "en": "If you once had to give everything you had to help someone else, what moved you to do it, and how did you feel?"
   },
   {
     "id": 114,
     "ru": "Какое благословение ты получил после того, как помог брату?",
-    "es": "¿Qué bendición recibiste después de ayudar a un hermano?"
+    "es": "¿Qué bendición recibiste después de ayudar a un hermano?",
+    "en": "What blessing did you receive after helping a brother?"
   },
   {
     "id": 115,
     "ru": "Есть ли у тебя какой-то особый учебный проект на время памяти?",
-    "es": "¿Tienes algún proyecto de estudio específico durante la temporada de la conmemoración?"
+    "es": "¿Tienes algún proyecto de estudio específico durante la temporada de la conmemoración?",
+    "en": "Do you have a special study project for the Memorial season?"
   },
   {
     "id": 116,
     "ru": "Что было бы с твоей жизнью, если бы ты не познакомился с Иеговой?",
-    "es": "¿Qué habría sido de tu vida si no hubieras conocido a Jehová?"
+    "es": "¿Qué habría sido de tu vida si no hubieras conocido a Jehová?",
+    "en": "What would your life have been like if you had not come to know Jehovah?"
   },
   {
     "id": 117,
     "ru": "Как ты представляешь свой обычный день в новом мире?",
-    "es": "¿Cómo imaginas que será un día normal de tu vida en el nuevo mundo?"
+    "es": "¿Cómo imaginas que será un día normal de tu vida en el nuevo mundo?",
+    "en": "How do you imagine an ordinary day in the new world?"
   },
   {
     "id": 118,
     "ru": "С каким типом людей ты хотел бы пережить великую скорбь?",
-    "es": "¿Junto a qué tipo de persona te gustaría sobrevivir la gran tribulación?"
+    "es": "¿Junto a qué tipo de persona te gustaría sobrevivir la gran tribulación?",
+    "en": "With what kind of person would you like to survive the great tribulation?"
   },
   {
     "id": 119,
     "ru": "Что ты представляешь себе делать в первый день нового мира?",
-    "es": "¿Qué te imaginas haciendo en el primer día del nuevo mundo?"
+    "es": "¿Qué te imaginas haciendo en el primer día del nuevo mundo?",
+    "en": "What do you imagine doing on the first day of the new world?"
   },
   {
     "id": 120,
     "ru": "Из людей, которые ещё не стали свидетелями Иеговы, кто, по твоему мнению, мог бы быть хорошим Его слугой?",
-    "es": "De las personas que aún no son Testigos de Jehová, ¿quién crees que sería un muy buen siervo suyo?"
+    "es": "De las personas que aún no son Testigos de Jehová, ¿quién crees que sería un muy buen siervo suyo?",
+    "en": "Among people who are not yet Jehovah’s Witnesses, who do you think could become a very good servant of Jehovah?"
   },
   {
     "id": 121,
     "ru": "Какому библейскому персонажу ты хотел бы рассказать о своём опыте, живя в последние дни, чтобы укрепить его?",
-    "es": "¿A qué personaje bíblico quisieras fortalecer contándole tu experiencia al haber vivido en los últimos días?"
+    "es": "¿A qué personaje bíblico quisieras fortalecer contándole tu experiencia al haber vivido en los últimos días?",
+    "en": "Which Bible character would you like to strengthen by telling them your experience of living in the last days?"
   },
   {
     "id": 122,
     "ru": "Чего ты особенно ждёшь, став совершенным?",
-    "es": "¿Qué anhelas de llegar a ser una persona perfecta?"
+    "es": "¿Qué anhelas de llegar a ser una persona perfecta?",
+    "en": "What do you especially look forward to when you become perfect?"
   },
   {
     "id": 123,
     "ru": "Когда тебе нужен утешитель, какие действия других помогают тебе легче открыться и излить сердце?",
-    "es": "Cuando necesitas consuelo, ¿qué acciones de los demás hacen que te sea más fácil desahogarte y abrir tu corazón?"
+    "es": "Cuando necesitas consuelo, ¿qué acciones de los demás hacen que te sea más fácil desahogarte y abrir tu corazón?",
+    "en": "When you need comfort, what actions from others make it easier for you to open your heart?"
   },
   {
     "id": 124,
     "ru": "Что ты особенно помнишь о дне своего крещения?",
-    "es": "¿Qué recuerdas en especial del día de tu bautismo?"
+    "es": "¿Qué recuerdas en especial del día de tu bautismo?",
+    "en": "What do you especially remember about the day of your baptism?"
   },
   {
     "id": 125,
     "ru": "Какой совет ты дал бы новому в истине, чтобы он оставался верным, как и ты?",
-    "es": "¿Qué consejo le darías a alguien que es nuevo en la verdad para que logre mantenerse fiel al igual que tú?"
+    "es": "¿Qué consejo le darías a alguien que es nuevo en la verdad para que logre mantenerse fiel al igual que tú?",
+    "en": "What advice would you give to someone new in the truth so they can remain faithful like you?"
   },
   {
     "id": 126,
     "ru": "Изобрази действия Иосифа, когда он отказался согрешить, хотя был один.",
-    "es": "Representa las acciones de José cuando rechazó pecar aunque estaba solo."
+    "es": "Representa las acciones de José cuando rechazó pecar aunque estaba solo.",
+    "en": "Act out Joseph refusing to sin even though he was alone."
   },
   {
     "id": 127,
     "ru": "С каким типом брата ты мог бы разделить камеру в тюрьме?",
-    "es": "¿Con qué tipo de hermano crees que podrías compartir una celda en la prisión?"
+    "es": "¿Con qué tipo de hermano crees que podrías compartir una celda en la prisión?",
+    "en": "What kind of brother do you think you could share a prison cell with?"
   },
   {
     "id": 128,
     "ru": "Какой материальный предмет ты хотел бы сохранить после Армагеддона?",
-    "es": "¿Qué objeto material te gustaría que sobreviva al Armagedón?"
+    "es": "¿Qué objeto material te gustaría que sobreviva al Armagedón?",
+    "en": "What material object would you like to keep after Armageddon?"
   },
   {
     "id": 129,
     "ru": "Какой предмет ты хотел бы иметь во время великой скорби (кроме Библии)?",
-    "es": "¿Qué objeto te gustaría tener en la gran tribulación aparte de la Biblia?"
+    "es": "¿Qué objeto te gustaría tener en la gran tribulación aparte de la Biblia?",
+    "en": "What object would you like to have during the great tribulation besides the Bible?"
   },
   {
     "id": 130,
     "ru": "Каким изданием, по твоему мнению, мы будем пользоваться в новом мире?",
-    "es": "¿Qué publicación crees que seguiremos usando en el nuevo mundo?"
+    "es": "¿Qué publicación crees que seguiremos usando en el nuevo mundo?",
+    "en": "What publication do you think we will continue using in the new world?"
   },
   {
     "id": 131,
     "ru": "Насколько тебе трудно сказать человеку, что он делает то, что тебя раздражает?",
-    "es": "¿Qué tan difícil es para ti decirle a alguien que está haciendo algo que te molesta?"
+    "es": "¿Qué tan difícil es para ti decirle a alguien que está haciendo algo que te molesta?",
+    "en": "How hard is it for you to tell someone that they are doing something that bothers you?"
   },
   {
     "id": 132,
     "ru": "В каких обстоятельствах тебе легче узнать личность человека?",
-    "es": "¿En qué circunstancias es más fácil para ti conocer la personalidad de alguien?"
+    "es": "¿En qué circunstancias es más fácil para ti conocer la personalidad de alguien?",
+    "en": "In what circumstances is it easier for you to get to know someone’s personality?"
   },
   {
     "id": 133,
     "ru": "Какая важная информация тебе трудно спрашивать у того, с кем ты только познакомился?",
-    "es": "¿Qué información importante te resulta difícil preguntar a alguien que acabas de conocer?"
+    "es": "¿Qué información importante te resulta difícil preguntar a alguien que acabas de conocer?",
+    "en": "What important information is hard for you to ask someone you have just met?"
   },
   {
     "id": 134,
     "ru": "Что для тебя означает идеальный день?",
-    "es": "¿Qué significa para ti un día ideal?"
+    "es": "¿Qué significa para ti un día ideal?",
+    "en": "What does an ideal day mean to you?"
   },
   {
     "id": 135,
     "ru": "Из тем «Сторожевой башни» какие укрепляют твою связь с Иеговой или побуждают больше стараться?",
-    "es": "De los temas que analiza la Atalaya, ¿cuáles fortalecen tu relación con Jehová o te impulsan a esforzarte más?"
+    "es": "De los temas que analiza la Atalaya, ¿cuáles fortalecen tu relación con Jehová o te impulsan a esforzarte más?",
+    "en": "Which Watchtower topics strengthen your relationship with Jehovah or motivate you to try harder?"
   },
   {
     "id": 136,
     "ru": "Когда ты видишь названия речей собраний или статей «Сторожевой башни», какие темы ждёшь больше всего?",
-    "es": "Cuando ves los títulos de los discursos o artículos de la Atalaya, ¿qué temas esperas con más ansias?"
+    "es": "Cuando ves los títulos de los discursos o artículos de la Atalaya, ¿qué temas esperas con más ansias?",
+    "en": "When you see titles of meeting talks or Watchtower articles, which topics do you look forward to most?"
   },
   {
     "id": 137,
     "ru": "Если бы у тебя были идеальные обстоятельства, что бы ты хотел делать для Иеговы сейчас?",
-    "es": "Si tuvieras las circunstancias ideales, ¿qué te gustaría estar haciendo para Jehová ahora mismo?"
+    "es": "Si tuvieras las circunstancias ideales, ¿qué te gustaría estar haciendo para Jehová ahora mismo?",
+    "en": "If you had ideal circumstances, what would you like to be doing for Jehovah right now?"
   },
   {
     "id": 138,
     "ru": "Что помогло тебе понять, что ты в истине?",
-    "es": "¿Qué te ayudó a darte cuenta de que estás en la verdad?"
+    "es": "¿Qué te ayudó a darte cuenta de que estás en la verdad?",
+    "en": "What helped you realize that you are in the truth?"
   },
   {
     "id": 139,
     "ru": "Какова дата твоего посвящения?",
-    "es": "¿Cuál es la fecha de tu dedicación?"
+    "es": "¿Cuál es la fecha de tu dedicación?",
+    "en": "What is the date of your dedication?"
   },
   {
     "id": 140,
     "ru": "Из братьев, которых ты знаешь, кто бы ты хотел, чтобы был рядом с тобой в одной конгрегации?",
-    "es": "De los hermanos que conoces, ¿quién te gustaría que estuviera contigo en la misma congregación?"
+    "es": "De los hermanos que conoces, ¿quién te gustaría que estuviera contigo en la misma congregación?",
+    "en": "Among the brothers you know, who would you like to have with you in the same congregation?"
   },
   {
     "id": 141,
     "ru": "Что тебе было трудно в жизни в этом городе?",
-    "es": "¿Qué se te ha hecho difícil de vivir en esta ciudad?"
+    "es": "¿Qué se te ha hecho difícil de vivir en esta ciudad?",
+    "en": "What has been difficult for you about living in this city?"
   },
   {
     "id": 142,
     "ru": "Считаешь ли ты себя интровертом или экстравертом?",
-    "es": "¿Te consideras una persona introvertida o extrovertida?"
+    "es": "¿Te consideras una persona introvertida o extrovertida?",
+    "en": "Do you consider yourself introverted or extroverted?"
   },
   {
     "id": 143,
     "ru": "С кем, по твоему мнению, ты сохранишь крепкую дружбу после тысячи лет?",
-    "es": "¿Con quién consideras que seguirás teniendo una fuerte amistad después de los mil años?"
+    "es": "¿Con quién consideras que seguirás teniendo una fuerte amistad después de los mil años?",
+    "en": "Who do you think you will still have a strong friendship with after the thousand years?"
   },
   {
     "id": 144,
     "ru": "С каким типом братьев тебе нужно больше сблизиться и проводить больше времени?",
-    "es": "¿Con qué tipo de hermanos consideras que necesitas acercarte más y pasar más tiempo?"
+    "es": "¿Con qué tipo de hermanos consideras que necesitas acercarte más y pasar más tiempo?",
+    "en": "What kind of brothers do you think you need to get closer to and spend more time with?"
   },
   {
     "id": 145,
     "ru": "Тебе комфортнее работать в команде или индивидуально?",
-    "es": "¿Te sientes más cómodo trabajando en equipo o de forma individual?"
+    "es": "¿Te sientes más cómodo trabajando en equipo o de forma individual?",
+    "en": "Are you more comfortable working in a team or individually?"
   },
   {
     "id": 146,
     "ru": "Ты предпочитаешь танцевать или петь?",
-    "es": "¿Prefieres bailar o cantar?"
+    "es": "¿Prefieres bailar o cantar?",
+    "en": "Do you prefer dancing or singing?"
   },
   {
     "id": 147,
     "ru": "Изобрази действия Есфири, когда она шла к царю, несмотря на страх.",
-    "es": "Representa las acciones de Ester cuando fue ante el rey a pesar del miedo."
+    "es": "Representa las acciones de Ester cuando fue ante el rey a pesar del miedo.",
+    "en": "Act out Esther going before the king despite her fear."
   },
   {
     "id": 148,
     "ru": "Что ты больше всего ценишь в своём лучшем друге и как ты понял, что он — хорошая компания?",
-    "es": "¿Qué valoras más de tu mejor amigo y cómo te diste cuenta de que era buena compañía?"
+    "es": "¿Qué valoras más de tu mejor amigo y cómo te diste cuenta de que era buena compañía?",
+    "en": "What do you value most in your best friend, and how did you realize they were good association?"
   },
   {
     "id": 149,
     "ru": "Какие поступки внушают тебе уважение к человеку?",
-    "es": "¿Qué tipo de acciones te inspiran respeto por una persona?"
+    "es": "¿Qué tipo de acciones te inspiran respeto por una persona?",
+    "en": "What kind of actions make you respect a person?"
   },
   {
     "id": 150,
     "ru": "В какую эпоху истории народа Иеговы ты хотел бы жить?",
-    "es": "¿En qué época de la historia del pueblo de Jehová te hubiera gustado vivir?"
+    "es": "¿En qué época de la historia del pueblo de Jehová te hubiera gustado vivir?",
+    "en": "In what period of the history of Jehovah’s people would you have liked to live?"
   },
   {
     "id": 151,
     "ru": "Какие библейские персонажи, по твоему мнению, станут хорошими друзьями, когда познакомятся?",
-    "es": "¿Qué personajes bíblicos crees que serán buenos amigos cuando se conozcan?"
+    "es": "¿Qué personajes bíblicos crees que serán buenos amigos cuando se conozcan?",
+    "en": "Which Bible characters do you think will become good friends when they meet?"
   },
   {
     "id": 152,
     "ru": "Если бы ты мог вернуться назад во времени, что бы тебе хотелось начать делать раньше?",
-    "es": "Si pudieras volver en el tiempo, ¿qué te hubiera gustado empezar a hacer antes?"
+    "es": "Si pudieras volver en el tiempo, ¿qué te hubiera gustado empezar a hacer antes?",
+    "en": "If you could go back in time, what would you like to have started doing earlier?"
   },
   {
     "id": 153,
     "ru": "Какой урок ты извлёк во время пандемии?",
-    "es": "¿Qué lección aprendiste durante la pandemia?"
+    "es": "¿Qué lección aprendiste durante la pandemia?",
+    "en": "What lesson did you learn during the pandemic?"
   },
   {
     "id": 154,
     "ru": "Какое тёплое воспоминание о пандемии ты особенно ценишь?",
-    "es": "¿Qué recuerdo bonito de la pandemia atesoras especialmente?"
+    "es": "¿Qué recuerdo bonito de la pandemia atesoras especialmente?",
+    "en": "What warm memory from the pandemic do you especially treasure?"
   },
   {
     "id": 155,
     "ru": "Ты подружился с кем-то, кто сначала тебе не понравился, но со временем оказался хорошим другом?",
-    "es": "¿Te hiciste amigo de alguien que al principio no te agradó, pero con el tiempo resultó ser un buen amigo?"
+    "es": "¿Te hiciste amigo de alguien que al principio no te agradó, pero con el tiempo resultó ser un buen amigo?",
+    "en": "Did you become friends with someone you did not like at first, but who later became a good friend?"
   },
   {
     "id": 156,
     "ru": "Когда ты пришёл в эту конгрегацию, что ты особенно помнишь о человеке, который тебя приветствовал и заставил почувствовать себя хорошо?",
-    "es": "Cuando llegaste a esta congregación, ¿qué recuerdas especialmente de quien te dio la bienvenida y te hizo sentir bien?"
+    "es": "Cuando llegaste a esta congregación, ¿qué recuerdas especialmente de quien te dio la bienvenida y te hizo sentir bien?",
+    "en": "When you came to this congregation, what do you especially remember about the person who welcomed you and made you feel good?"
   },
   {
     "id": 157,
     "ru": "Что помогает тебе избегать пересудов?",
-    "es": "¿Qué te ayuda a evitar el chisme?"
+    "es": "¿Qué te ayuda a evitar el chisme?",
+    "en": "What helps you avoid gossip?"
   },
   {
     "id": 158,
     "ru": "Изобрази действия Иисуса, когда он проявлял сострадание к людям.",
-    "es": "Representa las acciones de Jesús cuando mostraba compasión."
+    "es": "Representa las acciones de Jesús cuando mostraba compasión.",
+    "en": "Act out Jesus showing compassion to people."
   }
 ]

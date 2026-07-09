@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "6.0.0",
-  "description": "SMQ Games PWA with Firebase auth, fullscreen games, stable boards, Bible quiz, and Who Am I host-led party game.",
+  "version": "10.0.0",
+  "description": "SMQ Games PWA with Firebase auth, fullscreen games, stable boards, multilingual Bible quizzes, simplified logo, and in-app PWA update button.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
