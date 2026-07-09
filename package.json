@@ -1,7 +1,7 @@
 {
   "name": "online-games-site",
-  "version": "10.0.0",
-  "description": "SMQ Games PWA with Firebase auth, fullscreen games, stable boards, multilingual Bible quizzes, simplified logo, and in-app PWA update button.",
+  "version": "11.0.0",
+  "description": "SMQ Games PWA with profile playlist, readable quizzes, and improved checkers movement.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

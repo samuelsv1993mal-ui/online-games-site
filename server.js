@@ -596,9 +596,23 @@ function validateCheckersMove(board, player, fr, fc, tr, tc) {
   const piece = board[fr][fc];
   if (!piece || piece.p !== player || board[tr][tc] || (tr + tc) % 2 !== 1) return null;
   const dr = tr - fr, dc = tc - fc;
-  const dirs = piece.k ? [1, -1] : [player === 0 ? -1 : 1];
-  if (Math.abs(dc) === 1 && dirs.includes(dr)) return { capture: null };
-  if (Math.abs(dc) === 2 && dirs.includes(dr / 2)) {
+  if (Math.abs(dr) !== Math.abs(dc) || dr === 0) return null;
+
+  if (piece.k) {
+    const sr = Math.sign(dr), sc = Math.sign(dc);
+    let enemy = null;
+    for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
+      const current = board[r][c];
+      if (!current) continue;
+      if (current.p === player) return null;
+      if (enemy) return null;
+      enemy = [r, c];
+    }
+    return { capture: enemy };
+  }
+
+  if (Math.abs(dr) === 1 && Math.abs(dc) === 1 && dr === (player === 0 ? -1 : 1)) return { capture: null };
+  if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
     const mr = fr + dr / 2, mc = fc + dc / 2;
     if (board[mr][mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
   }
@@ -610,18 +624,23 @@ function legalCheckersMoves(board, player) {
   for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
     const piece = board[r][c];
     if (!piece || piece.p !== player) continue;
-    for (const dr of piece.k ? [-1, 1] : [player === 0 ? -1 : 1]) for (const dc of [-1, 1]) {
-      if (validateCheckersMove(board, player, r, c, r + dr, c + dc)) moves.push({ from: [r,c], to: [r+dr,c+dc] });
-      if (validateCheckersMove(board, player, r, c, r + 2*dr, c + 2*dc)) moves.push({ from: [r,c], to: [r+2*dr,c+2*dc] });
+    if (piece.k) {
+      for (const dr of [-1, 1]) for (const dc of [-1, 1]) for (let step = 1; step < 8; step++) {
+        const tr = r + dr * step, tc = c + dc * step;
+        const move = validateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc] });
+      }
+    } else {
+      for (const dc of [-1, 1]) {
+        const tr = r + (player === 0 ? -1 : 1), tc = c + dc;
+        if (validateCheckersMove(board, player, r, c, tr, tc)) moves.push({ from: [r,c], to: [tr,tc] });
+      }
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
+        if (validateCheckersMove(board, player, r, c, r + dr, c + dc)) moves.push({ from: [r,c], to: [r+dr,c+dc] });
+      }
     }
   }
   return moves;
-}
-
-function countPieces(board, player) {
-  let count = 0;
-  for (const row of board) for (const piece of row) if (piece && piece.p === player) count++;
-  return count;
 }
 
 function nimAction(room, index, action) {

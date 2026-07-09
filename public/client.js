@@ -3,21 +3,21 @@ const $ = (id) => document.getElementById(id);
 const I18N = {
   ru: {
     appTitle:'SMQ Games', appSubtitle:'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle:'Войти через Google', continueGuest:'Продолжить как гость', googleHint:'Google сохраняет фото, цвет профиля, настройки и историю игр.', installApp:'Скачать как приложение', installUnavailable:'Установка появится после открытия сайта в Chrome/браузере и обновления страницы.', installReady:'Можно установить SMQ Games как приложение.', appInstalled:'SMQ Games установлено.', updateApp:'Обновить приложение', updateChecking:'Проверяем обновление...', updateReady:'Обновляем приложение...',
-    hello:'Привет', mobileGame:'Игровая арена', chooseGame:'Выбери игру', chooseMode:'Играй один, с компьютером, с друзьями или командами.', newGame:'Новая игра', game:'Игра', mode:'Режим', onlineRoom:'Онлайн-комната', playComputer:'С компьютером', createRoom:'Создать комнату', joinRoom:'Войти в комнату', joinAsPlayer:'Играть', watch:'Наблюдать', history:'История игр', refresh:'Обновить', spectators:'Наблюдатели', copyPlayerLink:'Ссылка игроку', copySpectatorLink:'Ссылка зрителю', newRound:'Новая партия', profile:'Профиль', changePhoto:'Изменить фото', resetPhoto:'Сбросить', name:'Имя', profileColor:'Цвет игрока', language:'Язык', fontSize:'Размер шрифта', small:'Маленький', medium:'Средний', large:'Большой', xlarge:'Очень большой', theme:'Тема', darkTheme:'Тёмная', lightTheme:'Светлая', music:'Музыка', musicOn:'Включить музыку', musicOff:'Выключить музыку', volume:'Громкость', uploadMusic:'Добавить свою музыку', saveProfile:'Сохранить профиль', logout:'Выйти', continue:'Продолжить',
+    hello:'Привет', mobileGame:'Игровая арена', chooseGame:'Выбери игру', chooseMode:'Играй один, с компьютером, с друзьями или командами.', newGame:'Новая игра', game:'Игра', mode:'Режим', onlineRoom:'Онлайн-комната', playComputer:'С компьютером', createRoom:'Создать комнату', joinRoom:'Войти в комнату', joinAsPlayer:'Играть', watch:'Наблюдать', history:'История игр', refresh:'Обновить', spectators:'Наблюдатели', copyPlayerLink:'Ссылка игроку', copySpectatorLink:'Ссылка зрителю', newRound:'Новая партия', profile:'Профиль', changePhoto:'Изменить фото', resetPhoto:'Сбросить', name:'Имя', profileColor:'Цвет игрока', language:'Язык', fontSize:'Размер шрифта', small:'Маленький', medium:'Средний', large:'Большой', xlarge:'Очень большой', theme:'Тема', darkTheme:'Тёмная', lightTheme:'Светлая', music:'Музыка', musicOn:'Включить музыку', musicOff:'Выключить музыку', volume:'Громкость', uploadMusic:'Добавить свою музыку', saveProfile:'Сохранить профиль', logout:'Выйти', continue:'Продолжить', myPlaylist:'Мой плейлист', addSong:'Добавить песню', songTitle:'Название песни', audioLink:'Ссылка на аудио', delete:'Удалить', playlistEmpty:'Плейлист пока пуст. Добавьте песню.', playlistLimit:'Можно добавить не больше 10 песен', nowPlaying:'Сейчас играет', previousSong:'Предыдущая песня', nextSong:'Следующая песня', play:'Play', pause:'Pause', invalidSong:'Добавьте название и ссылку на аудио',
     copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', source:'Источник', easy:'Лёгкий', hard:'Сложный', whoamiHost:'Ведущий', whoamiCurrent:'Сейчас отвечает', whoamiQuestion:'Вопрос', whoamiGo:'ГО', whoamiSpinning:'Рулетка крутится...', whoamiAnswer:'Ответить', whoamiPass:'Передать вопрос', whoamiConfirm:'Засчитать ответ', whoamiReject:'Не засчитывать', whoamiAssignHost:'Назначить ведущим', whoamiFinish:'Завершить игру', whoamiWaitingHost:'Ждём решение ведущего', whoamiPoints:'Очки', whoamiPassHint:'Передача забирает очки, но следующий ответ приносит больше.', whoamiChoosePlayer:'Кому передать?', originalGetsNew:'получает новый вопрос, если ответ засчитан.', 
     games:{ rps:['Камень · Ножницы · Бумага','Быстрая дуэль'], ttt:['Крестики-нолики','Цветные X и O'], dice:['Кубики','У кого выпадет больше'], connect4:['Четыре в ряд','Собери линию'], memory:['Мемори','Найди пары'], twentyone:['21','Дойди ровно до 21'], reaction:['Реакция','Кто быстрее'], checkers:['Шашки','Стратегия 8×8'], nim:['Ним','Логика с палочками'], code:['Взлом кода','Логика и дедукция'], millionaire:['Кто хочет стать миллионером','Библейские вопросы до 10 игроков'], teamquiz:['Командная викторина','2, 3 или 4 команды'], mathrace:['Математическая гонка','Быстрый счёт до 10 игроков'], biblequiz:['Что? Где? Когда? — Библия','Библейские вопросы разной сложности'], whoami:['Кто я?','Ведущий, вопросы, передачи и очки'] },
     moves:{ rock:'Камень', paper:'Бумага', scissors:'Ножницы' }
   },
   es: {
     appTitle:'SMQ Games', appSubtitle:'Juega online con amigos, contra la computadora o mira una sala.', loginGoogle:'Entrar con Google', continueGuest:'Continuar como invitado', googleHint:'Google guarda tu foto, color, ajustes e historial.', installApp:'Descargar como app', installUnavailable:'La instalación aparecerá después de abrir el sitio en Chrome/navegador y actualizar.', installReady:'Puedes instalar SMQ Games como app.', appInstalled:'SMQ Games instalado.', updateApp:'Actualizar app', updateChecking:'Buscando actualización...', updateReady:'Actualizando la app...',
-    hello:'Hola', mobileGame:'Arena de juegos', chooseGame:'Elige un juego', chooseMode:'Juega solo, contra computadora, con amigos o en equipos.', newGame:'Nuevo juego', game:'Juego', mode:'Modo', onlineRoom:'Sala online', playComputer:'Computadora', createRoom:'Crear sala', joinRoom:'Entrar a sala', joinAsPlayer:'Jugar', watch:'Observar', history:'Historial', refresh:'Actualizar', spectators:'Observadores', copyPlayerLink:'Link jugador', copySpectatorLink:'Link observador', newRound:'Nueva partida', profile:'Perfil', changePhoto:'Cambiar foto', resetPhoto:'Restablecer', name:'Nombre', profileColor:'Color del jugador', language:'Idioma', fontSize:'Tamaño de letra', small:'Pequeño', medium:'Mediano', large:'Grande', xlarge:'Muy grande', theme:'Tema', darkTheme:'Oscuro', lightTheme:'Claro', music:'Música', musicOn:'Activar música', musicOff:'Apagar música', volume:'Volumen', uploadMusic:'Agregar tu música', saveProfile:'Guardar perfil', logout:'Salir', continue:'Continuar',
+    hello:'Hola', mobileGame:'Arena de juegos', chooseGame:'Elige un juego', chooseMode:'Juega solo, contra computadora, con amigos o en equipos.', newGame:'Nuevo juego', game:'Juego', mode:'Modo', onlineRoom:'Sala online', playComputer:'Computadora', createRoom:'Crear sala', joinRoom:'Entrar a sala', joinAsPlayer:'Jugar', watch:'Observar', history:'Historial', refresh:'Actualizar', spectators:'Observadores', copyPlayerLink:'Link jugador', copySpectatorLink:'Link observador', newRound:'Nueva partida', profile:'Perfil', changePhoto:'Cambiar foto', resetPhoto:'Restablecer', name:'Nombre', profileColor:'Color del jugador', language:'Idioma', fontSize:'Tamaño de letra', small:'Pequeño', medium:'Mediano', large:'Grande', xlarge:'Muy grande', theme:'Tema', darkTheme:'Oscuro', lightTheme:'Claro', music:'Música', musicOn:'Activar música', musicOff:'Apagar música', volume:'Volumen', uploadMusic:'Agregar tu música', saveProfile:'Guardar perfil', logout:'Salir', continue:'Continuar', myPlaylist:'Mi playlist', addSong:'Agregar canción', songTitle:'Nombre de la canción', audioLink:'Enlace de audio', delete:'Eliminar', playlistEmpty:'La playlist está vacía. Agrega una canción.', playlistLimit:'Puedes agregar máximo 10 canciones', nowPlaying:'Reproduciendo ahora', previousSong:'Canción anterior', nextSong:'Siguiente canción', play:'Play', pause:'Pause', invalidSong:'Agrega el nombre y el enlace de audio',
     copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', source:'Fuente', easy:'Fácil', hard:'Difícil', whoamiHost:'Conductor', whoamiCurrent:'Responde ahora', whoamiQuestion:'Pregunta', whoamiGo:'GO', whoamiSpinning:'La ruleta gira...', whoamiAnswer:'Responder', whoamiPass:'Pasar pregunta', whoamiConfirm:'Aceptar respuesta', whoamiReject:'No aceptar', whoamiAssignHost:'Hacer conductor', whoamiFinish:'Terminar juego', whoamiWaitingHost:'Esperando al conductor', whoamiPoints:'Puntos', whoamiPassHint:'Pasar resta puntos, pero el siguiente acierto da más.', whoamiChoosePlayer:'¿A quién pasar?', originalGetsNew:'recibe otra pregunta si se acepta la respuesta.', 
     games:{ rps:['Piedra · Papel · Tijeras','Duelo rápido'], ttt:['Tres en raya','X y O de color'], dice:['Dados','Gana el número mayor'], connect4:['Cuatro en línea','Conecta una línea'], memory:['Memoria','Encuentra pares'], twentyone:['21','Llega a 21'], reaction:['Reacción','El más rápido'], checkers:['Damas','Estrategia 8×8'], nim:['Nim','Lógica con palitos'], code:['Romper el código','Deducción lógica'], millionaire:['¿Quién quiere ser millonario?','Preguntas bíblicas hasta 10 jugadores'], teamquiz:['Trivia por equipos','2, 3 o 4 equipos'], mathrace:['Carrera matemática','Cálculo rápido'], biblequiz:['¿Qué? ¿Dónde? ¿Cuándo? — Biblia','Preguntas bíblicas por dificultad'], whoami:['¿Quién soy?','Conductor, preguntas, pases y puntos'] },
     moves:{ rock:'Piedra', paper:'Papel', scissors:'Tijeras' }
   },
   en: {
     appTitle:'SMQ Games', appSubtitle:'Play online with friends, against the computer, or watch a room.', loginGoogle:'Sign in with Google', continueGuest:'Continue as guest', googleHint:'Google saves your photo, color, settings, and history.', installApp:'Download as app', installUnavailable:'Install will appear after opening the site in Chrome/browser and refreshing.', installReady:'You can install SMQ Games as an app.', appInstalled:'SMQ Games installed.', updateApp:'Update app', updateChecking:'Checking for update...', updateReady:'Updating app...',
-    hello:'Hello', mobileGame:'Game arena', chooseGame:'Choose a game', chooseMode:'Play solo, vs computer, with friends, or in teams.', newGame:'New game', game:'Game', mode:'Mode', onlineRoom:'Online room', playComputer:'Computer', createRoom:'Create room', joinRoom:'Join room', joinAsPlayer:'Play', watch:'Watch', history:'Game history', refresh:'Refresh', spectators:'Spectators', copyPlayerLink:'Player link', copySpectatorLink:'Spectator link', newRound:'New round', profile:'Profile', changePhoto:'Change photo', resetPhoto:'Reset', name:'Name', profileColor:'Player color', language:'Language', fontSize:'Font size', small:'Small', medium:'Medium', large:'Large', xlarge:'Extra large', theme:'Theme', darkTheme:'Dark', lightTheme:'Light', music:'Music', musicOn:'Turn music on', musicOff:'Turn music off', volume:'Volume', uploadMusic:'Add your music', saveProfile:'Save profile', logout:'Log out', continue:'Continue',
+    hello:'Hello', mobileGame:'Game arena', chooseGame:'Choose a game', chooseMode:'Play solo, vs computer, with friends, or in teams.', newGame:'New game', game:'Game', mode:'Mode', onlineRoom:'Online room', playComputer:'Computer', createRoom:'Create room', joinRoom:'Join room', joinAsPlayer:'Play', watch:'Watch', history:'Game history', refresh:'Refresh', spectators:'Spectators', copyPlayerLink:'Player link', copySpectatorLink:'Spectator link', newRound:'New round', profile:'Profile', changePhoto:'Change photo', resetPhoto:'Reset', name:'Name', profileColor:'Player color', language:'Language', fontSize:'Font size', small:'Small', medium:'Medium', large:'Large', xlarge:'Extra large', theme:'Theme', darkTheme:'Dark', lightTheme:'Light', music:'Music', musicOn:'Turn music on', musicOff:'Turn music off', volume:'Volume', uploadMusic:'Add your music', saveProfile:'Save profile', logout:'Log out', continue:'Continue', myPlaylist:'My playlist', addSong:'Add song', songTitle:'Song title', audioLink:'Audio link', delete:'Delete', playlistEmpty:'Your playlist is empty. Add a song.', playlistLimit:'You can add up to 10 songs only', nowPlaying:'Now playing', previousSong:'Previous song', nextSong:'Next song', play:'Play', pause:'Pause', invalidSong:'Add the song title and audio link',
     copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', source:'Source', easy:'Easy', hard:'Hard', whoamiHost:'Host', whoamiCurrent:'Answering now', whoamiQuestion:'Question', whoamiGo:'GO', whoamiSpinning:'Roulette is spinning...', whoamiAnswer:'Answer', whoamiPass:'Pass question', whoamiConfirm:'Confirm answer', whoamiReject:'Reject', whoamiAssignHost:'Make host', whoamiFinish:'Finish game', whoamiWaitingHost:'Waiting for host', whoamiPoints:'Points', whoamiPassHint:'Passing costs points, but the next answer gives more.', whoamiChoosePlayer:'Pass to whom?', originalGetsNew:'gets a new question if the answer is accepted.', 
     games:{ rps:['Rock · Paper · Scissors','Fast duel'], ttt:['Tic Tac Toe','Colored X and O'], dice:['Dice Duel','Highest roll wins'], connect4:['Four in a Row','Connect a line'], memory:['Memory Match','Find pairs'], twentyone:['Twenty One','Reach 21 exactly'], reaction:['Reaction Tap','Fastest wins'], checkers:['Checkers','8×8 strategy'], nim:['Nim','Logic with sticks'], code:['Code Breaker','Logic deduction'], millionaire:['Who Wants to Be a Millionaire','Bible questions for up to 10 players'], teamquiz:['Team Quiz','2, 3 or 4 teams'], mathrace:['Math Race','Fast arithmetic'], biblequiz:['What? Where? When? — Bible','Bible questions by difficulty'], whoami:['Who am I?','Host, questions, passes and points'] },
     moves:{ rock:'Rock', paper:'Paper', scissors:'Scissors' }
@@ -48,6 +48,8 @@ const state = {
   selectedChecker:null,
   musicOn: localStorage.getItem('smq_music_on') === '1',
   history: [],
+  playlist: [],
+  playlistIndex: 0,
   deferredInstallPrompt:null,
   isStandalone: window.matchMedia?.('(display-mode: standalone)').matches || window.navigator.standalone === true
 };
@@ -176,7 +178,7 @@ function applyI18n() {
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
   $('quickLang').value = state.lang; $('profileLang').value = state.lang;
   $('toggleMusicBtn').textContent = state.musicOn ? t('musicOff') : t('musicOn');
-  renderGameCards(); renderHistory(); if (state.room) renderRoom(state.room);
+  renderGameCards(); renderHistory(); renderPlaylist(); if (state.room) renderRoom(state.room);
 }
 
 function applyThemeAndFont() {
@@ -200,6 +202,106 @@ function updateProfileUI() {
   const color = u.settings?.color || u.color || state.color;
   state.color = color; $('profileColor').value = color;
   setAvatar($('headerAvatar'), $('avatarFallback'), u.avatarUrl, u.name); setAvatar($('profileAvatar'), $('profileFallback'), u.avatarUrl, u.name);
+  loadPlaylist();
+  renderPlaylist();
+}
+
+
+function playlistKey() {
+  const id = state.user?.id || guestId();
+  return `smq_playlist_${id}`;
+}
+
+function loadPlaylist() {
+  try {
+    const raw = localStorage.getItem(playlistKey());
+    const parsed = raw ? JSON.parse(raw) : [];
+    state.playlist = Array.isArray(parsed) ? parsed.filter(song => song && song.title && song.url).slice(0, 10) : [];
+  } catch (_) { state.playlist = []; }
+  if (state.playlistIndex >= state.playlist.length) state.playlistIndex = Math.max(0, state.playlist.length - 1);
+}
+
+function savePlaylist() {
+  localStorage.setItem(playlistKey(), JSON.stringify(state.playlist.slice(0, 10)));
+}
+
+function setPlaylistAudio(index, autoplay = false) {
+  if (!state.playlist.length) { renderPlaylist(); return; }
+  const safeIndex = ((index % state.playlist.length) + state.playlist.length) % state.playlist.length;
+  state.playlistIndex = safeIndex;
+  const song = state.playlist[safeIndex];
+  const audio = $('playlistAudio');
+  if (!audio || !song) return;
+  if (audio.src !== new URL(song.url, location.href).href) audio.src = song.url;
+  renderPlaylist();
+  if (autoplay) audio.play().catch(() => toast(t('invalidSong')));
+}
+
+function renderPlaylist() {
+  const list = $('playlistList');
+  if (!list) return;
+  const now = $('playlistNow');
+  const playBtn = $('playlistPlayBtn');
+  const audio = $('playlistAudio');
+  if (!state.playlist.length) {
+    list.innerHTML = `<div class="playlist-empty">${t('playlistEmpty')}</div>`;
+    if (now) now.textContent = '—';
+    if (playBtn) { playBtn.textContent = t('play'); playBtn.disabled = true; }
+    return;
+  }
+  if (playBtn) { playBtn.disabled = false; playBtn.textContent = audio && !audio.paused ? t('pause') : t('play'); }
+  const current = state.playlist[state.playlistIndex] || state.playlist[0];
+  if (now) now.textContent = current?.title || '—';
+  list.innerHTML = state.playlist.map((song, index) => `
+    <div class="playlist-item ${index === state.playlistIndex ? 'active' : ''}">
+      <button class="playlist-select" type="button" data-song-index="${index}">
+        <span>${index + 1}</span><b>${escapeHtml(song.title)}</b>
+      </button>
+      <button class="playlist-delete" type="button" data-delete-song="${index}">${t('delete')}</button>
+    </div>`).join('');
+  list.querySelectorAll('[data-song-index]').forEach(btn => btn.onclick = () => setPlaylistAudio(Number(btn.dataset.songIndex), true));
+  list.querySelectorAll('[data-delete-song]').forEach(btn => btn.onclick = () => removePlaylistSong(Number(btn.dataset.deleteSong)));
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function addPlaylistSong() {
+  loadPlaylist();
+  if (state.playlist.length >= 10) return toast(t('playlistLimit'));
+  const title = $('songTitleInput')?.value.trim();
+  const url = $('songUrlInput')?.value.trim();
+  if (!title || !url) return toast(t('invalidSong'));
+  state.playlist.push({ title: title.slice(0, 80), url: url.slice(0, 1200), createdAt: Date.now() });
+  savePlaylist();
+  $('songTitleInput').value = '';
+  $('songUrlInput').value = '';
+  setPlaylistAudio(state.playlist.length - 1, false);
+  renderPlaylist();
+}
+
+function removePlaylistSong(index) {
+  loadPlaylist();
+  if (index < 0 || index >= state.playlist.length) return;
+  state.playlist.splice(index, 1);
+  if (state.playlistIndex >= state.playlist.length) state.playlistIndex = Math.max(0, state.playlist.length - 1);
+  savePlaylist();
+  const audio = $('playlistAudio');
+  if (!state.playlist.length && audio) { audio.pause(); audio.removeAttribute('src'); audio.load(); }
+  else setPlaylistAudio(state.playlistIndex, false);
+  renderPlaylist();
+}
+
+function playlistNext() { if (state.playlist.length) setPlaylistAudio(state.playlistIndex + 1, true); }
+function playlistPrev() { if (state.playlist.length) setPlaylistAudio(state.playlistIndex - 1, true); }
+function playlistPlayPause() {
+  if (!state.playlist.length) return;
+  const audio = $('playlistAudio');
+  if (!audio) return;
+  if (!audio.src) setPlaylistAudio(state.playlistIndex, false);
+  if (audio.paused) audio.play().then(renderPlaylist).catch(() => toast(t('invalidSong')));
+  else { audio.pause(); renderPlaylist(); }
 }
 
 function renderGameCards() {
@@ -372,18 +474,92 @@ function renderReaction(board, room) {
   if (!ready && room.status === 'playing') setTimeout(() => state.room && renderReaction($('gameBoard'), state.room), Math.max(80, room.state.readyAt - now));
 }
 
+function clientValidateCheckersMove(board, player, fr, fc, tr, tc) {
+  if (![fr,fc,tr,tc].every(n => Number.isInteger(n) && n >= 0 && n < 8)) return null;
+  const piece = board[fr]?.[fc];
+  if (!piece || piece.p !== player || board[tr]?.[tc] || (tr + tc) % 2 !== 1) return null;
+  const dr = tr - fr, dc = tc - fc;
+  if (Math.abs(dr) !== Math.abs(dc) || dr === 0) return null;
+  if (piece.k) {
+    const sr = Math.sign(dr), sc = Math.sign(dc);
+    let enemy = null;
+    for (let r = fr + sr, c = fc + sc; r !== tr; r += sr, c += sc) {
+      const current = board[r][c];
+      if (!current) continue;
+      if (current.p === player) return null;
+      if (enemy) return null;
+      enemy = [r, c];
+    }
+    return { capture: enemy };
+  }
+  if (Math.abs(dr) === 1 && Math.abs(dc) === 1 && dr === (player === 0 ? -1 : 1)) return { capture: null };
+  if (Math.abs(dr) === 2 && Math.abs(dc) === 2) {
+    const mr = fr + dr / 2, mc = fc + dc / 2;
+    if (board[mr]?.[mc] && board[mr][mc].p !== player) return { capture: [mr, mc] };
+  }
+  return null;
+}
+
+function clientLegalCheckersMoves(board, player, fromOnly = null) {
+  const moves = [];
+  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+    if (fromOnly && (fromOnly[0] !== r || fromOnly[1] !== c)) continue;
+    const piece = board[r][c];
+    if (!piece || piece.p !== player) continue;
+    if (piece.k) {
+      for (const dr of [-1, 1]) for (const dc of [-1, 1]) for (let step = 1; step < 8; step++) {
+        const tr = r + dr * step, tc = c + dc * step;
+        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
+    } else {
+      for (const dc of [-1, 1]) {
+        const tr = r + (player === 0 ? -1 : 1), tc = c + dc;
+        const move = clientValidateCheckersMove(board, player, r, c, tr, tc);
+        if (move) moves.push({ from: [r,c], to: [tr,tc], capture: move.capture });
+      }
+      for (const dr of [-2, 2]) for (const dc of [-2, 2]) {
+        const move = clientValidateCheckersMove(board, player, r, c, r + dr, c + dc);
+        if (move) moves.push({ from: [r,c], to: [r+dr,c+dc], capture: move.capture });
+      }
+    }
+  }
+  return moves;
+}
+
 function renderCheckers(board, room) {
   const idx = myIndex();
-  let html = '<div class="checkers-board">';
+  const canMove = canAct(true) && idx >= 0;
+  const selected = state.selectedChecker;
+  const legalMoves = selected && canMove ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
+  const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
+  let html = '<div class="checkers-wrap"><div class="checkers-board">';
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
     const dark = (r+c)%2 === 1;
-    html += `<button class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''}" data-r="${r}" data-c="${c}" ${!dark || !canAct(true) ? 'disabled' : ''}>${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
+    const isSelected = selected && selected[0] === r && selected[1] === c;
+    const targetKey = `${r},${c}`;
+    const isEmptyDarkTarget = dark && selected && !piece && canMove;
+    const targetClass = isEmptyDarkTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
+    const drag = canMove && piece && piece.p === idx ? 'draggable="true"' : '';
+    html += `<button class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass}" data-r="${r}" data-c="${c}" ${drag} ${!dark || !canMove ? 'disabled' : ''}>${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
   }));
-  board.innerHTML = html + '</div><div class="hint-line">' + (room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}` : '') + '</div>';
-  board.querySelectorAll('.checkers-cell.dark').forEach(btn => btn.onclick = () => {
-    const r = Number(btn.dataset.r), c = Number(btn.dataset.c); const piece = room.state.board[r][c];
-    if (!state.selectedChecker && piece && piece.p === idx) { state.selectedChecker = [r,c]; btn.classList.add('selected'); return; }
-    if (state.selectedChecker) { sendAction({ from: state.selectedChecker, to:[r,c] }); state.selectedChecker = null; }
+  const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.captured ? ' ×' : ''}` : t('selectMove');
+  board.innerHTML = html + `</div><div class="checkers-status">${last}</div></div>`;
+  board.querySelectorAll('.checkers-cell.dark').forEach(btn => {
+    const r = Number(btn.dataset.r), c = Number(btn.dataset.c);
+    btn.onclick = () => {
+      const piece = room.state.board[r][c];
+      if (piece && piece.p === idx && canMove) { state.selectedChecker = [r,c]; renderCheckers(board, room); return; }
+      if (state.selectedChecker) {
+        if (clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c)) {
+          sendAction({ from: state.selectedChecker, to:[r,c] });
+          state.selectedChecker = null;
+        } else toast(t('selectMove'));
+      }
+    };
+    btn.ondragstart = (event) => { const piece = room.state.board[r][c]; if (!piece || piece.p !== idx || !canMove) return event.preventDefault(); state.selectedChecker = [r,c]; event.dataTransfer.setData('text/plain', `${r},${c}`); };
+    btn.ondragover = (event) => { if (state.selectedChecker) event.preventDefault(); };
+    btn.ondrop = (event) => { event.preventDefault(); if (!state.selectedChecker) return; if (clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c)) sendAction({ from: state.selectedChecker, to:[r,c] }); else toast(t('selectMove')); state.selectedChecker = null; };
   });
 }
 
@@ -617,6 +793,13 @@ function bindEvents() {
   $('saveProfileBtn').onclick = saveProfile; $('logoutBtn').onclick = async () => { if (fbAuth?.currentUser) await fbAuth.signOut(); localStorage.removeItem('smq_entered'); state.entered = false; location.href = '/'; };
   $('toggleMusicBtn').onclick = toggleMusic; $('volumeSlider').oninput = () => { const v = Number($('volumeSlider').value); $('bgMusic').volume = v; localStorage.setItem('smq_volume', String(v)); };
   $('musicInput').onchange = (event) => { const file = event.target.files?.[0]; if (!file) return; if (file.size > 4500000) return toast('Max 4.5 MB'); const reader = new FileReader(); reader.onload = () => { localStorage.setItem('smq_custom_music', reader.result); $('bgMusic').src = reader.result; state.musicOn = true; localStorage.setItem('smq_music_on','1'); $('bgMusic').play().catch(()=>{}); $('toggleMusicBtn').textContent = t('musicOff'); }; reader.readAsDataURL(file); };
+  $('addSongBtn') && ($('addSongBtn').onclick = addPlaylistSong);
+  $('playlistPlayBtn') && ($('playlistPlayBtn').onclick = playlistPlayPause);
+  $('playlistNextBtn') && ($('playlistNextBtn').onclick = playlistNext);
+  $('playlistPrevBtn') && ($('playlistPrevBtn').onclick = playlistPrev);
+  $('playlistAudio') && ($('playlistAudio').onended = playlistNext);
+  $('playlistAudio') && ($('playlistAudio').onplay = renderPlaylist);
+  $('playlistAudio') && ($('playlistAudio').onpause = renderPlaylist);
   window.addEventListener('popstate', () => { const roomId = getRoomFromPath(); if (roomId) joinRoom(roomId, new URLSearchParams(location.search).get('spectate') === '1'); else showScreen('homeScreen'); });
 }
 
