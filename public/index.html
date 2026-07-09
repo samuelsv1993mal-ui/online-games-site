@@ -65,6 +65,12 @@
             <button class="segment active" data-mode="online" data-i18n="onlineRoom">Онлайн-комната</button>
             <button class="segment" data-mode="bot" data-i18n="playComputer">С компьютером</button>
           </div>
+          <label data-i18n="teams">Команды</label>
+          <select id="teamCountSelect" class="input">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
           <button class="btn primary full" id="createRoomBtn" data-i18n="createRoom">Создать комнату</button>
         </section>
 
@@ -104,7 +110,9 @@
             <strong id="p2Score">0</strong>
           </div>
         </div>
+        <button class="icon-btn" id="fullscreenBtn" title="Fullscreen">⛶</button>
       </header>
+      <div id="playerStrip" class="player-strip glass"></div>
 
       <section class="arena">
         <div class="room-tools glass">
@@ -116,6 +124,7 @@
           </div>
         </div>
         <div id="turnBanner" class="turn-banner">...</div>
+        <div id="reviewPanel" class="review-panel hidden"></div>
         <div id="gameBoard" class="game-board"></div>
       </section>
     </section>
@@ -136,6 +145,8 @@
       </div>
       <label data-i18n="name">Имя</label>
       <input id="profileName" class="input" />
+      <label data-i18n="profileColor">Цвет игрока</label>
+      <input id="profileColor" class="input color-input" type="color" value="#8b5cf6" />
       <label data-i18n="language">Язык</label>
       <select id="profileLang" class="input">
         <option value="ru">Русский</option>

@@ -1,83 +1,73 @@
-# SMQ Games — Render + Firebase
+# SMQ Games v6
 
-Мобильный сайт с онлайн-играми, комнатами, режимом наблюдателя, игрой с ботом, профилем, музыкой, темами, языками и историей игр.
+Мобильная онлайн-арена игр для Render + Socket.IO + Firebase.
 
-## Что хранит Firebase
+## Что добавлено в v6
+
+- Более понятный fullscreen-интерфейс игр.
+- Большой счёт сверху, имена игроков и горизонтальная лента всех игроков.
+- Цвет игрока в профиле. Этот цвет используется в крестиках-ноликах, фишках, шашках и интерфейсе.
+- Перед объявлением победителя показывается последний ход и небольшая задержка результата для интриги.
+- Крупная анимация победителя по центру экрана + конфетти.
+- Поддержка тёмной и светлой темы.
+- Встроенная фоновая музыка + возможность загрузить свою музыку.
+- Режим наблюдателя.
+- Режим игры с компьютером для дуэльных игр.
+- Новые игры:
+  - Камень · Ножницы · Бумага
+  - Крестики-нолики
+  - Кубики
+  - Четыре в ряд
+  - Мемори
+  - 21
+  - Реакция
+  - Шашки
+  - Ним
+  - Взлом кода
+  - Кто хочет стать миллионером
+  - Командная викторина
+  - Математическая гонка
+
+## Firebase
 
 Firebase используется для:
 
-- входа через Google;
-- имени, email и фото профиля Google;
-- настроек профиля: язык, тема, размер шрифта;
-- истории игр;
-- статистики побед, поражений и ничьих.
+- Google-входа;
+- фото профиля;
+- цвета игрока;
+- языка, темы и размера шрифта;
+- истории игр и статистики.
 
-Render продолжает использоваться для игрового сервера и Socket.IO-комнат.
-
-## Firebase config
-
-Файл уже создан:
+Файл Firebase-конфига находится здесь:
 
 ```text
 public/firebase-config.js
 ```
 
-В нём указан web config проекта `smqgames26`.
+## Render
 
-## Обязательные шаги в Firebase Console
-
-1. Authentication → Sign-in method → Google → Enable → Save.
-2. Authentication → Settings → Authorized domains → Add domain:
+Настройки Render:
 
 ```text
-online-games-site.onrender.com
+Build Command:
+npm install
+
+Start Command:
+node server.js
 ```
 
-3. Firestore Database → Create database.
-4. Firestore Rules → вставить правила ниже и нажать Publish.
-
-## Firestore Rules
-
-```js
-rules_version = '2';
-
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-
-      match /history/{historyId} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
-      }
-    }
-  }
-}
-```
-
-## Обновление сайта через Termux
+## Обновление с телефона через Termux
 
 ```bash
 cd ~
-cp /storage/emulated/0/Download/online-games-site-firebase-auth.zip ~/
-rm -rf ~/online-games-site-v5
-unzip -o online-games-site-firebase-auth.zip
-cp -r ~/online-games-site-v5/* ~/online-games-site/
+cp /storage/emulated/0/Download/online-games-site-v6.zip ~/
+rm -rf ~/online-games-site-v6
+unzip -o online-games-site-v6.zip
+cp -r ~/online-games-site-v6/* ~/online-games-site/
 cd ~/online-games-site
 git add .
-git commit -m "Connect Firebase Google auth and Firestore history"
+git commit -m "Improve game arena add colors logic games teams"
 git push
 ```
 
-Render после `git push` должен автоматически сделать новый deploy.
-
-## Render
-
-Настройки Render остаются такими же:
-
-```text
-Build Command: npm install
-Start Command: node server.js
-```
-
-Для Firebase-входа переменные `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET` больше не нужны.
+После `git push` Render автоматически запустит новый деплой.
