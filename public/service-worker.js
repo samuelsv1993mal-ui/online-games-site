@@ -1,4 +1,4 @@
-const CACHE_NAME = 'smq-games-v15';
+const CACHE_NAME = 'smq-games-v17';
 const CORE_ASSETS = [
   '/',
   '/index.html',
@@ -12,8 +12,7 @@ const CORE_ASSETS = [
   '/assets/apple-touch-icon.png',
   '/assets/favicon-16.png',
   '/assets/favicon-32.png',
-  '/assets/favicon.ico',
-  '/assets/smq-theme.wav'
+  '/assets/favicon.ico'
 ];
 
 self.addEventListener('install', event => {

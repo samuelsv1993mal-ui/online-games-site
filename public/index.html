@@ -182,26 +182,25 @@
         <option value="expert" data-i18n="expert">Сложная</option>
       </select>
 
-      <div class="music-box">
-        <h3 data-i18n="music">Музыка</h3>
-        <button class="btn primary full" id="toggleMusicBtn" data-i18n="musicOn">Включить музыку</button>
-        <label data-i18n="volume">Громкость</label>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.35" />
-      </div>
-
-
 
       <div class="playlist-box">
         <h3 data-i18n="myPlaylist">Мой плейлист</h3>
-        <div class="playlist-player">
+        <div class="playlist-player modern-player">
           <small data-i18n="nowPlaying">Сейчас играет</small>
           <strong id="playlistNow">—</strong>
-          <div class="playlist-controls">
-            <button class="chip-btn" id="playlistPrevBtn" type="button">⏮</button>
-            <button class="btn primary small" id="playlistPlayBtn" type="button">Play</button>
-            <button class="chip-btn" id="playlistNextBtn" type="button">⏭</button>
+          <div class="playlist-timeline">
+            <span id="playlistCurrentTime">00:00</span>
+            <input id="playlistSeek" class="playlist-seek" type="range" min="0" max="100" step="0.1" value="0" />
+            <span id="playlistDuration">00:00</span>
           </div>
-          <audio id="playlistAudio" preload="metadata"></audio>
+          <div class="playlist-controls">
+            <button class="chip-btn" id="playlistPrevBtn" type="button" aria-label="Previous">⏮</button>
+            <button class="btn primary small" id="playlistPlayBtn" type="button">Play</button>
+            <button class="chip-btn" id="playlistNextBtn" type="button" aria-label="Next">⏭</button>
+          </div>
+          <label data-i18n="volume">Громкость</label>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.35" />
+          <audio id="playlistAudio" preload="metadata" controls class="playlist-native"></audio>
         </div>
         <div id="playlistList" class="playlist-list"></div>
         <div class="playlist-form">
@@ -231,7 +230,6 @@
   </div>
 
   <div id="toast" class="toast hidden"></div>
-  <audio id="bgMusic" loop preload="auto" src="/assets/smq-theme.wav"></audio>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>

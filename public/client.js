@@ -4,21 +4,21 @@ const I18N = {
   ru: {
     appTitle:'SMQ Games', appSubtitle:'Играй онлайн, с другом, против компьютера или наблюдай за комнатой.', loginGoogle:'Войти через Google', continueGuest:'Продолжить как гость', googleHint:'Google сохраняет фото, цвет профиля, настройки и историю игр.', installApp:'Скачать как приложение', installUnavailable:'Установка появится после открытия сайта в Chrome/браузере и обновления страницы.', installReady:'Можно установить SMQ Games как приложение.', appInstalled:'SMQ Games установлено.', updateApp:'Обновить приложение', updateChecking:'Проверяем обновление...', updateReady:'Обновляем приложение...',
     hello:'Привет', mobileGame:'Игровая арена', chooseGame:'Выбери игру', chooseMode:'Играй один, с компьютером, с друзьями или командами.', newGame:'Новая игра', game:'Игра', mode:'Режим', onlineRoom:'Онлайн-комната', playComputer:'С компьютером', createRoom:'Создать комнату', joinRoom:'Войти в комнату', joinAsPlayer:'Играть', watch:'Наблюдать', history:'История игр', refresh:'Обновить', spectators:'Наблюдатели', copyPlayerLink:'Ссылка игроку', copySpectatorLink:'Ссылка зрителю', newRound:'Новая партия', profile:'Профиль', changePhoto:'Изменить фото', resetPhoto:'Сбросить', name:'Имя', profileColor:'Цвет игрока', language:'Язык', fontSize:'Размер шрифта', small:'Маленький', medium:'Средний', large:'Большой', xlarge:'Очень большой', theme:'Тема', darkTheme:'Тёмная', lightTheme:'Светлая', music:'Музыка', musicOn:'Включить музыку', musicOff:'Выключить музыку', volume:'Громкость', uploadMusic:'Добавить свою музыку', playlistFromDevice:'Файл с устройства', playlistOrLink:'Или ссылка из интернета', saveProfile:'Сохранить профиль', logout:'Выйти', continue:'Продолжить', myPlaylist:'Мой плейлист', addSong:'Добавить песню', songTitle:'Название песни', audioLink:'Ссылка на аудио', delete:'Удалить', playlistEmpty:'Плейлист пока пуст. Добавьте песню.', playlistLimit:'Можно добавить не больше 10 песен', nowPlaying:'Сейчас играет', previousSong:'Предыдущая песня', nextSong:'Следующая песня', play:'Play', pause:'Pause', invalidSong:'Добавьте название и ссылку или выберите аудиофайл', playlistFileOnly:'Выберите аудиофайл или вставьте ссылку', invalidWord:'Введите слово из 5 букв', wordAttempts:'Попытки', secretWord:'Загаданное слово', wordWin:'Слово угадано!', wordLose:'Попробуй снова в новой партии',
-    copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', computerDifficulty:'Сложность компьютера и игр', gameDifficulty:'Сложность игр', beginner:'Новичок', normal:'Обычная', expert:'Сложная', noobHelp:'Подсказки для новичка', checkersHint:'Выберите шашку, затем зелёную клетку. Красные клетки недоступны.', chessHint:'Выберите фигуру, затем подсвеченную клетку. Фигуры двигаются по базовым правилам шахмат.', source:'Источник', easy:'Лёгкий', hard:'Сложный', whoamiHost:'Ведущий', whoamiCurrent:'Сейчас отвечает', whoamiQuestion:'Вопрос', whoamiGo:'ГО', whoamiSpinning:'Рулетка крутится...', whoamiAnswer:'Ответить', whoamiPass:'Передать вопрос', whoamiConfirm:'Засчитать ответ', whoamiReject:'Не засчитывать', whoamiAssignHost:'Назначить ведущим', whoamiFinish:'Завершить игру', whoamiWaitingHost:'Ждём решение ведущего', whoamiPoints:'Очки', whoamiPassHint:'Передача забирает очки, но следующий ответ приносит больше.', whoamiChoosePlayer:'Кому передать?', originalGetsNew:'получает новый вопрос, если ответ засчитан.', guessTime:'Угадай время', stopTimerAt:'Останови таймер на', start:'Старт', stop:'Стоп', timerRunningBlind:'Таймер запущен. Останови его в нужный момент.', targetTime:'Целевое время', stoppedTime:'Время остановки', difference:'Разница', milliseconds:'миллисекунд', veryClose:'Очень близко!', goodTry:'Хорошая попытка!', tryAgain:'Попробуй ещё раз!', results:'Результаты', randomTime:'Случайное время', oneMinute:'1 минута', waitingStart:'Ожидание старта', timerGoes:'Таймер идёт', playerStopped:'Игрок остановил таймер', currentPlayer:'Активный игрок', place:'Место', timeMode:'Режим времени', yourTimerHidden:'Вы не видите таймер. Другие игроки и зрители видят время.', 
+    copied:'Ссылка скопирована', waitingFriend:'Ждём игроков...', youSpectator:'Вы наблюдатель', yourTurn:'Ваш ход', opponentTurn:'Ход соперника', botTurn:'Ход компьютера', roomCreated:'Комната создана', profileSaved:'Профиль сохранён', noHistory:'Истории пока нет', win:'Победа', lose:'Поражение', draw:'Ничья', vs:'против', tapWhenGreen:'Жми, когда станет зелёным!', tooEarly:'Рано!', go:'ЖМИ!', total:'Сумма', add:'Добавить', roll:'Бросить', selectMove:'Выбери ход', chooseCard:'Открой карту', reviewing:'Последний ход показан. Считаем результат...', resultSoon:'Результат через мгновение...', lastMove:'Последний ход', teams:'Команды', players:'Игроки', maxPlayers:'до {n} игроков', take:'Взять', sticks:'палочек', guessCode:'Угадай код из 4 цифр от 1 до 6', send:'Отправить', question:'Вопрос', answered:'Ответ принят', correct:'Верно', wrong:'Неверно', team:'Команда', fullscreen:'На весь экран', difficulty:'Сложность', computerDifficulty:'Сложность компьютера и игр', gameDifficulty:'Сложность игр', beginner:'Новичок', normal:'Обычная', expert:'Сложная', noobHelp:'Подсказки для новичка', checkersHint:'Выберите шашку, затем зелёную клетку. Красные клетки недоступны.', chessHint:'Выберите фигуру, затем подсвеченную клетку. Фигуры двигаются по базовым правилам шахмат.', chessCheck:'Шах!', chessMate:'Мат!', chessCapture:'Фигура взята!', source:'Источник', easy:'Лёгкий', hard:'Сложный', whoamiHost:'Ведущий', whoamiCurrent:'Сейчас отвечает', whoamiQuestion:'Вопрос', whoamiGo:'ГО', whoamiSpinning:'Рулетка крутится...', whoamiAnswer:'Ответить', whoamiPass:'Передать вопрос', whoamiConfirm:'Засчитать ответ', whoamiReject:'Не засчитывать', whoamiAssignHost:'Назначить ведущим', whoamiFinish:'Завершить игру', whoamiWaitingHost:'Ждём решение ведущего', whoamiPoints:'Очки', whoamiPassHint:'Передача забирает очки, но следующий ответ приносит больше.', whoamiChoosePlayer:'Кому передать?', originalGetsNew:'получает новый вопрос, если ответ засчитан.', guessTime:'Угадай время', stopTimerAt:'Останови таймер на', start:'Старт', stop:'Стоп', timerRunningBlind:'Таймер запущен. Останови его в нужный момент.', targetTime:'Целевое время', stoppedTime:'Время остановки', difference:'Разница', milliseconds:'миллисекунд', veryClose:'Очень близко!', goodTry:'Хорошая попытка!', tryAgain:'Попробуй ещё раз!', results:'Результаты', randomTime:'Случайное время', oneMinute:'1 минута', waitingStart:'Ожидание старта', timerGoes:'Таймер идёт', playerStopped:'Игрок остановил таймер', currentPlayer:'Активный игрок', place:'Место', timeMode:'Режим времени', yourTimerHidden:'Вы не видите таймер. Другие игроки и зрители видят время.', 
     games:{ rps:['Камень · Ножницы · Бумага','Быстрая дуэль'], ttt:['Крестики-нолики','Цветные X и O'], dice:['Кубики','У кого выпадет больше'], connect4:['Четыре в ряд','Собери линию'], memory:['Мемори','Найди пары'], twentyone:['21','Дойди ровно до 21'], reaction:['Реакция','Кто быстрее'], checkers:['Шашки','Стратегия 8×8'], chess:['Шахматы','Классическая партия 8×8'], nim:['Ним','Логика с палочками'], code:['Взлом кода','Логика и дедукция'], wordguess:['Отгадай слово','Буквы на месте — зелёные'], millionaire:['Кто хочет стать миллионером','Библейские вопросы до 10 игроков'], teamquiz:['Командная викторина','2, 3 или 4 команды'], mathrace:['Математическая гонка','Быстрый счёт до 10 игроков'], biblequiz:['Что? Где? Когда? — Библия','Библейские вопросы разной сложности'], whoami:['Кто я?','Ведущий, вопросы, передачи и очки'], guesstime:['Угадай время','Останови таймер вслепую'] },
     moves:{ rock:'Камень', paper:'Бумага', scissors:'Ножницы' }
   },
   es: {
     appTitle:'SMQ Games', appSubtitle:'Juega online con amigos, contra la computadora o mira una sala.', loginGoogle:'Entrar con Google', continueGuest:'Continuar como invitado', googleHint:'Google guarda tu foto, color, ajustes e historial.', installApp:'Descargar como app', installUnavailable:'La instalación aparecerá después de abrir el sitio en Chrome/navegador y actualizar.', installReady:'Puedes instalar SMQ Games como app.', appInstalled:'SMQ Games instalado.', updateApp:'Actualizar app', updateChecking:'Buscando actualización...', updateReady:'Actualizando la app...',
     hello:'Hola', mobileGame:'Arena de juegos', chooseGame:'Elige un juego', chooseMode:'Juega solo, contra computadora, con amigos o en equipos.', newGame:'Nuevo juego', game:'Juego', mode:'Modo', onlineRoom:'Sala online', playComputer:'Computadora', createRoom:'Crear sala', joinRoom:'Entrar a sala', joinAsPlayer:'Jugar', watch:'Observar', history:'Historial', refresh:'Actualizar', spectators:'Observadores', copyPlayerLink:'Link jugador', copySpectatorLink:'Link observador', newRound:'Nueva partida', profile:'Perfil', changePhoto:'Cambiar foto', resetPhoto:'Restablecer', name:'Nombre', profileColor:'Color del jugador', language:'Idioma', fontSize:'Tamaño de letra', small:'Pequeño', medium:'Mediano', large:'Grande', xlarge:'Muy grande', theme:'Tema', darkTheme:'Oscuro', lightTheme:'Claro', music:'Música', musicOn:'Activar música', musicOff:'Apagar música', volume:'Volumen', uploadMusic:'Agregar tu música', playlistFromDevice:'Archivo del dispositivo', playlistOrLink:'O enlace de internet', saveProfile:'Guardar perfil', logout:'Salir', continue:'Continuar', myPlaylist:'Mi playlist', addSong:'Agregar canción', songTitle:'Nombre de la canción', audioLink:'Enlace de audio', delete:'Eliminar', playlistEmpty:'La playlist está vacía. Agrega una canción.', playlistLimit:'Puedes agregar máximo 10 canciones', nowPlaying:'Reproduciendo ahora', previousSong:'Canción anterior', nextSong:'Siguiente canción', play:'Play', pause:'Pause', invalidSong:'Agrega el nombre y el enlace o elige un archivo de audio', playlistFileOnly:'Elige un archivo de audio o pega un enlace', invalidWord:'Escribe una palabra de 5 letras', wordAttempts:'Intentos', secretWord:'Palabra secreta', wordWin:'¡Palabra adivinada!', wordLose:'Inténtalo otra vez en una nueva partida',
-    copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', computerDifficulty:'Dificultad de computadora y juegos', gameDifficulty:'Dificultad de juegos', beginner:'Principiante', normal:'Normal', expert:'Difícil', noobHelp:'Ayuda para principiantes', checkersHint:'Elige una ficha y luego una casilla verde. Las casillas rojas no están disponibles.', chessHint:'Elige una pieza y luego una casilla resaltada. Las piezas siguen reglas básicas de ajedrez.', source:'Fuente', easy:'Fácil', hard:'Difícil', whoamiHost:'Conductor', whoamiCurrent:'Responde ahora', whoamiQuestion:'Pregunta', whoamiGo:'GO', whoamiSpinning:'La ruleta gira...', whoamiAnswer:'Responder', whoamiPass:'Pasar pregunta', whoamiConfirm:'Aceptar respuesta', whoamiReject:'No aceptar', whoamiAssignHost:'Hacer conductor', whoamiFinish:'Terminar juego', whoamiWaitingHost:'Esperando al conductor', whoamiPoints:'Puntos', whoamiPassHint:'Pasar resta puntos, pero el siguiente acierto da más.', whoamiChoosePlayer:'¿A quién pasar?', originalGetsNew:'recibe otra pregunta si se acepta la respuesta.', guessTime:'Adivina el tiempo', stopTimerAt:'Detén el temporizador en', start:'Iniciar', stop:'Detener', timerRunningBlind:'El temporizador está en marcha. Detenlo en el momento correcto.', targetTime:'Tiempo objetivo', stoppedTime:'Tiempo detenido', difference:'Diferencia', milliseconds:'milisegundos', veryClose:'¡Muy cerca!', goodTry:'¡Buen intento!', tryAgain:'Inténtalo de nuevo', results:'Resultados', randomTime:'Tiempo aleatorio', oneMinute:'1 minuto', waitingStart:'Esperando inicio', timerGoes:'El temporizador está corriendo', playerStopped:'El jugador detuvo el temporizador', currentPlayer:'Jugador activo', place:'Lugar', timeMode:'Modo de tiempo', yourTimerHidden:'No ves el temporizador. Los demás jugadores y observadores sí ven el tiempo.', 
+    copied:'Link copiado', waitingFriend:'Esperando jugadores...', youSpectator:'Estás observando', yourTurn:'Tu turno', opponentTurn:'Turno del rival', botTurn:'Turno de la computadora', roomCreated:'Sala creada', profileSaved:'Perfil guardado', noHistory:'Aún no hay historial', win:'Victoria', lose:'Derrota', draw:'Empate', vs:'contra', tapWhenGreen:'¡Toca cuando esté verde!', tooEarly:'¡Muy pronto!', go:'¡TOCA!', total:'Total', add:'Sumar', roll:'Lanzar', selectMove:'Elige tu jugada', chooseCard:'Abre una carta', reviewing:'Mostrando la última jugada. Calculando resultado...', resultSoon:'Resultado en un momento...', lastMove:'Última jugada', teams:'Equipos', players:'Jugadores', maxPlayers:'hasta {n} jugadores', take:'Tomar', sticks:'palitos', guessCode:'Adivina el código de 4 dígitos del 1 al 6', send:'Enviar', question:'Pregunta', answered:'Respuesta recibida', correct:'Correcto', wrong:'Incorrecto', team:'Equipo', fullscreen:'Pantalla completa', difficulty:'Dificultad', computerDifficulty:'Dificultad de computadora y juegos', gameDifficulty:'Dificultad de juegos', beginner:'Principiante', normal:'Normal', expert:'Difícil', noobHelp:'Ayuda para principiantes', checkersHint:'Elige una ficha y luego una casilla verde. Las casillas rojas no están disponibles.', chessHint:'Elige una pieza y luego una casilla resaltada. Las piezas siguen reglas básicas de ajedrez.', chessCheck:'¡Jaque!', chessMate:'¡Jaque mate!', chessCapture:'¡Pieza capturada!', source:'Fuente', easy:'Fácil', hard:'Difícil', whoamiHost:'Conductor', whoamiCurrent:'Responde ahora', whoamiQuestion:'Pregunta', whoamiGo:'GO', whoamiSpinning:'La ruleta gira...', whoamiAnswer:'Responder', whoamiPass:'Pasar pregunta', whoamiConfirm:'Aceptar respuesta', whoamiReject:'No aceptar', whoamiAssignHost:'Hacer conductor', whoamiFinish:'Terminar juego', whoamiWaitingHost:'Esperando al conductor', whoamiPoints:'Puntos', whoamiPassHint:'Pasar resta puntos, pero el siguiente acierto da más.', whoamiChoosePlayer:'¿A quién pasar?', originalGetsNew:'recibe otra pregunta si se acepta la respuesta.', guessTime:'Adivina el tiempo', stopTimerAt:'Detén el temporizador en', start:'Iniciar', stop:'Detener', timerRunningBlind:'El temporizador está en marcha. Detenlo en el momento correcto.', targetTime:'Tiempo objetivo', stoppedTime:'Tiempo detenido', difference:'Diferencia', milliseconds:'milisegundos', veryClose:'¡Muy cerca!', goodTry:'¡Buen intento!', tryAgain:'Inténtalo de nuevo', results:'Resultados', randomTime:'Tiempo aleatorio', oneMinute:'1 minuto', waitingStart:'Esperando inicio', timerGoes:'El temporizador está corriendo', playerStopped:'El jugador detuvo el temporizador', currentPlayer:'Jugador activo', place:'Lugar', timeMode:'Modo de tiempo', yourTimerHidden:'No ves el temporizador. Los demás jugadores y observadores sí ven el tiempo.', 
     games:{ rps:['Piedra · Papel · Tijeras','Duelo rápido'], ttt:['Tres en raya','X y O de color'], dice:['Dados','Gana el número mayor'], connect4:['Cuatro en línea','Conecta una línea'], memory:['Memoria','Encuentra pares'], twentyone:['21','Llega a 21'], reaction:['Reacción','El más rápido'], checkers:['Damas','Estrategia 8×8'], chess:['Ajedrez','Partida clásica 8×8'], nim:['Nim','Lógica con palitos'], code:['Romper el código','Deducción lógica'], wordguess:['Adivina la palabra','Letras en su sitio = verde'], millionaire:['¿Quién quiere ser millonario?','Preguntas bíblicas hasta 10 jugadores'], teamquiz:['Trivia por equipos','2, 3 o 4 equipos'], mathrace:['Carrera matemática','Cálculo rápido'], biblequiz:['¿Qué? ¿Dónde? ¿Cuándo? — Biblia','Preguntas bíblicas por dificultad'], whoami:['¿Quién soy?','Conductor, preguntas, pases y puntos'], guesstime:['Adivina el tiempo','Detén el temporizador a ciegas'] },
     moves:{ rock:'Piedra', paper:'Papel', scissors:'Tijeras' }
   },
   en: {
     appTitle:'SMQ Games', appSubtitle:'Play online with friends, against the computer, or watch a room.', loginGoogle:'Sign in with Google', continueGuest:'Continue as guest', googleHint:'Google saves your photo, color, settings, and history.', installApp:'Download as app', installUnavailable:'Install will appear after opening the site in Chrome/browser and refreshing.', installReady:'You can install SMQ Games as an app.', appInstalled:'SMQ Games installed.', updateApp:'Update app', updateChecking:'Checking for update...', updateReady:'Updating app...',
     hello:'Hello', mobileGame:'Game arena', chooseGame:'Choose a game', chooseMode:'Play solo, vs computer, with friends, or in teams.', newGame:'New game', game:'Game', mode:'Mode', onlineRoom:'Online room', playComputer:'Computer', createRoom:'Create room', joinRoom:'Join room', joinAsPlayer:'Play', watch:'Watch', history:'Game history', refresh:'Refresh', spectators:'Spectators', copyPlayerLink:'Player link', copySpectatorLink:'Spectator link', newRound:'New round', profile:'Profile', changePhoto:'Change photo', resetPhoto:'Reset', name:'Name', profileColor:'Player color', language:'Language', fontSize:'Font size', small:'Small', medium:'Medium', large:'Large', xlarge:'Extra large', theme:'Theme', darkTheme:'Dark', lightTheme:'Light', music:'Music', musicOn:'Turn music on', musicOff:'Turn music off', volume:'Volume', uploadMusic:'Add your music', playlistFromDevice:'File from device', playlistOrLink:'Or internet link', saveProfile:'Save profile', logout:'Log out', continue:'Continue', myPlaylist:'My playlist', addSong:'Add song', songTitle:'Song title', audioLink:'Audio link', delete:'Delete', playlistEmpty:'Your playlist is empty. Add a song.', playlistLimit:'You can add up to 10 songs only', nowPlaying:'Now playing', previousSong:'Previous song', nextSong:'Next song', play:'Play', pause:'Pause', invalidSong:'Add the song title and audio link or choose an audio file', playlistFileOnly:'Choose an audio file or paste a link', invalidWord:'Enter a 5-letter word', wordAttempts:'Attempts', secretWord:'Secret word', wordWin:'Word guessed!', wordLose:'Try again in a new round',
-    copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', computerDifficulty:'Computer and game difficulty', gameDifficulty:'Game difficulty', beginner:'Beginner', normal:'Normal', expert:'Hard', noobHelp:'Beginner hints', checkersHint:'Select a checker, then choose a green square. Red squares are not available.', chessHint:'Select a piece, then choose a highlighted square. Pieces follow basic chess rules.', source:'Source', easy:'Easy', hard:'Hard', whoamiHost:'Host', whoamiCurrent:'Answering now', whoamiQuestion:'Question', whoamiGo:'GO', whoamiSpinning:'Roulette is spinning...', whoamiAnswer:'Answer', whoamiPass:'Pass question', whoamiConfirm:'Confirm answer', whoamiReject:'Reject', whoamiAssignHost:'Make host', whoamiFinish:'Finish game', whoamiWaitingHost:'Waiting for host', whoamiPoints:'Points', whoamiPassHint:'Passing costs points, but the next answer gives more.', whoamiChoosePlayer:'Pass to whom?', originalGetsNew:'gets a new question if the answer is accepted.', guessTime:'Guess the Time', stopTimerAt:'Stop the timer at', start:'Start', stop:'Stop', timerRunningBlind:'The timer is running. Stop it at the right moment.', targetTime:'Target time', stoppedTime:'Stopped time', difference:'Difference', milliseconds:'milliseconds', veryClose:'Very close!', goodTry:'Good try!', tryAgain:'Try again', results:'Results', randomTime:'Random time', oneMinute:'1 minute', waitingStart:'Waiting for start', timerGoes:'Timer is running', playerStopped:'Player stopped the timer', currentPlayer:'Active player', place:'Place', timeMode:'Time mode', yourTimerHidden:'You cannot see the timer. Other players and spectators can see the time.', 
+    copied:'Link copied', waitingFriend:'Waiting for players...', youSpectator:'You are watching', yourTurn:'Your turn', opponentTurn:'Opponent turn', botTurn:'Computer turn', roomCreated:'Room created', profileSaved:'Profile saved', noHistory:'No history yet', win:'Win', lose:'Loss', draw:'Draw', vs:'vs', tapWhenGreen:'Tap when it turns green!', tooEarly:'Too early!', go:'TAP!', total:'Total', add:'Add', roll:'Roll', selectMove:'Choose your move', chooseCard:'Open a card', reviewing:'Showing the last move. Calculating result...', resultSoon:'Result coming soon...', lastMove:'Last move', teams:'Teams', players:'Players', maxPlayers:'up to {n} players', take:'Take', sticks:'sticks', guessCode:'Guess the 4-digit code from 1 to 6', send:'Send', question:'Question', answered:'Answer received', correct:'Correct', wrong:'Wrong', team:'Team', fullscreen:'Fullscreen', difficulty:'Difficulty', computerDifficulty:'Computer and game difficulty', gameDifficulty:'Game difficulty', beginner:'Beginner', normal:'Normal', expert:'Hard', noobHelp:'Beginner hints', checkersHint:'Select a checker, then choose a green square. Red squares are not available.', chessHint:'Select a piece, then choose a highlighted square. Pieces follow basic chess rules.', chessCheck:'Check!', chessMate:'Checkmate!', chessCapture:'Piece captured!', source:'Source', easy:'Easy', hard:'Hard', whoamiHost:'Host', whoamiCurrent:'Answering now', whoamiQuestion:'Question', whoamiGo:'GO', whoamiSpinning:'Roulette is spinning...', whoamiAnswer:'Answer', whoamiPass:'Pass question', whoamiConfirm:'Confirm answer', whoamiReject:'Reject', whoamiAssignHost:'Make host', whoamiFinish:'Finish game', whoamiWaitingHost:'Waiting for host', whoamiPoints:'Points', whoamiPassHint:'Passing costs points, but the next answer gives more.', whoamiChoosePlayer:'Pass to whom?', originalGetsNew:'gets a new question if the answer is accepted.', guessTime:'Guess the Time', stopTimerAt:'Stop the timer at', start:'Start', stop:'Stop', timerRunningBlind:'The timer is running. Stop it at the right moment.', targetTime:'Target time', stoppedTime:'Stopped time', difference:'Difference', milliseconds:'milliseconds', veryClose:'Very close!', goodTry:'Good try!', tryAgain:'Try again', results:'Results', randomTime:'Random time', oneMinute:'1 minute', waitingStart:'Waiting for start', timerGoes:'Timer is running', playerStopped:'Player stopped the timer', currentPlayer:'Active player', place:'Place', timeMode:'Time mode', yourTimerHidden:'You cannot see the timer. Other players and spectators can see the time.', 
     games:{ rps:['Rock · Paper · Scissors','Fast duel'], ttt:['Tic Tac Toe','Colored X and O'], dice:['Dice Duel','Highest roll wins'], connect4:['Four in a Row','Connect a line'], memory:['Memory Match','Find pairs'], twentyone:['Twenty One','Reach 21 exactly'], reaction:['Reaction Tap','Fastest wins'], checkers:['Checkers','8×8 strategy'], chess:['Chess','Classic 8×8 match'], nim:['Nim','Logic with sticks'], code:['Code Breaker','Logic deduction'], wordguess:['Guess the Word','Right place letters = green'], millionaire:['Who Wants to Be a Millionaire','Bible questions for up to 10 players'], teamquiz:['Team Quiz','2, 3 or 4 teams'], mathrace:['Math Race','Fast arithmetic'], biblequiz:['What? Where? When? — Bible','Bible questions by difficulty'], whoami:['Who am I?','Host, questions, passes and points'], guesstime:['Guess the Time','Stop the timer blindly'] },
     moves:{ rock:'Rock', paper:'Paper', scissors:'Scissors' }
   }
@@ -179,7 +179,7 @@ function applyI18n() {
   document.documentElement.lang = state.lang;
   document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
   $('quickLang').value = state.lang; $('profileLang').value = state.lang; if ($('difficultySelect')) $('difficultySelect').value = state.difficulty;
-  $('toggleMusicBtn').textContent = state.musicOn ? t('musicOff') : t('musicOn');
+  if ($('toggleMusicBtn')) $('toggleMusicBtn').textContent = state.musicOn ? t('musicOff') : t('musicOn');
   renderGameCards(); renderHistory(); renderPlaylist(); if (state.room) renderRoom(state.room);
 }
 
@@ -257,7 +257,31 @@ function loadPlaylist() {
 }
 
 function savePlaylist() {
-  localStorage.setItem(playlistKey(), JSON.stringify(state.playlist.slice(0, 10)));
+  try {
+    localStorage.setItem(playlistKey(), JSON.stringify(state.playlist.slice(0, 10)));
+  } catch (error) {
+    toast('Файл слишком большой для сохранения на этом устройстве');
+    throw error;
+  }
+}
+
+function formatAudioTime(seconds) {
+  const safe = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0;
+  const m = Math.floor(safe / 60);
+  const s = safe % 60;
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+function updatePlaylistTimeline() {
+  const audio = $('playlistAudio');
+  const seek = $('playlistSeek');
+  const current = $('playlistCurrentTime');
+  const duration = $('playlistDuration');
+  if (!audio) return;
+  const dur = Number.isFinite(audio.duration) ? audio.duration : 0;
+  if (current) current.textContent = formatAudioTime(audio.currentTime || 0);
+  if (duration) duration.textContent = formatAudioTime(dur);
+  if (seek && !seek.matches(':active')) seek.value = dur ? String((audio.currentTime / dur) * 100) : '0';
 }
 
 function setPlaylistAudio(index, autoplay = false) {
@@ -267,9 +291,15 @@ function setPlaylistAudio(index, autoplay = false) {
   const song = state.playlist[safeIndex];
   const audio = $('playlistAudio');
   if (!audio || !song) return;
-  if (audio.src !== new URL(song.url, location.href).href) audio.src = song.url;
+  const absoluteUrl = song.url.startsWith('data:') || song.url.startsWith('blob:') ? song.url : new URL(song.url, location.href).href;
+  if (audio.src !== absoluteUrl) {
+    audio.src = song.url;
+    audio.load();
+  }
+  audio.volume = Number(localStorage.getItem('smq_volume') || '0.35');
   renderPlaylist();
-  if (autoplay) audio.play().catch(() => toast(t('invalidSong')));
+  updatePlaylistTimeline();
+  if (autoplay) audio.play().then(renderPlaylist).catch(() => toast(t('invalidSong')));
 }
 
 function renderPlaylist() {
@@ -278,13 +308,20 @@ function renderPlaylist() {
   const now = $('playlistNow');
   const playBtn = $('playlistPlayBtn');
   const audio = $('playlistAudio');
+  const prevBtn = $('playlistPrevBtn');
+  const nextBtn = $('playlistNextBtn');
   if (!state.playlist.length) {
     list.innerHTML = `<div class="playlist-empty">${t('playlistEmpty')}</div>`;
     if (now) now.textContent = '—';
     if (playBtn) { playBtn.textContent = t('play'); playBtn.disabled = true; }
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
+    updatePlaylistTimeline();
     return;
   }
   if (playBtn) { playBtn.disabled = false; playBtn.textContent = audio && !audio.paused ? t('pause') : t('play'); }
+  if (prevBtn) prevBtn.disabled = state.playlist.length < 2;
+  if (nextBtn) nextBtn.disabled = state.playlist.length < 2;
   const current = state.playlist[state.playlistIndex] || state.playlist[0];
   if (now) now.textContent = current?.title || '—';
   list.innerHTML = state.playlist.map((song, index) => `
@@ -310,8 +347,8 @@ function addPlaylistSong() {
   const file = $('songFileInput')?.files?.[0] || null;
   if (!title || (!url && !file)) return toast(file ? t('invalidSong') : t('playlistFileOnly'));
   const pushSong = (finalUrl) => {
-    state.playlist.push({ title: title.slice(0, 80), url: String(finalUrl || '').slice(0, 4000000), createdAt: Date.now() });
-    savePlaylist();
+    state.playlist.push({ title: title.slice(0, 80), url: String(finalUrl || '').slice(0, 7000000), createdAt: Date.now() });
+    try { savePlaylist(); } catch (error) { state.playlist.pop(); return; }
     $('songTitleInput').value = '';
     $('songUrlInput').value = '';
     if ($('songFileInput')) $('songFileInput').value = '';
@@ -319,7 +356,7 @@ function addPlaylistSong() {
     renderPlaylist();
   };
   if (file) {
-    if (file.size > 12000000) return toast('Max 12 MB');
+    if (file.size > 4500000) return toast('Max 4.5 MB');
     const reader = new FileReader();
     reader.onload = () => pushSong(reader.result);
     reader.readAsDataURL(file);
@@ -589,50 +626,39 @@ function renderCheckers(board, room) {
   const idx = myIndex();
   const canMove = canAct(true) && idx >= 0;
   const selected = state.selectedChecker;
-  const allMyMoves = canMove ? clientLegalCheckersMoves(room.state.board, idx) : [];
   const legalMoves = selected && canMove ? clientLegalCheckersMoves(room.state.board, idx, selected) : [];
   const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
   let html = '<div class="checkers-wrap"><div class="rules-tip">💡 ' + t('checkersHint') + '</div><div class="checkers-board">';
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
     const dark = (r+c)%2 === 1;
-    const isMine = piece && piece.p === idx;
-    const hasMove = allMyMoves.some(m => m.from[0] === r && m.from[1] === c);
     const isSelected = selected && selected[0] === r && selected[1] === c;
     const targetKey = `${r},${c}`;
-    const isTarget = selected && !piece && dark;
-    const targetClass = isTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
-    const movable = isMine && hasMove ? 'movable-piece' : '';
-    html += `<button class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${movable}" data-r="${r}" data-c="${c}" ${!dark ? 'disabled' : ''}>${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
+    const isEmptyDarkTarget = dark && selected && !piece && canMove;
+    const targetClass = isEmptyDarkTarget ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
+    const movable = canMove && piece && piece.p === idx ? 'movable-piece' : '';
+    html += `<button type="button" class="checkers-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${movable}" data-r="${r}" data-c="${c}" ${!dark ? 'disabled' : ''}>${piece ? `<span>${piece.k ? '♛' : '●'}</span>` : ''}</button>`;
   }));
   const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.captured ? ' ×' : ''}` : t('selectMove');
-  const moveTray = selected && legalMoves.length
-    ? `<div class="move-tray">${legalMoves.map((m, i) => `<button class="chip-btn move-choice" data-move-index="${i}">${moveButtonLabel(m)}</button>`).join('')}</div>`
-    : `<div class="move-tray muted">${canMove ? t('selectMove') : t('opponentTurn')}</div>`;
-  board.innerHTML = html + `</div><div class="checkers-status">${last}</div>${moveTray}</div>`;
+  board.innerHTML = html + `</div><div class="checkers-status">${last}</div></div>`;
   board.querySelectorAll('.checkers-cell.dark').forEach(btn => {
     const r = Number(btn.dataset.r), c = Number(btn.dataset.c);
-    const act = () => {
+    btn.onclick = () => {
       const piece = room.state.board[r][c];
       if (!canMove) return;
       if (piece && piece.p === idx) {
-        const moves = clientLegalCheckersMoves(room.state.board, idx, [r,c]);
-        if (!moves.length) return toast(t('selectMove'));
         state.selectedChecker = [r,c];
         renderCheckers(board, room);
         return;
       }
       if (state.selectedChecker) {
-        const chosen = clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c);
-        if (chosen) { sendAction({ from: state.selectedChecker, to:[r,c] }); state.selectedChecker = null; }
-        else toast(t('selectMove'));
+        if (clientValidateCheckersMove(room.state.board, idx, state.selectedChecker[0], state.selectedChecker[1], r, c)) {
+          sendAction({ from: state.selectedChecker, to:[r,c] });
+          state.selectedChecker = null;
+        } else {
+          toast(t('selectMove'));
+        }
       }
     };
-    btn.onclick = act;
-    btn.ontouchend = (event) => { event.preventDefault(); act(); };
-  });
-  board.querySelectorAll('[data-move-index]').forEach(btn => btn.onclick = () => {
-    const move = legalMoves[Number(btn.dataset.moveIndex)];
-    if (move) { sendAction({ from: move.from, to: move.to }); state.selectedChecker = null; }
   });
 }
 
@@ -755,7 +781,12 @@ function renderChess(board, room) {
   const allMyMoves = canMove ? clientLegalChessMoves(room.state.board, idx, null, room.state) : [];
   const legalMoves = selected && canMove ? clientLegalChessMoves(room.state.board, idx, selected, room.state) : [];
   const legalTargets = new Set(legalMoves.map(m => `${m.to[0]},${m.to[1]}`));
-  let html = '<div class="checkers-wrap chess-wrap"><div class="rules-tip">💡 ' + t('chessHint') + '</div><div class="chess-stage"><div class="chess-board">';
+  const lastMove = room.state.lastMove || {};
+  const isCaptureMove = !!lastMove.captured;
+  const isMate = room.state.checkMate !== null && room.state.checkMate !== undefined;
+  const isCheck = !isMate && room.state.check !== null && room.state.check !== undefined;
+  const statusText = isMate ? t('chessMate') : isCheck ? t('chessCheck') : isCaptureMove ? t('chessCapture') : '';
+  let html = `<div class="checkers-wrap chess-wrap"><div class="rules-tip">💡 ${t('chessHint')}</div>${statusText ? `<div class="chess-alert ${isMate ? 'mate' : isCheck ? 'check' : 'capture'}">${statusText}</div>` : ''}<div class="chess-stage"><div class="chess-board ${isCheck ? 'is-check' : ''} ${isMate ? 'is-mate' : ''}">`;
   room.state.board.forEach((row,r) => row.forEach((piece,c) => {
     const dark = (r+c)%2 === 1;
     const isMine = piece && piece.p === idx;
@@ -765,10 +796,15 @@ function renderChess(board, room) {
     const targetClass = selected && !piece ? (legalTargets.has(targetKey) ? 'legal-target' : 'illegal-target') : '';
     const captureClass = selected && piece && legalTargets.has(targetKey) ? 'capture-target' : '';
     const movable = isMine && hasMove ? 'movable-piece' : '';
+    const wasFrom = lastMove.from && lastMove.from[0] === r && lastMove.from[1] === c;
+    const wasTo = lastMove.to && lastMove.to[0] === r && lastMove.to[1] === c;
+    const captureHit = wasTo && isCaptureMove ? 'capture-hit' : '';
+    const moveFrom = wasFrom ? 'move-from' : '';
+    const kingDanger = piece && piece.t === 'k' && (piece.p === room.state.check || piece.p === room.state.checkMate) ? 'king-danger' : '';
     const icon = piece ? CHESS_ICONS[piece.p]?.[piece.t] || '♟' : '';
-    html += `<button class="chess-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${captureClass} ${movable}" data-r="${r}" data-c="${c}">${piece ? `<span aria-hidden="true">${icon}</span>` : ''}</button>`;
+    html += `<button type="button" class="chess-cell ${dark ? 'dark' : 'light'} ${piece ? `piece p${piece.p}` : ''} ${isSelected ? 'selected' : ''} ${targetClass} ${captureClass} ${movable} ${captureHit} ${moveFrom} ${kingDanger}" data-r="${r}" data-c="${c}">${piece ? `<span aria-hidden="true">${icon}</span>` : ''}</button>`;
   }));
-  const checkText = room.state.check === idx ? ' · CHECK!' : room.state.check !== null && room.state.check !== undefined ? ' · CHECK' : '';
+  const checkText = isMate ? ` · ${t('chessMate')}` : isCheck ? ` · ${t('chessCheck')}` : '';
   const last = room.state.lastMove ? `${t('lastMove')}: ${room.state.lastMove.from?.join(',')} → ${room.state.lastMove.to?.join(',')}${room.state.lastMove.castle ? ' 0-0' : room.state.lastMove.captured ? ' ×' : ''}${checkText}` : `${t('selectMove')}${checkText}`;
   const moveTray = selected && legalMoves.length
     ? `<div class="move-tray">${legalMoves.slice(0, 14).map((m, i) => `<button class="chip-btn move-choice" data-chess-index="${i}">${moveButtonLabel(m)}</button>`).join('')}</div>`
@@ -776,7 +812,7 @@ function renderChess(board, room) {
   board.innerHTML = html + `</div></div><div class="checkers-status">${last}</div>${moveTray}</div>`;
   board.querySelectorAll('.chess-cell').forEach(btn => {
     const r = Number(btn.dataset.r), c = Number(btn.dataset.c);
-    const act = () => {
+    btn.onclick = () => {
       const piece = room.state.board[r][c];
       if (!canMove) return;
       if (piece && piece.p === idx) {
@@ -788,12 +824,11 @@ function renderChess(board, room) {
       }
       if (state.selectedChess) {
         if (clientValidateChessMove(room.state.board, idx, state.selectedChess[0], state.selectedChess[1], r, c, room.state)) {
-          sendAction({ from: state.selectedChess, to:[r,c] }); state.selectedChess = null;
+          sendAction({ from: state.selectedChess, to:[r,c] });
+          state.selectedChess = null;
         } else toast(t('selectMove'));
       }
     };
-    btn.onclick = act;
-    btn.ontouchend = (event) => { event.preventDefault(); act(); };
   });
   board.querySelectorAll('[data-chess-index]').forEach(btn => btn.onclick = () => {
     const move = legalMoves[Number(btn.dataset.chessIndex)];
@@ -1051,10 +1086,20 @@ async function updateAppNow() {
 }
 
 function setupMusic() {
-  const audio = $('bgMusic'); const custom = localStorage.getItem('smq_custom_music'); if (custom) audio.src = custom;
-  const volume = Number(localStorage.getItem('smq_volume') || '0.35'); audio.volume = volume; $('volumeSlider').value = volume; if (state.musicOn) audio.play().catch(()=>{});
+  localStorage.removeItem('smq_custom_music');
+  localStorage.removeItem('smq_music_on');
+  const audio = $('playlistAudio');
+  const volume = Number(localStorage.getItem('smq_volume') || '0.35');
+  if ($('volumeSlider')) $('volumeSlider').value = volume;
+  if (audio) {
+    audio.volume = volume;
+    audio.addEventListener('timeupdate', updatePlaylistTimeline);
+    audio.addEventListener('loadedmetadata', updatePlaylistTimeline);
+    audio.addEventListener('durationchange', updatePlaylistTimeline);
+    audio.addEventListener('seeking', updatePlaylistTimeline);
+  }
 }
-function toggleMusic() { const audio = $('bgMusic'); state.musicOn = !state.musicOn; localStorage.setItem('smq_music_on', state.musicOn ? '1':'0'); if (state.musicOn) audio.play().catch(()=>toast(t('musicOn'))); else audio.pause(); $('toggleMusicBtn').textContent = state.musicOn ? t('musicOff') : t('musicOn'); }
+function toggleMusic() { playlistPlayPause(); }
 
 async function saveProfile() {
   const avatarData = $('profileAvatar').dataset.newAvatar || undefined;
@@ -1097,15 +1142,18 @@ function bindEvents() {
   $('avatarInput').onchange = (event) => { const file = event.target.files?.[0]; if (!file) return; if (file.size > 300000) return toast('Max 300 KB'); const reader = new FileReader(); reader.onload = () => { const data = reader.result; $('profileAvatar').dataset.newAvatar = data; setAvatar($('profileAvatar'), $('profileFallback'), data, $('profileName').value); }; reader.readAsDataURL(file); };
   $('clearAvatarBtn').onclick = async () => { delete $('profileAvatar').dataset.newAvatar; if (fbAuth?.currentUser && fbDb) { await fbDb.collection('users').doc(fbAuth.currentUser.uid).set({ avatarData: firebase.firestore.FieldValue.delete(), updatedAt:new Date().toISOString() }, { merge:true }); state.user = await loadFirebaseProfile(fbAuth.currentUser); } else { const profile = JSON.parse(localStorage.getItem('smq_guest_profile') || '{}'); delete profile.avatarData; localStorage.setItem('smq_guest_profile', JSON.stringify(profile)); state.user = localGuestUser(); } updateProfileUI(); };
   $('saveProfileBtn').onclick = saveProfile; $('logoutBtn').onclick = async () => { if (fbAuth?.currentUser) await fbAuth.signOut(); localStorage.removeItem('smq_entered'); state.entered = false; location.href = '/'; };
-  $('toggleMusicBtn').onclick = toggleMusic; $('volumeSlider').oninput = () => { const v = Number($('volumeSlider').value); $('bgMusic').volume = v; localStorage.setItem('smq_volume', String(v)); };
-  $('musicInput') && ($('musicInput').onchange = (event) => { const file = event.target.files?.[0]; if (!file) return; if (file.size > 4500000) return toast('Max 4.5 MB'); const reader = new FileReader(); reader.onload = () => { localStorage.setItem('smq_custom_music', reader.result); $('bgMusic').src = reader.result; state.musicOn = true; localStorage.setItem('smq_music_on','1'); $('bgMusic').play().catch(()=>{}); $('toggleMusicBtn').textContent = t('musicOff'); }; reader.readAsDataURL(file); });
+  if ($('toggleMusicBtn')) $('toggleMusicBtn').onclick = toggleMusic;
+  $('volumeSlider') && ($('volumeSlider').oninput = () => { const v = Number($('volumeSlider').value); const audio = $('playlistAudio'); if (audio) audio.volume = v; localStorage.setItem('smq_volume', String(v)); });
+  $('playlistSeek') && ($('playlistSeek').oninput = () => { const audio = $('playlistAudio'); if (!audio || !Number.isFinite(audio.duration)) return; audio.currentTime = audio.duration * (Number($('playlistSeek').value) / 100); updatePlaylistTimeline(); });
   $('addSongBtn') && ($('addSongBtn').onclick = addPlaylistSong);
   $('playlistPlayBtn') && ($('playlistPlayBtn').onclick = playlistPlayPause);
   $('playlistNextBtn') && ($('playlistNextBtn').onclick = playlistNext);
   $('playlistPrevBtn') && ($('playlistPrevBtn').onclick = playlistPrev);
   $('playlistAudio') && ($('playlistAudio').onended = playlistNext);
-  $('playlistAudio') && ($('playlistAudio').onplay = renderPlaylist);
-  $('playlistAudio') && ($('playlistAudio').onpause = renderPlaylist);
+  $('playlistAudio') && ($('playlistAudio').onplay = () => { renderPlaylist(); updatePlaylistTimeline(); });
+  $('playlistAudio') && ($('playlistAudio').onpause = () => { renderPlaylist(); updatePlaylistTimeline(); });
+  $('playlistAudio') && ($('playlistAudio').onloadedmetadata = updatePlaylistTimeline);
+  $('playlistAudio') && ($('playlistAudio').ontimeupdate = updatePlaylistTimeline);
   window.addEventListener('popstate', () => { const roomId = getRoomFromPath(); if (roomId) joinRoom(roomId, new URLSearchParams(location.search).get('spectate') === '1'); else showScreen('homeScreen'); });
 }
 

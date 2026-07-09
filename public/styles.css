@@ -1518,3 +1518,123 @@ body.light .rules-tip, body.light .move-tray.muted { background: rgba(15,23,42,.
 @media (prefers-reduced-motion: reduce) {
   .chess-board { animation: none !important; }
 }
+
+
+/* v16: one full playlist player for desktop and mobile, old background music removed */
+.modern-player {
+  gap: 10px;
+  background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+}
+.playlist-timeline {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 8px;
+  align-items: center;
+  color: rgba(255,255,255,.82);
+  font-size: .78rem;
+  font-weight: 800;
+}
+.playlist-seek,
+#volumeSlider {
+  width: 100%;
+  accent-color: var(--primary2);
+}
+.playlist-native {
+  width: 100%;
+  height: 38px;
+  border-radius: 12px;
+  overflow: hidden;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.18));
+}
+.modern-player label {
+  margin-top: 2px;
+  color: rgba(255,255,255,.82);
+  font-size: .78rem;
+  font-weight: 800;
+}
+body.light .modern-player,
+body.light .playlist-native {
+  background: rgba(15,23,42,.82);
+  color: #fff;
+}
+@media (max-width: 720px) {
+  .playlist-player { padding: 12px; }
+  .playlist-controls { grid-template-columns: 48px 1fr 48px; }
+  .playlist-native { height: 42px; }
+  .playlist-timeline { grid-template-columns: 42px 1fr 42px; }
+}
+
+
+/* v17: restored tap-only checkers and chess event animations */
+.checkers-wrap .move-tray:empty { display:none; }
+.checkers-cell { cursor: pointer; touch-action: manipulation; }
+.checkers-cell.dark:not(:disabled) { pointer-events: auto; }
+.checkers-cell.piece.movable-piece span { animation: checkerReadyPulse 1.7s ease-in-out infinite; }
+@keyframes checkerReadyPulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.04); }
+}
+.chess-alert {
+  width:min(92vw, 560px);
+  margin: 4px auto 8px;
+  padding: 9px 14px;
+  border-radius: 16px;
+  text-align:center;
+  font-weight: 950;
+  letter-spacing:.03em;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 14px 34px rgba(0,0,0,.22);
+  animation: chessAlertPop .42s ease both;
+}
+.chess-alert.capture { background: linear-gradient(135deg, rgba(250,204,21,.95), rgba(249,115,22,.88)); }
+.chess-alert.check { background: linear-gradient(135deg, rgba(255,77,141,.95), rgba(139,92,246,.9)); }
+.chess-alert.mate { background: linear-gradient(135deg, rgba(239,68,68,.98), rgba(15,23,42,.95)); animation: chessMatePulse 1s ease-in-out infinite; }
+@keyframes chessAlertPop { from { transform: translateY(-8px) scale(.96); opacity:0; } to { transform: translateY(0) scale(1); opacity:1; } }
+@keyframes chessMatePulse { 0%,100% { box-shadow:0 0 0 rgba(239,68,68,0), 0 14px 34px rgba(0,0,0,.22); } 50% { box-shadow:0 0 32px rgba(239,68,68,.55), 0 14px 34px rgba(0,0,0,.22); } }
+.chess-cell.capture-hit span {
+  animation: chessCaptureHit .58s cubic-bezier(.2,1.4,.4,1) both;
+}
+.chess-cell.capture-hit::after {
+  content:'✦';
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size: clamp(1.6rem, 7vw, 3.2rem);
+  color:#facc15;
+  text-shadow:0 0 18px rgba(250,204,21,.9);
+  animation: chessBurst .7s ease-out both;
+  pointer-events:none;
+  z-index:5;
+}
+.chess-cell.move-from::before {
+  content:'';
+  position:absolute;
+  inset:18%;
+  border-radius:16px;
+  border:2px dashed rgba(255,255,255,.45);
+  animation: chessFromFade .8s ease-out both;
+  pointer-events:none;
+}
+.chess-cell.king-danger span {
+  animation: chessKingDanger .85s ease-in-out infinite;
+}
+.chess-board.is-check { box-shadow: 0 26px 70px rgba(255,77,141,.28), 0 0 0 5px rgba(255,77,141,.22) !important; }
+.chess-board.is-mate { box-shadow: 0 26px 75px rgba(239,68,68,.42), 0 0 0 6px rgba(239,68,68,.32) !important; }
+@keyframes chessCaptureHit {
+  0% { transform: scale(.65) rotate(-8deg); filter: brightness(1.6) drop-shadow(0 0 0 rgba(250,204,21,0)); }
+  55% { transform: scale(1.22) rotate(5deg); filter: brightness(1.35) drop-shadow(0 0 22px rgba(250,204,21,.9)); }
+  100% { transform: scale(1) rotate(0); filter: brightness(1) drop-shadow(0 8px 14px rgba(0,0,0,.25)); }
+}
+@keyframes chessBurst {
+  0% { opacity:0; transform: scale(.3) rotate(0deg); }
+  35% { opacity:1; transform: scale(1.15) rotate(20deg); }
+  100% { opacity:0; transform: scale(1.7) rotate(70deg); }
+}
+@keyframes chessFromFade { from { opacity:.9; transform:scale(.8); } to { opacity:0; transform:scale(1.2); } }
+@keyframes chessKingDanger { 0%,100% { transform: scale(1); text-shadow:0 0 0 rgba(255,77,141,0); } 50% { transform: scale(1.12); text-shadow:0 0 24px rgba(255,77,141,.95); } }
+@media (max-width: 720px) {
+  .checkers-cell.piece.movable-piece span { animation: none; }
+  .chess-alert { font-size:.9rem; padding:8px 10px; }
+}

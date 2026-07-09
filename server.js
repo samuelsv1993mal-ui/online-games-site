@@ -230,7 +230,7 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'twentyone') return { total: 0, turn: 0, winner: null, lastAdd: null };
   if (game === 'reaction') return { readyAt: Date.now() + 1800 + Math.floor(Math.random() * 3200), taps: initScores(maxPlayers).map(() => null), winner: null, falseStart: null };
   if (game === 'checkers') return { board: initCheckersBoard(), turn: 0, winner: null, lastMove: null, captured: 0 };
-  if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null, check: null, castlingRights: { 0:{ king:true, queen:true }, 1:{ king:true, queen:true } } };
+  if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null, check: null, checkMate: null, castlingRights: { 0:{ king:true, queen:true }, 1:{ king:true, queen:true } } };
   if (game === 'nim') return { sticks: 21, turn: 0, lastTake: null, winner: null };
   if (game === 'code') return { secret: makeSecret(), guesses: [], maxGuesses: 10, winner: null };
   if (game === 'wordguess') return { secret: chooseWord('ru'), lang:'ru', wordLength:5, guesses:[], maxGuesses:6, winner:null, finished:false, reveal:null };
@@ -872,11 +872,14 @@ function chessAction(room, index, action) {
   room.state.lastMove = { player:index, from, to, captured: captured ? captured.t : null, castle: !!move.castle };
   const other = index === 0 ? 1 : 0;
   room.state.check = isKingInCheck(room.state.board, other) ? other : null;
+  room.state.checkMate = null;
   const nextMoves = legalChessMoves(room.state.board, other, room.state);
+  const notation = `${room.players[index]?.name}: ${from.join(',')} → ${to.join(',')}${move.castle ? ' 0-0' : captured ? ' ×' : ''}`;
   if (!hasKing(room.state.board, other) || (!nextMoves.length && room.state.check === other)) {
-    finishRound(room, index, { type:'chess', lastMove:`${room.players[index]?.name}: ${from.join(',')} → ${to.join(',')}${move.castle ? ' 0-0' : captured ? ' ×' : ''}` });
+    room.state.checkMate = other;
+    finishRound(room, index, { type:'chess', captured: captured ? captured.t : null, check: room.state.check, checkMate: other, lastMove:`${notation} · mate` });
   } else if (!nextMoves.length) {
-    finishRound(room, null, { type:'chess', lastMove:'Stalemate' });
+    finishRound(room, null, { type:'chess', check: null, checkMate: null, lastMove:'Stalemate' });
   } else room.state.turn = other;
 }
 function wordHint(secret, guess) {
