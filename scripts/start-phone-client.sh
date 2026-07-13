@@ -13,7 +13,17 @@ printf '3) Друзья открывают один из адресов ниже
 
 termux-wake-lock 2>/dev/null || true
 
-ips="$((ip -4 addr show 2>/dev/null || true) | awk '/inet / {print $2}' | cut -d/ -f1 | grep -Ev '^(127|169\.254)\.' || true)"
+ips="$( (ip -4 addr show 2>/dev/null || true) | awk '/inet / {print $2}' | cut -d/ -f1 | grep -Ev '^(127|169\.254)\.' || true)"
+
+# Исправление для Android/Hotspot: иногда ip addr не показывает адрес точки доступа обычным способом.
+# Добавляем самые частые адреса ведущего телефона, если они отвечают локально.
+for candidate in 192.168.43.1 192.168.49.1 192.168.1.1 172.20.10.1; do
+  if ! printf '%s\n' "$ips" | grep -qx "$candidate"; then
+    ips="${ips}\n${candidate}"
+  fi
+done
+ips="$(printf '%b\n' "$ips" | awk 'NF && !seen[$0]++')"
+
 if [ -z "$ips" ]; then
   printf '⚠️  Локальный IP не найден. Включи точку доступа и перезапусти скрипт.\n\n'
 else
@@ -25,6 +35,8 @@ else
   if command -v qrencode >/dev/null 2>&1; then
     printf '\nQR для друзей:\n'
     qrencode -t ANSIUTF8 "http://$first_ip:$PORT" || true
+  else
+    printf '\nQR-код не установлен. Это нормально: просто отправь друзьям адрес текстом.\n'
   fi
 fi
 

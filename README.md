@@ -37,3 +37,15 @@ bash scripts/start-phone-client.sh
 # SMQ Games v21
 
 Rebuilt checkers tap controls again using chess-style div cells, event delegation, pointerup support and always-visible move buttons.
+
+
+## v24
+- Исправлен установщик телефонного Wi‑Fi клиента: `qrencode` и `termux-api` теперь необязательны.
+- Исправлен запуск `start-phone-client.sh` в Termux.
+- Если QR недоступен, адрес для друзей показывается текстом.
+
+
+## v25
+- Добавлена игра Домино (RU/ES/EN).
+- Тексты новой игры и подписи ходов отображаются на выбранном языке профиля.
+- Имена компьютерного соперника в интерфейсе локализуются по выбранному языку.

@@ -96,6 +96,7 @@ const gameMeta = {
   reaction: { emoji: '⚡', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'duel' },
   checkers: { emoji: '⚫', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'strategy' },
   chess: { emoji: '♞', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'strategy' },
+  domino: { emoji: '🁫', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'logic' },
   nim: { emoji: '🪵', maxPlayers: 2, minPlayers: 2, supportsBot: true, category: 'logic' },
   code: { emoji: '🔐', maxPlayers: 1, minPlayers: 1, supportsBot: false, category: 'solo' },
   wordguess: { emoji: '🔤', maxPlayers: 1, minPlayers: 1, supportsBot: false, category: 'solo' },
@@ -264,6 +265,54 @@ function initChessBoard() {
   return board;
 }
 
+
+function makeDominoSet() {
+  const set = [];
+  for (let a = 0; a <= 6; a++) for (let b = a; b <= 6; b++) set.push({ id: `${a}-${b}-${set.length}`, a, b });
+  return shuffle(set);
+}
+function initDominoState(maxPlayers = 2) {
+  const pile = makeDominoSet();
+  const hands = Array.from({ length: maxPlayers }, () => []);
+  for (let round = 0; round < 7; round++) for (let p = 0; p < Math.min(2, maxPlayers); p++) hands[p].push(pile.pop());
+  return { hands, line: [], boneyard: pile, turn: 0, passStreak: 0, lastMove: null, winner: null };
+}
+function dominoEnds(line) {
+  if (!line || !line.length) return null;
+  return { left: line[0].left, right: line[line.length - 1].right };
+}
+function orientDomino(tile, line, side) {
+  if (!line || !line.length) return { id: tile.id, a: tile.a, b: tile.b, left: tile.a, right: tile.b };
+  const ends = dominoEnds(line);
+  if (side === 'left') {
+    if (tile.b === ends.left) return { id: tile.id, a: tile.a, b: tile.b, left: tile.a, right: tile.b };
+    if (tile.a === ends.left) return { id: tile.id, a: tile.a, b: tile.b, left: tile.b, right: tile.a };
+  } else {
+    if (tile.a === ends.right) return { id: tile.id, a: tile.a, b: tile.b, left: tile.a, right: tile.b };
+    if (tile.b === ends.right) return { id: tile.id, a: tile.a, b: tile.b, left: tile.b, right: tile.a };
+  }
+  return null;
+}
+function legalDominoPlacements(state, player) {
+  const hand = state.hands?.[player] || [];
+  const moves = [];
+  for (const tile of hand) {
+    if (!state.line.length) moves.push({ type:'place', tileId: tile.id, side:'right' });
+    else {
+      if (orientDomino(tile, state.line, 'left')) moves.push({ type:'place', tileId: tile.id, side:'left' });
+      if (orientDomino(tile, state.line, 'right')) moves.push({ type:'place', tileId: tile.id, side:'right' });
+    }
+  }
+  return moves;
+}
+function dominoPipSum(hand) {
+  return (hand || []).reduce((sum, t) => sum + Number(t?.a || 0) + Number(t?.b || 0), 0);
+}
+function finishBlockedDomino(room) {
+  const sums = [dominoPipSum(room.state.hands?.[0]), dominoPipSum(room.state.hands?.[1])];
+  const winner = sums[0] === sums[1] ? null : sums[0] < sums[1] ? 0 : 1;
+  finishRound(room, winner, { type:'domino', lastMove:`Domino blocked: ${sums[0]} - ${sums[1]}` });
+}
 function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'ttt') return { board: Array(9).fill(null), turn: 0, winner: null, winLine: null, lastMove: null };
   if (game === 'connect4') return { board: Array.from({ length: 6 }, () => Array(7).fill(null)), turn: 0, winner: null, winLine: null, lastMove: null };
@@ -277,6 +326,7 @@ function initState(game, maxPlayers = 2, teamCount = 2) {
   if (game === 'reaction') return { readyAt: Date.now() + 1800 + Math.floor(Math.random() * 3200), taps: initScores(maxPlayers).map(() => null), winner: null, falseStart: null };
   if (game === 'checkers') return { board: initCheckersBoard(), turn: 0, winner: null, lastMove: null, captured: 0 };
   if (game === 'chess') return { board: initChessBoard(), turn: 0, winner: null, lastMove: null, check: null, checkMate: null, castlingRights: { 0:{ king:true, queen:true }, 1:{ king:true, queen:true } } };
+  if (game === 'domino') return initDominoState(maxPlayers);
   if (game === 'nim') return { sticks: 21, turn: 0, lastTake: null, winner: null };
   if (game === 'code') return { secret: makeSecret(), guesses: [], maxGuesses: 10, winner: null };
   if (game === 'wordguess') return { secret: chooseWord('ru'), lang:'ru', wordLength:5, guesses:[], maxGuesses:6, winner:null, finished:false, reveal:null };
@@ -475,6 +525,7 @@ function safeState(room) {
   if (room.game === 'memory') return { ...room.state, cards: room.state.cards.map(c => ({ id: c.id, value: c.revealed || c.matched ? c.value : null, revealed: c.revealed, matched: c.matched })) };
   if (room.game === 'code') return { ...room.state, secret: undefined };
   if (room.game === 'wordguess') return { ...room.state, secret: undefined };
+  if (room.game === 'domino') return { ...room.state, boneyardCount: room.state.boneyard?.length || 0, boneyard: undefined };
   if (room.game === 'whoami') {
     const state = { ...room.state };
     if (state.phase === 'spinning' && state.question) state.question = { id: state.question.id };
@@ -494,7 +545,7 @@ function currentPlayerIndex(socket, room) {
 function isPlayersTurn(room, index) {
   if (!room.players[index] || room.status !== 'playing') return false;
   if (room.players[index].isBot) return true;
-  if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'chess', 'nim'].includes(room.game)) return room.state.turn === index;
+  if (['ttt', 'connect4', 'memory', 'twentyone', 'checkers', 'chess', 'domino', 'nim'].includes(room.game)) return room.state.turn === index;
   if (['millionaire', 'teamquiz', 'mathrace', 'biblequiz'].includes(room.game)) return !room.state.answers[String(index)] && !room.state.showAnswer;
   if (['code','wordguess'].includes(room.game)) return index === 0;
   if (room.game === 'guesstime') return room.state.activeIndex === index && ['setup','ready','running','stopped'].includes(room.state.phase);
@@ -529,6 +580,7 @@ function applyAction(room, index, action) {
     case 'reaction': return reactionAction(room, index, action);
     case 'checkers': return checkersAction(room, index, action);
     case 'chess': return chessAction(room, index, action);
+    case 'domino': return dominoAction(room, index, action);
     case 'nim': return nimAction(room, index, action);
     case 'code': return codeAction(room, index, action);
     case 'wordguess': return wordGuessAction(room, index, action);
@@ -964,6 +1016,42 @@ function wordGuessAction(room, index, action) {
     room.state.winner = false; room.state.finished = true; room.state.reveal = room.state.secret; finishRound(room, null, { type:'wordguess', lastMove:`${room.state.secret}`, secret:room.state.secret });
   }
 }
+
+function dominoAction(room, index, action) {
+  const s = room.state;
+  if (!s || s.turn !== index) return;
+  const moves = legalDominoPlacements(s, index);
+  if (action.type === 'place') {
+    const tileIndex = (s.hands[index] || []).findIndex(t => t.id === action.tileId);
+    if (tileIndex < 0) return;
+    const tile = s.hands[index][tileIndex];
+    const side = action.side === 'left' ? 'left' : 'right';
+    const oriented = orientDomino(tile, s.line, side);
+    if (!oriented) return;
+    s.hands[index].splice(tileIndex, 1);
+    if (!s.line.length || side === 'right') s.line.push(oriented);
+    else s.line.unshift(oriented);
+    s.passStreak = 0;
+    s.lastMove = `${room.players[index]?.name || 'Player'}: ${tile.a}|${tile.b}`;
+    if (s.hands[index].length === 0) return finishRound(room, index, { type:'domino', lastMove:s.lastMove });
+    s.turn = index === 0 ? 1 : 0;
+    return;
+  }
+  if (action.type === 'draw') {
+    if (moves.length) return;
+    if (s.boneyard && s.boneyard.length) {
+      const tile = s.boneyard.pop();
+      s.hands[index].push(tile);
+      s.lastMove = `${room.players[index]?.name || 'Player'} drew a tile`;
+      return;
+    }
+    s.passStreak = (s.passStreak || 0) + 1;
+    s.lastMove = `${room.players[index]?.name || 'Player'} passed`;
+    if (s.passStreak >= 2) return finishBlockedDomino(room);
+    s.turn = index === 0 ? 1 : 0;
+  }
+}
+
 function nimAction(room, index, action) {
   const take = Number(action.take);
   if (![1,2,3].includes(take) || room.state.turn !== index || take > room.state.sticks) return;
@@ -1399,7 +1487,7 @@ function maybeBotMove(room) {
     if (!action) return;
     applyAction(room, botIndex, action);
     emitRoom(room);
-    if (room.status === 'playing' && ['memory'].includes(room.game)) maybeBotMove(room);
+    if (room.status === 'playing' && ['memory','domino'].includes(room.game)) maybeBotMove(room);
   }, 600 + Math.floor(Math.random() * 700));
 }
 
@@ -1433,6 +1521,14 @@ function chooseBotAction(room) {
   if (room.game === 'chess') {
     const moves = legalChessMoves(s.board, 1, s);
     return chooseChessBotMove(s.board, moves, diff);
+  }
+  if (room.game === 'domino') {
+    const moves = legalDominoPlacements(s, 1);
+    if (!moves.length) return { type:'draw' };
+    const hand = s.hands?.[1] || [];
+    const score = (m) => { const tile = hand.find(t => t.id === m.tileId); return tile ? tile.a + tile.b + (tile.a === tile.b ? 3 : 0) : 0; };
+    if (diff === 'beginner') return moves[Math.floor(Math.random() * moves.length)];
+    return chooseBestByScore(moves, score);
   }
   if (room.game === 'nim') {
     const take = s.sticks <= 3 ? s.sticks : ((s.sticks - 1) % 4) || (1 + Math.floor(Math.random() * 3));
